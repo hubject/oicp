@@ -1,0 +1,895 @@
+
+:toc:
+
+image::images/hubjectlogo.png[float="right", align="right"]
+
+[[services_and_operations]]
+= Services and Operations (Release Candidate)
+
+Each message requires a message in return (at least an acknowledgement).
+
+Each system must be able to cope with possible connection error scenarios as well as with different strategies to solve inconsistencies.
+
+All described services are offered by Hubject. Some of the described services `MUST` also be offered by the connected provider systems because Hubject forwards incoming requests to partners which presumes that the corresponding service is offered by that partner (e.g. <<eRoamingAuthorization,eRoamingAuthorization>>)
+
+Other services will only be consumed by partner systems, meaning that these services do not have to be offered by the partner system (e.g. the eRoamingAuthenticationData service will be offered by Hubject only).
+
+The names of all following services contain a version and are based on the pattern “<service>_V<version>”, e.g. “eRoamingAuthorization_V2.1”. The reason for this being that Hubject potentially has to offer different versions of a service at the same time. This requires different technical service endpoints (service URLs) and the version in the service name is used to enable the service endpoint differentiation.
+
+:numbered:
+
+[[eRoamingAuthorization]]
+== eRoamingAuthorization
+The service eRoamingAuthorization contains several different operations. It `MUST` be offered by Hubject and the partner systems.
+
+[[eRoamingAuthorizeStart]]
+=== eRoamingAuthorizeStart_V2.1
+
+[NOTE]
+====
+- To `SEND`
+- Implementation: `MANDATORY`
+====
+
+- <<eRoamingAuthorizeStartmessage,Request message: eRoamingAuthorizeStart>>
+- <<eRoamingAuthorizationStartmessage,Response message:eRoamingAuthorizationStart>>
+
+[.underline]#*Functional Description:*#
+
+Scenario:
+
+A customer of an EMP wants to charge a vehicle at a charging point of a CPO. The customer authenticates at the charging point. The CPO’s operator system does not recognize the customer’s authentication data. In order to authorize the charging process, the CPO’s system can send an eRoamingAuthorizeStart request to Hubject. The request `MUST` contain the OperatorID and the identification data (e.g. UID or EvcoID) and `MAY` contain the EvseID.
+
+Hubject generates a SessionID for the charging process and persists important session data (SessionID, EvseID, identification data).
+
+Regarding the further service processing, there are three different options:
+
+[upperalpha]
+..	Hubject first tries to authorize the customer offline by checking authentication master data. Authentication data can be uploaded by EMPs using the eRoamingAuthenticationData service.
+
+image::images/authorizestart_offline.png[]
+
+[upperalpha, start=2]
+.. In case offline authorization is not possible, Hubject tries to derive the EMP from the provided identification data. QR Code and Plug&Charge identification data contain the EvcoID. Hubject can derive the EMP’s ProviderID from the EvcoID. Hubject will directly forward eRoamingAuthorizeStart requests to the EMP. The EMP provider system checks the requested authentication data and responds accordingly, either by authorizing or not authorizing the request. The response `MUST` contain the ProviderID and the AuthorizationStatus and `MAY` contain a list of identification data that is authorized to stop the charging process. In case that the EMP provider system cannot be addressed (e.g. due to technical problems), the corresponding provider will be dealt with as if responding “NotAuthorized”.
+
+image::images/authorize_evco.png[]
+
+[upperalpha, start=3]
+
+.. In case that Hubject cannot derive the EMP from the identification data (e.g. with RFID identification), Hubject identifies all EMPs that are under contract with the CPO (EMPs must be the service subscriber) and forwards the eRoamingAuthorizeStart request to all these EMPs (broadcast). Hubject consolidates all EMP responses and creates an overall response, authorizing the request in case that one EMP authorized the request.
+
+image::images/authorizestart_online.png[]
+
+In case that the request for authorization was not successful, Hubject deletes the corresponding SessionID for the charging process.
+
+The response from Hubject to the CPO contains authorization details and in case of successful authorization the created SessionID and the ProviderID of the authorizing provider.
+
+[.underline]#*Pin Security:*#
+
+The eRoamingAuthorizeStart request contains one of the defined identification types (see <<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>). The identification
+type “QRCodeIdentificationType” (see <<03_CPO_Data_Types.adoc#QRCodeIdentificationType,QRCodeIdentificationType>>) contains - besides the “EvcoID” field - a “PIN” field or a “HashedPIN”
+field (only one of the two options must be provided).
+
+For security reasons and as a general rule, Hubject does not store PINs in clear text, but always as encrypted hash
+values. In order to prevent hashed PIN values that may have been picked illegally from being used to request the
+authorization for charging processes, the PIN value `MUST` always be provided in clear text within the
+eRoamingAuthorizeStart request. This means that this operation `MUST` always provide the “PIN” field (clear text).
+Hubject will always generate a hash value of the provided PIN before checking the offline authentication data. So,
+in case that a PIN is provided by mistake as hashed value, Hubject automatically generates a hash of a hash,
+which eventually leads to a denial of authorization
+
+In order to create hash values, Hubject applies the hash algorithm that the EMP has assigned to the QR Code
+identification record
+
+[[eRoamingAuthorizeStartmessage]]
+==== eRoamingAuthorizeStart Message
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+OperatorID:<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>:The OperatorID is defined by Hubject and is used to identify the CPO.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:O:
+Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
+PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
+|========================
+
+ Best Practices:
+ - The EVSE ID is optional for this message which is e.g. defined after the RFID authorization at a charge point. If the Evse ID can be provided, we recommend to include the EVSE ID in this message; it will help for support matters.
+ - If an authorization process could not successfully be executed, please set an error code by refering to the error code list mentioned in the OICP document.
+
+[[eRoamingAuthorizationStart]]
+=== eRoamingAuthorizationStart
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `MANDATORY`
+====
+eRoamingAuthorizationStart is a message that authorizes a user to charge a car.
+NOTE: This message describes the response which has to be receive in response to the eRoamingAuthorizeStart.
+
+[[eRoamingAuthorizationStartmessage]]
+==== eRoamingAuthorizationStart Message
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP. In case of a positive authorization this field will be filled.:O:
+AuthorizationStatus:<<03_CPO_Data_Types.adoc#AuthorizationStatusType,AuthorizationStatusType>>:Information specifying whether the user is authorized to charge or not.:M:
+StatusCode:<<03_CPO_Data_Types.adoc#StatusCodeType,StatusCodeType>>:Structured status details. Can be used to specify the reason for a failed authorization:M:
+AuthorizationStopIdentifications:List <<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:A list of Identification data that is authorized to stop the charging process.:O:
+|========================
+
+[[eRoamingAuthorizeStop]]
+=== eRoamingAuthorizeStop_V2.1
+[NOTE]
+====
+- To `SEND`
+- Implementation: `OPTIONAL`
+====
+
+- <<eRoamingAuthorizeStopmessage,Request message: eRoamingAuthorizeStop>>
+- <<eRoamingAuthorizationStopmessage,Response message: eRoamingAuthorizationStop>>
+
+image::images/authorizestop.png[]
+
+eRoamingAuthorizeStop basically works in a similar way to the operation eRoamingAuthorizeStart. The request is
+sent in order to authorize the stopping of a charging process. The request `MUST` contain the SessionID that was
+created by Hubject after the initial eRoamingAuthorizeStart request. In most cases, Hubject can derive the EMP
+that authorized the charging process from the SessionID and can directly and offline authorize the request or
+forward the request for stopping to the EMP. In case the charging session was originally authorized offline by the
+HBS, the session `MUST` only be stopped with the same medium, which was used for starting the session
+
+[[eRoamingAuthorizeStopmessage]]
+==== eRoamingAuthorizeStop Message
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+OperatorID:<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>:The OperatorID is defined by Hubject and is used to identify the CPO.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:O:
+Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
+|========================
+
+[[eRoamingAuthorizationStop]]
+=== eRoamingAuthorizationStop
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `OPTIONAL`
+====
+eRoamingAuthorizeStop is a message to request an authorization for stopping a charging process.
+
+NOTE: This message describes the response which has to be received in return to the eRoamingAuthorizeStop request.
+
+[[eRoamingAuthorizationStopmessage]]
+==== eRoamingAuthorizationStop Message
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP. In case of a positive authorization this field will be filled.:O:
+AuthorizationStatus:<<03_CPO_Data_Types.adoc#AuthorizationStatusType,AuthorizationStatusType>>:Information specifying whether the user is authorized to charge or not.:M:
+StatusCode:<<03_CPO_Data_Types.adoc#StatusCodeType,StatusCodeType>>:Structured status details. Can be used to specify the reason for a failed authorization:M:
+|========================
+
+[[eRoamingAuthorizeRemoteStart]]
+=== eRoamingAuthorizeRemoteStart_V2.1
+
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `MANDATORY`
+====
+
+NOTE: This operation is used by EMPs in order to remotely start a charging process
+
+The service that is offered by Hubject in order to allow customers to directly start a charging process via mobile app.
+
+- <<eRoamingAuthorizeRemoteStartmessage,Request message: eRoamingAuthorizeRemoteStart>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+
+image::images/remotestart.png[]
+
+*Functional description:*
+
+*Scenario:*
+
+A customer of an EMP wants to charge a vehicle at a charging station of a CPO. The customer informs his EMP of his intention,
+e.g. via mobile phone or smart phone application. The EMP’s provider system can then initiate a charging
+process at the CPO’s charging station by sending an eRoamingAuthorizeRemoteStart request to Hubject. The request MUST contain the ProviderID and the EvseID.
+
+Hubject will derive the CPO’s OperatorID from the EvseID.
+
+Hubject will check whether there is a valid contract between the two partners for the service (EMP must be the subscriber).
+If so, Hubject continues with checking the charging point compatibility.
+In case that the CPO has uploaded at least one charging point data record, Hubject will check whether the requested EvseID is
+among the uploaded data. If not, Hubject will respond with the status code 603 “Unknown EvseID”.
+If yes, Hubject will check whether the charging spot’s property “IsHubjectCompatible” is set “true”.
+If the property is false, Hubject will respond with the status code 604 “EvseID is not Hubject compatible”.
+
+In case that the requested EvseID is compatible or the CPO has not uploaded any EVSE records at all,
+Hubject generates a SessionID for the following process and forwards the request (including the SessionID) to the CPO.
+The CPO `MUST` return an eRoamingAcknowledgement message that `MUST` contain the result indicating whether the charging process will be started and that `MAY`
+contain a status code for further information.
+
+In case that the CPO’s system cannot be addressed (e.g. due to technical problems), Hubject will return to the requestor a “false” result and a message
+indicating the connection error.
+
+
+[[eRoamingAuthorizeRemoteStartmessage]]
+==== eRoamingAuthorizeRemoteStart Message
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
+PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
+|========================
+
+ Best Practices:
+ - Please ensure a request run time of under 10 seconds including network roundtrip.
+
+[[eRoamingAuthorizeRemoteStop]]
+=== eRoamingAuthorizeRemoteStop_V2.1
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `MANDATORY`
+====
+
+- <<eRoamingAuthorizeRemoteStopmessage,Request message: eRoamingAuthorizeRemoteStop>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/remotestop.png[]
+
+eRoamingAuthorizeRemoteStop basically works in the same way as eRoamingAuthorizeRemoteStart. The only difference is that this request is sent in order to initiate the stopping of a charging process. The request `MUST` contain the SessionID that was created by Hubject after the initial eRoamingAuthorizeRemoteStart request.
+
+[[eRoamingAuthorizeRemoteStopmessage]]
+==== eRoamingAuthorizeRemoteStop Message
+
+eRoamingAuthorizeRemoteStop is a message to request an authorization for stopping a charging process.
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+|========================
+
+[[eRoamingChargeDetailRecord]]
+=== eRoamingChargeDetailRecord_V2.2
+[NOTE]
+====
+- To `SEND`
+- Implementation: `MANDATORY`
+====
+- <<eRoamingChargeDetailRecordmessage,Request message: eRoamingChargeDetailRecord>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/cdr.png[]
+
+[.underline]#*Functional Description:*#
+
+Scenario:
+
+A customer of an EMP has charged a vehicle at a charging station of a CPO. The charging process was started with an eRoamingAuthorizeStart or an eRoamingAuthorizeRemoteStart operation. The process may have been stopped with an eRoamingAuthorizeStop or an eRoamingAuthorizeRemoteStop operation. A preceding stop request is not a necessary precondition for the processing of an eRoamingChargeDetailRecord request. The CPO’s provider system MUST send an eRoamingChargeDetailRecord (CDR) after the end of the charging process in order to inform the EMP of the charging session data (e.g. meter values and consumed energy) and further charging process details.
+
+NOTE: The CPO MUST provide the same SessionID that was assigned to the corresponding charging process. Based on this information Hubject will be able to assign the session data to the correct process.
+
+Hubject will identify the receiving EMP and will forward the CDR to the corresponding EMP. The EMP `MUST` return an eRoamingAcknowledgement message that `MUST` contain the result indicating whether the session data was received successfully and that `MAY` contain a status code for further information.
+
+Hubject will accept only one CDR per SessionID.
+
+In addition to forwarding the CDR to the EMP, Hubject also stores the CDR. In case that the recipient provider’s system cannot be addressed (e.g. due to technical problems), Hubject will nevertheless return to the requestor a positive result provided that storing the CDR was successful.
+
+[[eRoamingChargeDetailRecordmessage]]
+==== eRoamingChargeDetailRecord Message
+
+eRoamingChargeDetailRecord is a message that contains charging process details (e.g. meter values).
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
+ChargingStart:Date/Time:The date and time at which the charging process started.:M:
+ChargingEnd:Date/Time:The date and time at which the charging process stopped.:M:
+SessionStart:Date/Time:The date and time at which the session started, e.g. swipe of RFID or cable connected.:M:
+SessionEnd:Date/Time:The date and time at which the session ended. E. g. Swipe of RFID or Cable disconnected.:M:
+MeterValueStart:Decimal (,3):The starting meter value in kWh.:O:
+MeterValueEnd:Decimal (,3):The ending meter value in kWh.:O:
+MeterValueInBetween:List Meter Value (Decimal (,3)):List of meter values that may have been taken in between (kWh).:O:
+ConsumedEnergy:Decimal (,3):The difference between MeterValueEnd and MeterValueStart in kWh.:M:
+SignedMeteringValues:<<03_CPO_Data_Types.adoc#SignedMeteringValuesType,SignedMeteringValuesType>>:Metering Signature basically contains all metering signature values for different status of charging session for eg start, end or progress. In total you can provide maximum 10 metering signature values:O:
+CalibrationLawVerificationInfo:<<03_CPO_Data_Types.adoc#CalibrationLawVerificationType,CalibrationLawVerificationType>>:This field provides additional information which could help directly or indirectly to verify the signed metering value:O:
+HubOperatorID:<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>:Hub operator:O:
+HubProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:Hub provider:O:
+|========================
+
+==== Charge Detail Records Best Practices
+[%header]
+|====
+|Data field| Impact of neglecting the recommendation| Recommendation
+|Time of procedure||For CPO’s in general, every CDR is sent approximately one second after closure in CPO backend system in NRT manner to the eRoaming platform. It should not take longer than ten seconds to fulfill this task.
+
+EMP online will receive the forwarded CDR directly from the eRoaming platform.
+|PartnerProductID||
+We strongly recommend to use one of the following field settings.
+
+• AC1
+
+• AC3
+
+• DC
+
+• Free
+|Session end time vs Time of request||Please ensure that ‘Time of request’ is later than ‘Session end time’
+|Session Start/ Session End|If the time stamp/time zone of this data is not correct, this will prevent EMP’s to provide end customer product related on this date(e.g. day and night tariffs)|Please make sure, that your time stamp in this field includes the real time zone of the charging station of start and end of the charging session.
+|====
+
+[[eRoamingReservation]]
+== eRoamingReservation
+
+The service eRoamingReservation contains two operations. It MUST be offered by Hubject and `MAY` be offered by CPO partner systems. The Service `MUST` be enabled by Hubject for the CPO. If the charging station offers reservation services, the CPO can provide this information in the field <<03_CPO_Data_Types.adoc#ValueAddedServiceType,ValueAddedServices>>.
+
+[[eRoamingAuthorizeRemoteReservationStart]]
+=== eRoamingAuthorizeRemoteReservationStart_V1.1
+
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `OPTIONAL`
+====
+
+NOTE: This operation is used by EMPs in order to remotely reserve a charging point.
+
+- <<eRoamingAuthorizeRemoteReservationStartmessage,Request message: eRoamingAuthorizeRemoteReservationStart>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/reservationstart.png[]
+
+[.underline]#*Functional Description:*#
+
+Scenario:
+
+
+A customer of an EMP wants to reserve a charging point of a CPO for a later charging process. The customer informs his EMP of his intention, e.g. via mobile phone or smart phone application. The EMP’s provider system can then initiate a reservation of the CPO’s charging point by sending an eRoamingAuthorizeRemoteReservationStart request to Hubject. The request `MUST` contain the ProviderID and the EvseID. The demanded reservation product can be specified using the field PartnerProductID.
+
+Hubject will derive the CPO’s OperatorID from the EvseID.
+
+Hubject will check whether there is a valid contract between the two partners for the service Reservation (EMP must be the subscriber). If so, Hubject continues with checking the charging point compatibility. In case that the CPO has uploaded at least one charging point data record, Hubject will check whether the requested EvseID is among the uploaded data. If not, Hubject will respond with the status code 603 “Unknown EvseID”. If yes, Hubject will check whether the charging spot’s property “IsHubjectCompatible” is set “true”. If the property is false, Hubject will respond with the status code 604 “EvseID is not Hubject compatible”.
+
+In case that the requested EvseID is compatible or the CPO has not uploaded any EVSE records at all, Hubject generates a SessionID for the reservation process and forwards the request (including the SessionID) to the CPO. The CPO `MUST` return an eRoamingAcknowledgement message that `MUST` contain the result indicating whether the reservation was successful and that `MAY` contain a status code for further information.
+
+In case that the CPO’s system cannot be addressed (e.g. due to technical problems), Hubject will return to the requestor a “false” result and a message indicating the connection error.
+
+[[eRoamingAuthorizeRemoteReservationStartmessage]]
+==== eRoamingAuthorizeRemoteReservationStart Message
+
+eRoamingAuthorizeRemoteReservationStart is a message to request a reservation of a charging spot.
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
+PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
+Duration:Integer:Duration of reservation in minutes:O:2
+|========================
+
+
+[[eRoamingAuthorizeRemoteReservationStop]]
+=== eRoamingAuthorizeRemoteReservationStop_V1.1
+[NOTE]
+====
+- To `RECEIVE`
+- Implementation: `OPTIONAL`
+====
+
+- <<eRoamingAuthorizeRemoteReservationStopmessage,Request message: eRoamingAuthorizeRemoteReservationStop>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/reservationstop.png[]
+
+eRoamingAuthorizeRemoteReservationStop basically works in the same way as eRoamingAuthorizeRemoteReservationStart. The only difference is that this request is sent in order to end the reservation of a charging spot. The request `MUST` contain the SessionID that was created by Hubject after the initial eRoamingAuthorizeRemoteReservationStart request. After the eRoamingAuthorizeRemoteReservationStop the CPO `MUST` provide a CDR.
+
+[[eRoamingAuthorizeRemoteReservationStopmessage]]
+==== eRoamingAuthorizeRemoteReservationStop Message
+
+eRoamingAuthorizeRemoteReservationStop is a message to request the end of a charging spot reservation.
+
+[%header,format=dsv, cols=5]
+|========================
+Name: Data Type: Description: M/O: Field Length
+SessionID: <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
+CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
+ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+|========================
+
+
+[[eRoamingEvseData]]
+== eRoamingEvseData
+
+Hubject offers the possibility to upload and download charging spot (EVSE) data and, thus, to exchange data between different partners.
+
+See <<04_Appendix.asciidoc,apendix>> for a detailed business process diagram regarding the EVSE data service.
+
+The eRoamingEvseData service offers two operations:
+
+. eRoamingPushEvseData in order to give CPOs the possibility to upload (push) EVSE master data
+. eRoamingPullEvseData in order to give EMPs the possibility to download (pull) EVSE data from partner operators via Hubject.
+
+Hub CPOs may also push EVSE data of sub operators. Hubject does not distinguish between EVSE records of hub operators and related sub operators.
+
+[[eRoamingPushEvseData]]
+=== eRoamingPushEvseData_V2.3
+[NOTE]
+====
+- To `SEND`
+- Implementation: `MANDATORY`
+====
+- <<eRoamingPushEvseDatamessage,Request message: eRoamingPushEvseData>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/pushevsedata.png[]
+
+When a CPO sends an eRoamingPushEvseData request, Hubject checks whether there is a valid contract between Hubject and the CPO for the service type (Hubject must be the subscriber). If so, the operation allows uploading EVSE data to Hubject. Furthermore, it is possible to update or delete EVSE data that has been pushed with an earlier operation request. How Hubject handles the transferred data `MUST` be defined in the request field "ActionType", which offers four options.
+
+The EvseData that will be inserted or updated `MUST` be provided in the <<03_CPO_Data_Types.adoc#OperatorIDType,OperatorEvseData>> field, which consists of <<03_CPO_Data_Types.adoc#EvseDataRecordType,EvseDataRecord>> structures. Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed action – leads to a new version of currently valid data records. Furthermore, every operation is logged with the current timestamp. Thus, Hubject can reconstruct the status of EvseData for every point in time in the past.
+
+*EVSE consistency:*
+
+EvseIDs contain the ID of the corresponding CPO (With every data upload operation Hubject checks whether the given CPO’s OperatorID or Sub-OperatorIDs if necessary) matches every given EvseID. If not, Hubject refuses the data upload and responds with the status code 018.
+
+NOTE: The eRoamingPushEvseData operation `MUST` always be used sequentially as described in Data Push Operations.
+
+[[eRoamingPushEvseDatamessage]]
+==== eRoamingPushEvseData Message
+eRoamingPushEvseData is a message that is sent in order to upload EVSE data to the Hubject system.
+
+[%header]
+|====
+|Name| Data Type| Description| M/O
+|ActionType|
+One of the following:
+
+- fullLoad
+
+- update
+
+- insert
+
+- delete
+
+|Describes the action that has to be performed by Hubject with the provided data.|M
+|OperatorEvseData| <<03_CPO_Data_Types.adoc#OperatorEvseDataType,OperatorEvseDataType>>||M
+|====
+
+==== eRoamingEvseData Best Practices
+
+Please follow the guidelines below for data fields when pushing EVSE data from a CPO backend to the eRoaming platform for the EvseDataRecordType mentioned in the OICP.
+
+[%header]
+|====
+|Data field| Impact of neglecting the recommendation| Recommendation
+|EvseID|The longer an EVSE ID is, the higher the possibility of errors.|Please create an EVSE ID without using up the technically possible length.
+|Charging Station ID|No negative impact|If a CPO wants to add aditional information to each charge point which cannot be displayed in the EVSE ID (e.g. internal numeration of chargepoints) a CPO has the chance to fill in the charingStationID field
+|ChargingStationName|End customers might lack a distinct name to remember the station or its operator with ease, if it is just identified via its EvseID.|We highly recommend to enter a valid name, e.g. “Charge point (your company brand name=“ using local language. This can be an additional information for end customers to easily identify charging stations
+|Address|location based information, inaccurate address data will directly limit the stations visibility and future usage by end customers.|The address fields for charge points are highly recommended to be filled in accordingly to our best practice guide because they can be added value for end customer in finding their position.
+|Country|Neglecting the ISO standard will lead to inconsistent information on the countries, the station are located in. The country is regarded as mandatory data.|Alpha 3 ISO (ISO 3166-1) code is required, (e.g. 'DEU', 'FRA', 'USA').
+|City|As a mandatory field, missing city names will cause incomplete address data which will not be accepted.|Please enter the city in which the charging station is located.
+|Street|As a mandatory field, missing street names will cause incomplete address data which will not be accepted.|Please enter the street name in which the charging station is located.
+
+Please make sure your street has at least 2 characters. If not, please fill with underscores.
+|PostalCode|End customers will be limited in their search for charging stations whenever an incorrect postal code is given.|Please enter the valid postal code of the location where your charge point is positioned whenever applicable.
+|HouseNum|End customers might face problems locating the precise postion of the station|Please enter a valid value whenever applicable.It will serve as a more detailed description of the station’s position.
+|GeoCoordinates|GeoCoordinates mark the charging stations’s exact position and will be used for map services, on which customers depend during their search.|Please ensure that this information is correct and longitude and latitude has not been swapped.
+|Plugs|“Unspecified” data will not serve the end customers with crucial information regarding the stations plug type-compatibility. Due to this uncertainty customers might avoid the charging station.|Please fill in the correct PlugType avoiding “Unspecified”. Available PlugTypes are listed in die PlugType List
+|ChargingFacilityType|reduced information of a EVSE data|Further information for advanced end customers can be useful for route planning
+|Authentication Modes|Without a list of authentication modes, end customers will not be able to check whether they can authenticate themselves at certain charging station or not.|This information is relevant for the customers and we highly recommend to deliver this information to enhance the customer experience.
+|PaymentOptions||Especially for the distinction between direct and contract this is a helpful information for displaying chargepoint accordingly
+|AccessibilityType||This information we highly recommend to deliver to enhance the customer experience.
+|Additional Information|Filling in this field your information in additional languages provides your information in a larger scope, which makes it easier to understand for customers,who do not speak englisch.|The first language should always be English and after that additional languages reffering to your location.
+|====
+
+[[eRoamingEvseStatus]]
+== eRoamingEvseStatus
+
+Hubject offers the possibility to upload and download dynamic charging spot (EVSE) status information and thus to exchange the data between different partners.
+
+The eRoamingEvseStatus service offers two operations:
+
+. eRoamingPushEvseStatus in order to give CPOs the possibility to upload (push) EvseStatus data
+. eRoamingPullEvseStatus in order to give EMPs the possibility to download (pull) EVSE status data from partner operators via Hubject
+
+Hub CPOs may also push EVSE status records of sub operators. Hubject does not distinguish between EvseStatus records of hub operators and related sub operators.
+
+[[eRoamingPushEvseStatus]]
+=== eRoamingPushEvseStatus_V2.1
+[NOTE]
+====
+- To `SEND`
+- Implementation: `MANDATORY`
+====
+- <<eRoamingPushEvseStatusmessage,Request message: eRoamingPushEvseStatus>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/pushevsestatus.png[]
+
+When a CPO sends an eRoamingPushEvseStatus request, Hubject checks whether there is a valid contract between Hubject and the CPO for the service type (Hubject must be the subscriber). If so, the operation allows uploading EVSE status data to Hubject. Furthermore, it is possible to update EVSE status data that has been pushed with an earlier operation request.
+
+The way how Hubject handles the transferred data `MUST` be defined in the request field "ActionType2, which offers four options. This option works in the same way as the eRoamingAuthenticationData service. The EVSE status data that will be inserted or updated `MUST` be provided with the field <<03_CPO_Data_Types.adoc#OperatorEvseStatusType,“OperatorEvseStatus”>>, which consists of <<03_CPO_Data_Types.adoc#EvseStatusRecordType,“EvseStatusRecord”>> structures. Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed action – leads to a new version of currently valid data records. Furthermore, every operation is logged with the current timestamp. Thus, Hubject can reconstruct the status of EVSE status data for every point in time in the past.
+
+NOTE: The eRoamingPushEvseStatus operation MUST always be used sequentiallyas described in Data Push Operations
+
+[[eRoamingPushEvseStatusmessage]]
+==== eRoamingPushEvseStatus Message
+
+eRoamingPushEvseStatus is a message that is sent in order to upload EVSE status data to Hubject.
+
+[%header]
+|====
+|Name| Data Type| Description| M/O
+|ActionType|
+One of the following:
+
+- fullLoad
+
+- update
+
+- insert
+
+- delete
+
+|Describes the action that has to be performed by Hubject with the provided data.|M
+|OperatorEvseStatus| <<03_CPO_Data_Types.adoc#OperatorEvseStatusType,OperatorEvseStatusType>>|Indicates the Eves status|M
+|====
+
+    Best Practices:
+    Please try to avoid race conditions by sending multiple status simultaneously. Status should be sent one by one.
+
+[[eRoamingDynamicPricing]]
+== eRoamingDynamicPricing
+
+Since OICP 2.2, HBS  offers the possibility to flexibly or dynamically price Authorization services. The service mainly enables pushing (upload) and pulling (download) of pricing data to and from the HBS through webservice requests and/or downloads/uploads in the Hubject portal.
+
+Flexible pricing enables CPOs to offer differentiated pricing (in multiple currencies) of charging processes at their charging stations. The differentiation of prices can be done along relevant dimensions such as charging facility characteristics (e.g. maximum charging power), EVSE location and time. OICP 2.2 and OICP 2.3 offers the possibility to exchange this flexible price differentiation over webservice communication between CPOs and EMPs.
+
+In addition to the above flexible pricing capability, OICP 2.2 and OICP 2.3 enables more frequent and near real-time update and exchange of pricing information between CPOs and EMPs. This is achieved whereby a CPO continuously pushes valid prices to the HBS for specific EMPs to pull these prices.
+
+With OICP 2.2 and OICP 2.3 , the HBS offers an extensive breadth of technical capabilities for flexible and dynamic pricing of charging services for CPOs. Please refer to the supplementary document https://support.hubject.com/hc/en-us/categories/360000238177-Flexible-Dynamic-Pricing[“Dynamic Pricing - Functional Guide for Service Implementation”] for more details and a holistic view (technical and business perspectives) of how to best capitalize on the capabilities offered by the eRoamingDynamicPricing service.
+
+The eRoamingDynamicPricing service offers four operations, namely the:
+
+. eRoamingPushPricingProductData operation which gives CPOs the possibility to upload (push) pricing product information. Pricing products refer to the different tariffs offered by a CPO based on the differentiation dimensions mentioned above.
+. eRoamingPushEVSEPricing operation which gives CPOs the possibility to assign their various pricing products to individual EVSEs and thereby upload (push) location/EVSE-specific pricing data.
+. eRoamingPullPricingProductData operation which gives EMPs the possibility to download (pull) pricing product information uploaded by a CPO for the respective EMP.
+. eRoamingPullEVSEPricing operation which gives EMPs the possibility to download (pull) location/EVSE-specific pricing data uploaded by CPOs for the respective EMP.
+
+[[eRoamingPushPricingProductData]]
+=== eRoamingPushPricingProductData_V1.0
+[NOTE]
+====
+- To `SEND`
+- Implementation: `OPTIONAL`
+====
+- <<eRoamingPushPricingProductDatamessage,Request message: eRoamingPushPricingProductData>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+When a CPO sends an eRoamingPushPricingProductData request, Hubject checks whether there is a valid flexible/dynamic pricing service offer (for the service type Authorization) created by the CPO. If so, the operation allows the upload of pricing product data to Hubject. In addition, it is also possible to update or delete pricing data previously pushed with an upload operation request.
+How the transferred data is to be processed `MUST` be defined in the “ActionType” field of the request. Four processing options (i.e. Action Types) exist, details of which can be seen in eRoamingPushPricingProductData message
+
+The pricing product data to be processed `MUST` be provided in the <<03_CPO_Data_Types.adoc#PricingProductDataType,“PricingProductData”>> field, which consists of <<03_CPO_Data_Types.adoc#PricingProductDataRecordType,“PricingProductDataRecord”>> structures. Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed action – leads to a new version of currently valid data records. Furthermore, every operation is logged with the current timestamp.
+Thus, Hubject can reconstruct the status of pricing data for every point in time in the past.
+
+[[eRoamingPushPricingProductDatamessage]]
+==== eRoamingPushPricingProductData Message
+
+eRoamingPushPricingProductData is a message that is sent in order to upload data pertaining to a CPO’s pricing products (i.e. tarrifs) to the Hubject system.
+
+[%header]
+|====
+|Name| Data Type| Description| M/O
+|ActionType|
+One of the following:
+
+- fullLoad
+
+- update
+
+- insert
+
+- delete
+
+|Describes the action that has to be performed by Hubject with the provided data.|M
+|PricingProductData | <<03_CPO_Data_Types.adoc#PricingProductDataType,PricingProductDataType>>|Details of pricing products offered by a particular operator for a specific provider|M
+|====
+
+[[eRoamingPushEVSEPricing]]
+=== eRoamingPushEVSEPricing_V1.0
+
+[NOTE]
+====
+- To `SEND`
+- Implementation: `OPTIONAL`
+====
+
+- <<eRoamingPushEVSEPricingmessage,Request message: eRoamingPushEVSEPricing>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+When a CPO sends an eRoamingPushEVSEPricing request, Hubject checks whether there is a valid flexible/dynamic pricing service offer
+(for the service type Authorization) created by the CPO. If so, the operation allows the upload of a list
+containing pricing product assignment to EvseIDs to Hubject.
+In addition, it is also possible to update or delete EVSE pricing data previously pushed with an upload operation request.
+How the transferred data is to be processed `MUST` be defined in the “ActionType” field of the request.
+Four processing options (i.e. Action Types) exist, details of which can be seen in section eRoamingPushEVSEPricing).
+
+The EVSE pricing data to be processed `MUST` be provided in the <<03_CPO_Data_Types.adoc#EVSEPricingType,“EVSEPricing”>> field, which consists of <<03_CPO_Data_Types.adoc#EvseIDProductListType,“EvseIDProductList”>> structures.
+Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed
+action – leads to a new version of currently valid data records. Furthermore, every operation is logged with the current timestamp.
+Thus, Hubject can reconstruct the status of EVSE pricing data for every point in time in the past.
+
+*EVSE consistency:*
+
+EvseIDs contain the ID of the corresponding CPO (With every EVSE pricing data upload operation, Hubject checks whether the given CPO’s OperatorID or Sub-OperatorIDs if necessary)
+matches every given EvseID sent in the request. If not, Hubject refuses the data upload and responds with the status code 018.
+
+NOTE: The eRoamingPushEVSEPricing operation MUST always be used sequentially.
+
+[[eRoamingPushEVSEPricingmessage]]
+==== eRoamingPushEVSEPricing Message
+
+eRoamingPushEVSEPricing is a message that is sent in order to upload a list of EVSEs and the pricing products (i.e. tarrifs) applicable for (charging or reservation) sessions at these EVSEs.
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|ActionType|
+One of the following:
+
+- fullLoad
+
+- update
+
+- insert
+
+- delete
+
+|Describes the action that has to be performed by Hubject with the provided data.|M|
+|EVSEPricing | <<03_CPO_Data_Types.adoc#EVSEPricingType,EVSEPricingType>>|A list of EVSEs and their respective pricing product relation|M|1...n
+|=====
+
+[[eRoamingChargingNotifications]]
+== eRoamingChargingNotifications
+[NOTE]
+====
+- To `SEND`
+- Implementation: `OPTIONAL`
+====
+
+
+- <<eRoamingChargingNotificationsstart,Request message: eRoamingChargingNotifications>>
+- <<eRoamingAcknowledgementmessage,Response message: eRoamingAcknowledgement>>
+
+image::images/chargingnotifications.png[]
+
+The ChargingNotification feature enables CPOs to notify EMPs about the end of charge
+
+The ChargingNotification feature basically increases the transparency between CPO - EMP - End Consumer to the level of each charging session.
+
+This feature enables CPO to send various notifications during a single Charging Session. These notifications give the details like
+
+. When the charging session has started. The CPO can send ChargingNotification of type “Start” to Hubject containing information like ChargingStart, MeterStartValue, EVSEID etc.
+. Consumed Energy values during the charging process or duration of successful charging process that has lapsed. The CPO can send ChargingNotification of type “Progress” to Hubject containing information like ChargingStart, EventOccurred, ChargingDuration, ConsumedEnergyProgress, EVSEID etc. The frequency between two progress notifications for one charging session should be at least 5 minutes.
+. When the charging session has ended (because no energy is transmitted anymore). The CPO can send a ChargingNotification of type “End” to Hubject containing information such as ChargingEnd, ConsumedEnergy, EVSEID etc.
+. Error occurred before charging starts or during charging process or abrupt changing end. The CPO can send a ChargingNotification of type “Error” to Hubject containing information such as ErrorClass, ErrorAdditionalInfo, EVSEID etc.
+
+Hubject will forward Start, Progress, End and Error notification requests to the EMP. The EMP responds with an eRoamingAcknowledgement. This acknowledgement is then being forwarded to the CPO.
+
+This feature should cover all the notifications that could happen between Session Start and Session End in future. Each bit of information increases transparency to the customer of EMP.
+
+[[eRoamingChargingNotificationsstart]]
+=== eRoamingChargingNotifications Start
+
+A customer of EMP Authorizes the charging session at particular charging station (via any means for eg REFID card, Mobile etc). The charging session is authorized by Hubject / CPO system. The authorization of charging process and plugging the cable in EV does not guarantee that energy flow into the Vehicle is initiated. It is really important for for EMP and its end consumer to know if the charging has started.
+
+The CPO’s backend system MAY send a ChargingNotification of type “Start” after the CPO considers the charging of an EV is started (since energy flow have started) in order to inform the EMP that the actual charging (the energy flow) of the vehicle has started.
+
+[[eRoamingChargingNotificationsstartmessage]]
+==== eRoamingChargingNotifications Start Message
+
+The ChargingNotification of type “Start” is a message that contains information about the charging start of a session (e.g. ChargingStart).
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|Type|<<03_CPO_Data_Types.adoc#ChargingNotificationType,ChargingNotificationType>>|The type of ChargingNotification. For this case only the notification type “Start” can be chosen.|M|
+|SessionID |<<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
+|CPOPartnerSessionID|String|Optional field containing the session ID assigned by the CPO to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.
+|O|250
+|EMPPartnerSessionID| String|Optional field containing the session ID assigned by an EMP to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.|O|250
+|Identification|<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
+|EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
+|ChargingStart |Date/Time |The date and time at which the charging process started.|M|
+|SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
+|MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
+|=====
+
+[[eRoamingChargingNotificationsprogress]]
+=== eRoamingChargingNotifications Progress
+
+A customer of EMP has started the charging session. Just like as that of regular gasoline stations customer would like to know either how much charging Duration have passed or how much energy is consumed by the EV so far. This information will help Customer to decide if he/she wants to stop the charging session as per their affordability or journey planning.
+
+The CPO’s backend system MAY send a ChargingNotification of type “Progess” after the CPO gets the charging energy or time information from EVSEID. This is required in order to inform the EMP that the progress energy or chargingduration for a perticular charging session.
+
+[[eRoamingChargingNotificationsprogressmessage]]
+==== eRoamingChargingNotifications Progress Message
+
+The ChargingNotification of type “Progress” is a message that contains information about the charging Duration or energy consumed during charging process (e.g. EventOccurred, ChargingDuration, ConsumedEnergyProgress).
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|Type|<<03_CPO_Data_Types.adoc#ChargingNotificationType,ChargingNotificationType>>|The type of ChargingNotification. For this case only the notification type “Progress” can be chosen.|M|
+|SessionID |<<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
+|CPOPartnerSessionID|String|Optional field containing the session ID assigned by the CPO to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.
+|O|250
+|EMPPartnerSessionID| String|Optional field containing the session ID assigned by an EMP to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.|O|250
+|Identification|<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
+|EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
+|ChargingStart |Date/Time |The date and time at which the charging process started.|M|
+|EventOcurred|Date/Time|The date and time at which the charging progress parameters are captured.|M|
+|ChargingDuration|Integer|Charging Duration = EventOccurred - Charging Duration. It is a time in millisecond.
+
+Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O/M|
+|SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
+|ConsumedEnergyProgress|Decimal (,3)|This is consumed energy when from Start of charging process till the charging progress notification generated (EventOccurred)
+
+Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O|
+|MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
+|MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
+|=====
+
+[[eRoamingChargingNotificationsend]]
+=== eRoamingChargingNotifications End
+
+A customer of an EMP has fully charged a vehicle at a charging station of a CPO. The charging process was started with an eRoamingAuthorizeStart or an eRoamingAuthorizeRemoteStart operation. The energy flow has ended, but the process has not yet been stopped and the vehicle is blocking the charging station.
+
+The CPO’s backend system MAY send a ChargingNotification of type “End” after the CPO considers the charging of an EV concluded (because no energy is transmitted anymore) in order to inform the EMP that the actual charging (the energy flow) of the vehicle has stopped. The charging process has not yet been stopped by the customer and the session is still active.
+
+[[eRoamingChargingNotificationsendmessage]]
+==== eRoamingChargingNotifications End Message
+
+The ChargingNotification of type “End” is a message that contains information about the charging end of a session (e.g. ConsumedEnergy, ChargingEnd).
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|Type|<<03_CPO_Data_Types.adoc#ChargingNotificationType,ChargingNotificationType>>|The type of ChargingNotification. For this case only the notification type “End” can be chosen.|M|
+|SessionID |<<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
+|CPOPartnerSessionID|String|Optional field containing the session ID assigned by the CPO to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.
+|O|250
+|EMPPartnerSessionID| String|Optional field containing the session ID assigned by an EMP to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.|O|250
+|Identification|<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
+|EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
+|ChargingStart |Date/Time |The date and time at which the charging process started.|O|
+|ChargingEnd |Date/Time |The date and time at which the charging process stoped.|M|
+|SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
+|SessionEnd  |Date/Time|The date and time at which the session ended, e.g. swipe of RFID or cable disconnected.|O|
+|ConsumedEnergy|Decimal(,3)|The difference between MeterValueEnd and MeterValueStart in kWh.|O|
+|MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
+|MeterValueEnd|Decimal (,3)|The ending meter value in kWh.|O|
+|MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
+|PenaltyTimeStart|Date/Time|The date and time at which the penalty time start after the grace period.|O|
+|=====
+
+[[eRoamingChargingNotificationsError]]
+=== eRoamingChargingNotifications Error
+
+A customer of EMP Authorizes the charging session at particular charging station (via any means for eg REFID card, Mobile etc). Due to some errors sometime, it is possible that charging does not start or charging process is abruptly stopped or fluctuations in the charging process. It is really important for Customer as well as EMP to know what exactly is happening at the charging process. This notification eventually helps EMPs well informed about the problem occurred with the charging process. This information can be easily passed onto Customer so that he/she can take appropriate action.
+
+The CPO’s backend system MAY send a ChargingNotification of type “Error” after the CPO gets an information about the error at the charging station. The CPO can transmit one of the ErrorClass defined by Hubject along with the additional information which elaborated the Error. The customer has to take one of the three action EV needs to be charged at some different station, Cables is properly attached or the error is for information only no action required by customer.
+
+[[eRoamingChargingNotificationserrormessage]]
+==== eRoamingChargingNotifications Error Message
+
+The ChargingNotification of type “Error” is a message that contains information about the charging end of a session (e.g. ErrorClass, ErrorAdditionalInfo).
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|Type|<<03_CPO_Data_Types.adoc#ChargingNotificationType,ChargingNotificationType>>|The type of ChargingNotification. For this case only the notification type “Error” can be chosen.|M|
+|SessionID |<<DataTypes.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
+|CPOPartnerSessionID|String|Optional field containing the session ID assigned by the CPO to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.
+|O|250
+|EMPPartnerSessionID| String|Optional field containing the session ID assigned by an EMP to the related operation.
+
+Partner systems can use this field to link their own session handling to HBS processes.|O|250
+|Identification|<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
+|EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
+|ErrorType |<<03_CPO_Data_Types.adoc#ErrorClassType,ErrorClassType>>|The error code can be chosen from the list|M|
+|ErrorAdditionalInfo|String|The CPO can put in the additional information about the error|O|250
+|=====
+
+[[eRoamingAcknowledgementmessage]]
+== eRoamingAcknowledgment
+
+[NOTE]
+====
+- To `SEND` and `RECEIVE`
+- Implementation: `MANDATORY`
+====
+
+The acknowledgement is a message that is sent in response to several requests.
+
+[%header]
+|=====
+|Name| Data Type| Description| M/O| Field Length
+|Result | Boolean| If result is true, the message was
+received and the respective
+operation was performed
+successfully.
+
+If result is false, the message was
+received and the respective
+operation was not performed
+successfully.|M|
+|StatusCode|<<03_CPO_Data_Types.adoc#StatusCodeType,StatusCodeType>>|Structured status
+details.
+
+This can be used e.g. for failure
+messages or further information
+regarding the result.|M|
+|SessionID| <<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>|Represents the service process. In some cases the current SessionID is returned to the service requestor in this field|O|
+|CPOPartnerSessionID|String|Optional field containing the session id assigned by the CPO to the related operation.|O|250
+|EMPPartnerSessionID|String|Optional field containing the session id assigned by an EMP to the related operation.|O|250
+|=====

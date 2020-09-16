@@ -1,0 +1,1333 @@
+:toc:
+:numbered:
+
+= Code Snippets (Release Candidate)
+
+== eRoamingPullEVSEData
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/evsepull/v23/providers/{providerID}/data-records`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/evsepull/v23/providers/{providerID}/data-records`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+[source,JSON]
+----
+{
+  "AuthenticationModes": [
+  "PnC"
+  ],
+  "Accessibility": [
+  "Free publicly accessible"
+  ],
+  "CalibrationLawDataAvailability": [
+  "Local"
+  ],
+  "CountryCodes": [
+    "string"
+  ],
+  "GeoCoordinatesResponseFormat": "Google",
+  "IsHubjectCompatible": true,
+  "IsOpen24Hours": true,
+  "LastCall": "2018-01-23T14:27:43.052Z",
+  "OperatorIds": [
+    "string"
+  ],
+  "ProviderID": "string",
+  "RenewableEnergy": true,
+  "SearchCenter": {
+    "GeoCoordinates": {
+      "Google": {
+        "Coordinates": "string"
+      },
+      "DecimalDegree": {
+        "Latitude": "string",
+        "Longitude": "string"
+      },
+      "DegreeMinuteSeconds": {
+        "Latitude": "string",
+        "Longitude": "string"
+      }
+    },
+    "Radius": 0
+  }
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "content": [
+          {
+            "Accessibility": "Restricted access",
+            "AccessibilityLocation": "ParkingLot",
+            "AdditionalInfo": [
+              {
+                "lang": "string",
+                "value": "string"
+              }
+            ],
+            "AccessibilityLocation": "ParkingLot",
+            "Address": {
+                "City": "string",
+                "Country": "string",
+                "Floor": "string",
+                "HouseNum": "string",
+                "PostalCode": "string",
+                "Region": "string",
+                "Street": "string",
+                "TimeZone": "string",
+                "ParkingFacility": true,
+                "ParkingSpot": "string"
+                },
+            "AuthenticationModes": [
+              "NFC RFID Classic"
+                ],
+            "CalibrationLawDataAvailability":"Local",
+            "ChargingFacilities": [
+              {
+                "Amperage": 0,
+                "Power": 0,
+                "PowerType": "AC_1_PHASE",
+                "Voltage": 0,
+                "ChargingModes": [
+                  "Mode_1"
+                  ]
+               }
+              ],
+            "ChargingPoolID": "string",
+            "ChargingStationID": "string",
+            "ChargingStationImage": "string",
+            "ChargingStationNames": [
+              {
+                "lang": "string",
+                "value": "string"
+              }
+            ],
+            "ChargingStationLocationReference":[
+              {
+                "lang": "string",
+                "value": "string"
+              }
+            ],
+            "ClearinghouseID": "string",
+            "DynamicInfoAvailable": "true",
+            "DynamicPowerLevel": true,
+            "EvseID": "string",
+            "EnergySource": [
+              {
+               "Energy":"Solar",
+               "Percentage": 0
+              },
+              {
+               "Energy": "Wind",
+               "Percentage": 0
+              }
+             ],
+            "EnvironmentalImpact":{
+              "CO2Emission": 0,
+              "NuclearWaste": 0
+             },
+            "GeoChargingPointEntrance": {
+              "Google": {
+                "Coordinates": "string"
+               },
+              "DecimalDegree": {
+                "Latitude": "string",
+                "Longitude": "string"
+                },
+              "DegreeMinuteSeconds": {
+                "Latitude": "string",
+                "Longitude": "string"
+                }
+              },
+            "GeoCoordinates": {
+              "Google": {
+                "Coordinates": "string"
+                },
+              "DecimalDegree": {
+                "Latitude": "string",
+                "Longitude": "string"
+                },
+              "DegreeMinuteSeconds": {
+                "Latitude": "string",
+                "Longitude": "string"
+                }
+              },
+            "HardwareManufacturer":"string",
+            "HotlinePhoneNumber": "string",
+            "HubOperatorID": "string",
+            "IsHubjectCompatible": false,
+            "IsOpen24Hours": false,
+            "MaxCapacity": 0,
+            "OpeningTimes": [
+              {
+                "Period": [
+                  {
+                    "begin": "string",
+                    "end": "string"
+                  }
+                ],
+                "on": "Everyday"
+              }
+            ],
+            "PaymentOptions": [
+              "No Payment"
+            ],
+            "Plugs": [
+              "Small Paddle Inductive"
+            ],
+            "RenewableEnergy": true,
+            "SubOperatorName":"string",
+            "ValueAddedServices": [
+              "Reservation"
+            ],
+            "deltaType": "insert",
+            "lastUpdate": "2018-01-23T14:04:29.377Z",
+            "OperatorID": "string",
+            "OperatorName": "string"
+          }
+      ],
+  "number": 0,
+  "size": 20,
+  "totalElements": 8,
+  "last": true,
+  "totalPages": 1,
+  "first": true,
+  "numberOfElements": 8,
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingPullEVSEStatus
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records`
+
+The service description can be found in the OICP protocol version 2.2.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+  "EvseStatus": "Available",
+  "ProviderID": "string",
+  "SearchCenter": {
+      "GeoCoordinates": {
+        "Google": {
+          "Coordinates": "string"
+           },
+        "DecimalDegree": {
+          "Latitude": "string",
+          "Longitude": "string"
+           },
+        "DegreeMinuteSeconds": {
+          "Latitude": "string",
+          "Longitude": "string"
+           }
+        },
+      "Radius": 0
+  }
+}
+----
+
+=== Response Code
+[source,JSON]
+----
+{
+  "EvseStatuses": {
+    "OperatorEvseStatus": [
+      {
+        "EvseStatusRecord": [
+          {
+            "EvseID": "string",
+            "EvseStatus": "Available"
+          }
+        ],
+        "OperatorID": "string",
+        "OperatorName": "string"
+      }
+    ]
+  },
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+[[eRoamingAuthorizeStart]]
+== eRoamingAuthorizeStart
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/charging/v21/operators/{operatorID}/authorize/start`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/charging/v21/operators/{operatorID}/authorize/start`
+
+NOTE: Please note that in case of EMP role this part of the URL '/api/oicp/charging/v21/operators/{operatorID}/authorize/start' will be added to your URL endpoint when sending the request through our HBS platform.
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "EvseID": "string",
+  "Identification": {
+    "RFIDMifareFamilyIdentification": {
+      "UID": "string"
+    },
+    "QRCodeIdentification": {
+      "EvcoID": "string",
+      "HashedPIN": {
+        "Function": "Bcrypt",
+          "LegacyHashData": {
+            "Function": "MD5",
+            "Salt": "string",
+            "Value": "string"
+          },
+        "Value": "string"
+        },
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:21:23.744Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+},
+"OperatorID": "string",
+"PartnerProductID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+[source,JSON]
+----
+{
+"AuthorizationStatus": "Authorized",
+"AuthorizationStopIdentifications": [
+{
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:21:36.954Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+}
+],
+"CPOPartnerSessionID": "string",
+"EMPPartnerSessionID": "string",
+"ProviderID": "string",
+"SessionID": "string",
+"StatusCode": {
+"AdditionalInfo": "string",
+"Code": "000",
+"Description": "string"
+}
+}
+----
+== eRoamingAuthorizeStop
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/charging/v21/operators/{operatorID}/authorize/stop`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/charging/v21/operators/{operatorID}/authorize/stop`
+
+NOTE: Please note that this part of the URL '/api/oicp/charging/v21/operators/{operatorID}/authorize/stop' will be added to your URL endpoint when sending the request through our HBS platform.
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"EMPPartnerSessionID": "string",
+"EvseID": "string",
+"Identification": {
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:22:18.319Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+},
+"OperatorID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "AuthorizationStatus": "Authorized",
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "ProviderID": "string",
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingAuthorizeRemoteStart
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/charging/v21/providers/{providerID}/authorize-remote/start`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/charging/v21/providers/{providerID}/authorize-remote/start`
+
+NOTE: Please note that in case of CPO role this part of the URL '/api/oicp/charging/v21/providers/{providerID}/authorize-remote/start' will be added to your URL endpoint when sending the request through our HBS platform.
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"EMPPartnerSessionID": "string",
+"EvseID": "string",
+"Identification": {
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:23:54.228Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+},
+"PartnerProductID": "string",
+"ProviderID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "Result": false,
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingAuthorizeRemoteStop
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/charging/v21/providers/{externalId}/authorize-remote/stop`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/charging/v21/providers/{externalId}/authorize-remote/stop`
+
+NOTE: Please note that in case of CPO role this part of the URL '/api/oicp/charging/v21/providers/{externalId}/authorize-remote/stop' will be added to your URL endpoint when sending the request through our HBS platform.
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"EMPPartnerSessionID": "string",
+"EvseID": "string",
+"ProviderID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "Result": false,
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+
+== eRoamingGetChargeDetailRecord
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/cdrmgmt/v22/providers/{providerID}/get-charge-detail-records-request`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/cdrmgmt/v22/providers/{providerID}/get-charge-detail-records-request`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+  "CDRForwarded": true,
+  "From": "2018-01-23T14:20:10.285Z",
+  "OperatorID": "string",
+  "ProviderID": "string",
+  "To": "2018-01-23T14:20:10.285Z",
+  "SessionID":[
+    "string"
+  ]
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "content": [
+                {
+            "CalibrationLawVerificationInfo":{
+              "CalibrationLawCertificateID": "string",
+              "PublicKey": "string",
+              "MeteringSignatureUrl": "string",
+              "MeteringSignatureEncodingFormat": "string",
+              "SignedMeteringValuesVerificationInstruction": "string"
+            },
+            "CPOPartnerSessionID": "string",
+            "ChargingEnd": "2018-01-23T14:17:53.038Z",
+            "ChargingStart": "2018-01-23T14:17:53.038Z",
+            "ConsumedEnergy": 0,
+            "EMPPartnerSessionID": "string",
+            "EvseID": "string",
+            "HubOperatorID": "string",
+            "HubProviderID": "string",
+            "Identification": {
+            "PlugAndChargeIdentification": {
+            "EvcoID": "string"
+            },
+            "QRCodeIdentification": {
+            "EvcoID": "string",
+            "HashedPIN": {
+            "Function": "Bcrypt",
+            "LegacyHashData": {
+            "Function": "MD5",
+            "Salt": "string",
+            "Value": "string"
+            },
+            "Value": "string"
+            },
+            "PIN": "string"
+            },
+            "RFIDIdentification": {
+            "EvcoID": "string",
+            "ExpiryDate": "2018-01-23T14:17:53.039Z",
+            "PrintedNumber": "string",
+            "RFID": "mifareCls",
+            "UID": "string"
+            },
+            "RFIDMifareFamilyIdentification": {
+            "UID": "string"
+            },
+            "RemoteIdentification": {
+            "EvcoID": "string"
+            }
+            },
+            "MeterValueEnd": 0,
+            "MeterValueInBetween": {
+            "meterValues": [
+            0
+            ]
+            },
+            "MeterValueStart": 0,
+            "SignedMeteringValues": [
+              {
+                "SignedMeteringValue": "string",
+                "MeteringStatus": "Start"
+              }
+            ],
+            "PartnerProductID": "string",
+            "SessionEnd": "2018-01-23T14:17:53.039Z",
+            "SessionID": "string",
+            "SessionStart": "2018-01-23T14:17:53.039Z"
+            }
+  ],
+  "number": 0,
+  "size": 20,
+  "totalElements": 2,
+  "last": true,
+  "totalPages": 1,
+  "first": true,
+  "numberOfElements": 2,
+  "StatusCode": null
+}
+----
+
+
+== eRoamingRemoteReservationStart
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/reservation/v11/providers/{providerID}/reservation-start-request`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/reservation/v11/providers/{providerID}/reservation-start-request`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"Duration": 0,
+"EMPPartnerSessionID": "string",
+"EvseID": "string",
+"Identification": {
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:29:25.333Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+},
+"PartnerProductID": "string",
+"ProviderID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "Result": false,
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+
+== eRoamingRemoteReservationStop
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/reservation/v11/providers/{providerID}/reservation-stop-request`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/reservation/v11/providers/{providerID}/reservation-stop-request`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"Duration": 0,
+"EMPPartnerSessionID": "string",
+"EvseID": "string",
+"Identification": {
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:29:25.333Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+},
+"PartnerProductID": "string",
+"ProviderID": "string",
+"SessionID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "Result": false,
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingPullEVSEStatusByID
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-id`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-id`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"EvseID": [
+"string"
+],
+"ProviderID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "EVSEStatusRecords": {
+    "EvseStatusRecord": [
+      {
+        "EvseID": "string",
+        "EvseStatus": "Available"
+      }
+    ]
+  },
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingPullEVSEStatusByOperatorID
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-operator-id`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-operator-id`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+[source,JSON]
+----
+{
+"OperatorID": [
+"string"
+],
+"ProviderID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+"EvseStatuses": {
+"OperatorEvseStatus": [
+{
+"EvseStatusRecord": [
+{
+"EvseID": "string",
+"EvseStatus": "Available"
+}
+],
+"OperatorID": "string",
+"OperatorName": "string"
+}
+]
+},
+"StatusCode": {
+"AdditionalInfo": "string",
+"Code": "000",
+"Description": "string"
+}
+}
+----
+
+== eRoamingPushAuthentificationData
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/authdata/v21/providers/{providerID}/push-request`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/authdata/v21/providers/{providerID}/push-request`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+[source,JSON]
+----
+{
+"ActionType": "fullLoad",
+"ProviderAuthenticationData": {
+"AuthenticationDataRecord": [
+{
+"Identification": {
+"RFIDMifareFamilyIdentification": {
+"UID": "string"
+},
+"QRCodeIdentification": {
+"EvcoID": "string",
+"HashedPIN": {
+"Function": "Bcrypt",
+"LegacyHashData": {
+"Function": "MD5",
+"Salt": "string",
+"Value": "string"
+},
+"Value": "string"
+},
+"PIN": "string"
+},
+"PlugAndChargeIdentification": {
+"EvcoID": "string"
+},
+"RemoteIdentification": {
+"EvcoID": "string"
+},
+"RFIDIdentification": {
+"EvcoID": "string",
+"ExpiryDate": "2018-01-23T14:08:45.718Z",
+"PrintedNumber": "string",
+"RFID": "mifareCls",
+"UID": "string"
+}
+}
+}
+],
+"ProviderID": "string"
+}
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "CPOPartnerSessionID": "string",
+  "EMPPartnerSessionID": "string",
+  "Result": false,
+  "SessionID": "string",
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingPullEVSEPricing
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/dynamicpricing/v10/providers/{providerID}/evse-pricing`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/dynamicpricing/v10/providers/{providerID}/evse-pricing`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,JSON]
+----
+{
+"LastCall": "2018-01-23T14:33:03.126Z",
+"OperatorIDs": [
+"string"
+],
+"ProviderID": "string"
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+  "EVSEPricing": [
+    {
+      "EVSEPricing": [
+        {
+          "EvseID": "string",
+          "EvseIDProductList": [
+            "string"
+          ],
+          "ProviderID": "string"
+        }
+      ],
+      "OperatorID": "string",
+      "OperatorName": "string"
+    }
+  ],
+  "StatusCode": {
+    "AdditionalInfo": "string",
+    "Code": "000",
+    "Description": "string"
+  }
+}
+----
+
+== eRoamingPullPricingProductData
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/dynamicpricing/v10/providers/{providerID}/pricing-products`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/dynamicpricing/v10/providers/{providerID}/pricing-products`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+===  Request Code
+
+[source,JSON]
+----
+{
+"LastCall": "2018-01-23T14:33:42.246Z",
+"OperatorIDs": [
+"string"
+]
+}
+----
+
+=== Response Code
+
+[source,JSON]
+----
+{
+"CPOPartnerSessionID": "string",
+"EMPPartnerSessionID": "string",
+"Result": false,
+"SessionID": "string",
+"StatusCode": {
+"AdditionalInfo": "string",
+"Code": "000",
+"Description": "string"
+}
+}
+----
+[[eRoamingChargingNotificationStart]]
+== eRoamingChargingNotificationStart
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,json]
+----
+{
+	"CPOPartnerSessionID": "string",
+	"ChargingStart": "2018-01-23T14:17:53.038Z",
+	"EMPPartnerSessionID": "string",
+	"EvseID": "string",
+	"Identification": {
+		"RFIDMifareFamilyIdentification": {
+			"UID": "string"
+		}
+	},
+	"MeterValueStart": 0,
+	"PartnerProductID": "string",
+	"SessionID": "string",
+	"SessionStart": "2018-01-23T14:17:53.038Z",
+	"OperatorID": "string",
+	"Type": "Start"
+}
+----
+
+=== Response Code
+
+[source,json]
+----
+{
+	"CPOPartnerSessionID": "string",
+	"EMPPartnerSessionID": "string",
+	"Result": false,
+	"SessionID": "string",
+	"StatusCode": {
+		"AdditionalInfo": "string",
+		"Code": "000",
+		"Description": "string"
+	}
+}
+----
+
+[[eRoamingChargingNotificationProgress]]
+== eRoamingChargingNotificationProgress
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,json]
+----
+{
+    "CPOPartnerSessionID": "string",
+    "ChargingEnd": "2018-01-23T14:17:53.038Z",
+    "ChargingStart": "2018-01-23T14:17:53.038Z",
+    "EventOccurred": "2018-01-23T14:25:53.038Z",
+    "ChargingDuration": "48000",
+    "ConsumedEnergyProgress": 0,
+    "EMPPartnerSessionID": "string",
+    "EvseID": "string",
+    "Identification": {
+        "RFIDMifareFamilyIdentification": {
+            "UID": "string"
+        }
+    },
+    "MeterValueStart": 0,
+    "MeterValueInBetween": {
+        "meterValues": [
+            0
+        ]
+    },
+    "PartnerProductID": "string",
+    "OperatorID": "string",
+    "SessionID": "string",
+    "SessionStart": "2018-01-23T14:17:53.038Z",
+    "Type": "Progress"
+}
+----
+
+=== Response Code
+
+[source,json]
+----
+{
+	"CPOPartnerSessionID": "string",
+	"EMPPartnerSessionID": "string",
+	"Result": false,
+	"SessionID": "string",
+	"StatusCode": {
+		"AdditionalInfo": "string",
+		"Code": "000",
+		"Description": "string"
+	}
+}
+----
+
+[[eRoamingChargingNotificationEnd]]
+== eRoamingChargingNotificationEnd
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,json]
+----
+{
+    "CPOPartnerSessionID": "string",
+    "ChargingEnd": "2018-01-23T14:17:53.038Z",
+    "ChargingStart": "2018-01-23T14:50:53.038Z",
+    "ConsumedEnergy": 0,
+    "EMPPartnerSessionID": "string",
+    "EvseID": "string",
+    "Identification": {
+        "RFIDMifareFamilyIdentification": {
+            "UID": "string"
+        }
+    },
+    "MeterValueStart": 0,
+    "MeterValueEnd": 0,
+    "MeterValueInBetween": {
+        "meterValues": [
+            0
+        ]
+    },
+    "PartnerProductID": "string",
+    "PenaltyTimeStart": "2018-01-23T14:17:53.038Z",
+    "OperatorID": "string",
+    "SessionID": "string",
+    "SessionStart": "2018-01-23T14:17:53.038Z",
+	"SessionEnd": "2018-01-23T14:50:53.038Z",
+    "Type": "Progress"
+}
+----
+
+=== Response Code
+
+[source,json]
+----
+{
+	"CPOPartnerSessionID": "string",
+	"EMPPartnerSessionID": "string",
+	"Result": false,
+	"SessionID": "string",
+	"StatusCode": {
+		"AdditionalInfo": "string",
+		"Code": "000",
+		"Description": "string"
+	}
+}
+----
+
+[[eRoamingChargingNotificationError]]
+== eRoamingChargingNotificationError
+
+The Service End Points to which the below POST command should be sent are:
+
+for *QA* - environment: `https://service-qa.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+for *PROD* - environment: `https://service.hubject.com/api/oicp/notificationmgmt/v11/charging-notifications`
+
+The service description can be found in the OICP protocol version 2.3.
+To download the latest OICP Version, please visit our website:
+https://www.hubject.com/downloads/
+
+=== Request Code
+
+[source,json]
+----
+{
+    "CPOPartnerSessionID": "string",
+    "EMPPartnerSessionID": "string",
+    "EvseID": "string",
+    "ErrorType": "string",
+    "ErrorAdditionalInfo": "string",
+    "Identification": {
+        "RFIDMifareFamilyIdentification": {
+            "UID": "string"
+        }
+    },
+    "OperatorID": "string",
+    "SessionID": "string",
+    "Type": "Error"
+}
+----
+
+=== Response Code
+
+[source,json]
+----
+{
+	"CPOPartnerSessionID": "string",
+	"EMPPartnerSessionID": "string",
+	"Result": false,
+	"SessionID": "string",
+	"StatusCode": {
+		"AdditionalInfo": "string",
+		"Code": "000",
+		"Description": "string"
+	}
+}
+----
