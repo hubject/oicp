@@ -86,14 +86,15 @@ The table below provides an overview of field level changes to existing operatio
 [%header]
 |====
 |	Change| Field Name| Affected operations/ messages| Change Details
-|	Deleted Field| EngChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| This field is not part of the OICP 2.3 EvseDataRecordType.
+|	Deleted Field| EnChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| This field is not part of the OICP 2.3 EvseDataRecordType.
 |   Deleted Field|OperatorEvseData|eRoamingPullEvseData|Due to the new pagination feature OperatorEvseData field is not longer provided in the PullEvseData response
 |	Updated Field| OperatorName| eRoamingPushEVSEData, eRoamingPullEVSEData| OperatorName field is in OICP 2.3 Version mandatory
 |	Updated Field| ChargingModes| eRoamingPushEVSEData, eRoamingPullEVSEData| This field is not part of the OICP 2.3 EvseDataRecordType anymore. This field is part of ChargingFaclitiyType in the OICP 2.3
+|   Deleted Value|  Plugs, Auccessibility,Power Type |eRoamingPushEVSEData, eRoamingPullEVSEData| The Value "Unspecified" is no longer accepted by the OICP 2.3 in the eRoamingPushEvseData. For PullEvseData using OICP 2.3 all "Unspecified" values existent in HBS (pushed via OICP 2.1 and OICP 2.2) will be mapped with the value _null_.
 |	Updated Format| Address (PostalCode, HouseNum, ParkingFacility, ParkingSpot)| eRoamingPushEVSEData, eRoamingPullEVSEData| PostalCode and HouseNum fields within the AddressIso19773Type are on OICP 2.3 version mandatory. ParkingFacility and ParkingSpot are new optional fields in the AddressIso19773Type to be provided by the CPO
 |	Updated Format| ChargingFacilities - Power, PowerType| eRoamingPushEVSEData, eRoamingPullEVSEData| Power and PowerType fields within the ChargingFacilityType are on OICP 2.3 version mandatory
 |	Updated Format| AuthenticationModes| eRoamingPushEVSEData, eRoamingPullEVSEData| In the AuthenticationModeType the new value “No Authentication Requires” is added.
-|	Updated Format| ChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| 1.ChargingStationName in OICP 2.3 version is mandatory 2.ChargingStationName field changes data type from being string to InfoTexType. Mapping from OICP 2.2 to OICP 2.3 - The string value given in ChargingStationName in OICP 2.2 it will be mapped into InfoTextType format providing just the “value” as string. Note - NO value will be provided in the “lang” field. The string value given in EnChargingStationName in OICP 2.2 it will be mapped itno InfoTextType format providing “eng” as a value of “lang” and “value” as string
+|	Updated Format| ChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| 1.ChargingStationName in OICP 2.3 version is called ChargingStationNames and is mandatory 2.ChargingStationNames field changes data type to InfoTexType. Mapping from OICP 2.2 to OICP 2.3 - The string value given in ChargingStationName in OICP 2.2 it will be mapped into ChargingStationNames to InfoTextType format providing just the “value” as string. Note - NO value will be provided in the “lang” field. The string value given in EnChargingStationName in OICP 2.2 it will be mapped itno InfoTextType format providing “en” as a value of “lang” and “value” as string
 |	Updated Format| PaymentOptions| eRoamingPushEVSEData, eRoamingPullEVSEData| PaymentOptions field is in OICP 2.3 Version mandatory
 |	Updated Format| ValueAddedServices - RoofProvided |eRoamingPushEVSEData, eRoamingPullEVSEData| The value RoofProvided is added in ValueAddedServiceType. This new value informs if the charging station is under a roof.
 |   New Format |PullEvseDataRecordType|eRoamingPullEvseData|Due to the new pagination feature PullEvseDataRecordType was created and only available for the response of the PullEvseData
@@ -132,7 +133,7 @@ Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can a
 |New Field| PenaltyTimeStart|eRoamingChargingnotification|The date and time at which the penalty time start after the grace period.
 |New Field| ErrorType| eRoamingChargingnotification|The error code can be chosen from the list
 |New Field| ErrorAdditionalInfo| eRoamingChargingnotification|The CPO can put in the additional information about the error
-|===
+|=====
 
 [[OICP2.3DataTypeChanges]]
 == OICP 2.3 Data Type Changes
