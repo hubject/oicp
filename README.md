@@ -6,6 +6,7 @@ The OICP protocol, created in 2012, now connects more than 300 companies in 26 c
 
 ## Releases
 
+* [OICP 2.3] (folder to add)
 * [OICP 2.2](https://github.com/hubject/oicp/releases/tag/v2.2)
 * [OICP 2.1](https://github.com/hubject/oicp/releases/tag/v2.1) - new implementations need to be based on OICP 2.2
 

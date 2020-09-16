@@ -1,0 +1,998 @@
+:toc:
+
+image::images/hubjectlogo.png[align="right"]
+
+[[DataTypes]]
+= Data Types (Release Candidate)
+
+:numbered:
+
+
+[[ComplexDataTypes]]
+== Complex Data Types
+Complex data types comprise a number of data fields that can also be complex types.
+
+[[StatusCodeType]]
+=== StatusCodeType
+The structure consists of a defined code, an optional functional description of the status, and optional additional information. It can be used e.g. to send error details or detailed reasons for a certain process or system behavior. The optional AdditionalInfo field can be used in order to provide further individual (non-standardized) information.
+
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Code: <<CodeType,Code Type>>:To be selected from valid range: M:
+Description:String:Description:O:200
+AdditionalInfo:String:More information can be provided here:O:1000
+|=====================
+[[IdentificationType]]
+=== IdentificationType
+
+IMPORTANT: *One of the following five options `MUST` be provided*
+
+[%header]
+|====
+|Name | Data Type |Description
+|RFIDMifareFamilyIdentification| <<RFIDmifarefamilyIdentificationType,RFIDmifarefamilyIdentificationType>>|Authentication data details. The data structure differs depending on the authentication technology
+|RFIDIdentification|<<RFIDIdentificationType,RFIDIdentificationType>>|Authentication data details. The data structure differs depending on the authentication technology
+|QRCodeIdentification|<<QRCodeIdentificationType,QRCodeIdentificationType>>|Authentication data details. The data structure differs depending on the authentication technology
+|PlugAndChargeIdentification|<<PlugAndChargeIdentificationType,PlugAndChargeIdentificationType>>|Authentication required for Plug&Charge (EMAID/EVCOID
+|RemoteIdentification|<<RemoteIdentificationType,RemoteIdentificationType>>|Authentication data details. The data structure differs depending on the authentication technology
+|====
+
+[NOTE]
+====
+. The option RFIDIdentification MUST not be used in the eRoamingAuthorization process. For RFID Authorization, only the option RFIDMifareFamilyIdentification should be used in the respective eRoamingAuthorization messages.
+. For the Remote Authorization process, only the option RemoteIdentification MUST be used in the respective messages.
+====
+
+[[EvseMatchType]]
+=== EvseMatchType
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+EVSE: <<EvseDataRecordType,EvseDataRecordType>>:Charging point information: M
+Distance:Decimal (4,1) :Air distance to the requested position in km (non-routed):O
+|=====================
+
+[[GeoCoordinatesType]]
+=== GeoCoordinatesType
+IMPORTANT: *One of the following three options `MUST` be provided*
+[%header,format=dsv, cols=3]
+|=====================
+Name:Data Type:Description
+Google: <<GeoCoordinatesGoogleType,GeoCoordinatesGoogleType>>:Geocoordinates using Google Structure
+DecimalDegree:<<GeoCoordinatesDecimalDegreeType,GeoCoordinatesDecimalDegreeType>>:Geocoordinates using DecimalDegree Structure
+DegreeMinuteSeconds:<<GeoCoordinatesDegreeMinuteSecondsType,GeoCoordinatesDegreeMinuteSecondsType>>:Geocoordinates using DegreeMinutesSeconds Structure
+|=====================
+
+[[GeoCoordinatesGoogleType]]
+=== GeoCoordinatesGoogleType
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+Coordinatea: <<GeoCoordinatesGoogleFormatType,GeoCoordinatesGoogleFormatType>>:Based on WGS84: M
+|=====================
+
+[[GeoCoordinatesDecimalDegreeType]]
+=== GeoCoordinatesDecimalDegreeType
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+Longitude: <<GeoCoordinatesDecimalDegreeFormatType,GeoCoordinatesDecimalDegreeFormatType>>:Based on WGS84: M
+Latitude:<<GeoCoordinatesDecimalDegreeFormatType,GeoCoordinatesDecimalDegreeFormatType>>:Based on WGS84:M
+|=====================
+
+[[GeoCoordinatesDegreeMinuteSecondsType]]
+=== GeoCoordinatesDegreeMinuteSecondsType
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+Longitude: <<GeoCoordinatesDegreeMinuteSecondsFormatType,GeoCoordinatesDegreeMinuteSecondsFormatType>>:Based on WGS84: M
+Latitude:<<GeoCoordinatesDegreeMinuteSecondsFormatType,GeoCoordinatesDegreeMinuteSecondsFormatType>>:Based on WGS84:M
+|=====================
+
+[[ProviderAuthenticationDataType]]
+=== ProviderAuthenticationDataType
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+ProviderID: <<ProviderIDType,ProviderIDType>>:The EMP whose data records are listed below. : M
+AuthenticationDataRecord:<<AuthenticationDataRecordType,AuthenticationDataRecordType>>::M  0...n
+|=====================
+
+[[AuthenticationDataRecordType]]
+=== AuthenticationDataRecordType
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+Identification: <<IdentificationType,IdentificationType>>:Authentication data: M
+|=====================
+
+[[RFIDmifarefamilyIdentificationType]]
+=== RFIDmifarefamilyIdentificationType
+[%header]
+|=====
+|Name |Data Type |Description|M/O|Field Length
+|UID|<<UIDType,UIDType>>|The UID from the RFID-Card.
+
+It should be read from left to right using big-endian format.
+
+Hubject will automatically convert all characters from lower case to upper case |M |50
+|=====
+
+[[QRCodeIdentificationType]]
+=== QRCodeIdentificationType
+
+[%header]
+|=====
+|Name |Data Type |Description|M/O|Field Length
+|EvcoID|<<EvcoIDType,EvcoIDType>>|Contract identifier Hubject will automatically convert all characters from lower case to upper case |M |
+|PIN|String
+1.2+|According to different processes, the PIN is transferred as encrypted hash or in clear text.
+1.2+|O
+
+One or none of the options can be provided.
+|20
+|HashedPIN|<<HashType,HashType>>|
+|=====
+
+[[PlugAndChargeIdentificationType]]
+=== PlugAndChargeIdentificationType
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier: M
+|=====================
+
+[[RemoteIdentificationType]]
+=== RemoteIdentificationType
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier Hubject will automatically convert all characters from lower case to upper case: M
+|=====================
+
+[[AddressIso19773Type]]
+=== AddressIso19773Type
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:M/O:Field Length
+Country: <<CountryCodeType,CountryCodeType>>:M:
+City:String:M:11-50
+Street:String:M:2-100
+PostalCode:String:M:10
+HouseNum:String:M:10
+Floor:String:O:5
+Region:String:O:50
+ParkingFacility:Boolean:O:
+ParkingSpot:String:O:5
+Timezone:<<TimezoneType,TimezoneType>>:O:
+|=====================
+
+[[SearchCenterType]]
+=== SearchCenterType
+
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+GeoCoordinates:<<GeoCoordinatesType,GeoCoordinatesType>>:The data structure differs depending on the chosen geo coordinates format: M
+Radius:Decimal (4,1):Radius in km around the position that is defined by the geo coordinates:M
+|=====================
+
+[[OperatorEvseDataType]]
+=== OperatorEvseDataType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+OperatorID:<<OperatorIDType,OperatorIDType>>:The provider whose data records are listed below. : M:
+OperatorName:String:Free text for operator:M:100
+EvseDataRecord:<<EvseDataRecordType,EvseDataRecordType>>:EVSE entries:M 0...n:
+|=====================
+
+[[EvseDataRecordType]]
+=== EvseDataRecordType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+deltaType:`update` or `insert` or `delete`:In case that the operation “PullEvseData” is performed with the parameter “LastCall”, Hubject assigns this attribute to every response EVSE record in order to return the changes compared to the last call.:O:
+lastUpdate:Date/Time:The attribute indicates the date and time of the last update of the record. Hubject assigns this attribute to every response EVSE record.:O:
+EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
+ChargingPoolID:<<ChargingPoolIDType,ChargingPoolIDType>>:The ID that identifies the charging station.:O:
+ChargingStationId:String:The ID that identifies the charging station.:O:50
+ChargingStationNames:List <<InfoTextType,InfoTextType>>:Name of the charging station:M:5
+HardwareManufacturer:String:Name of the charging point manufacturer:O:50
+ChargingStationImage:String:URL that redirect to an online image of the related EVSEID:O:200
+SubOperatorName:String:Name of the Sub Operator owning the Charging Station:O:100
+Address:<<AddressIso19773Type,AddressIso19773Type>>:Address of the charging station.:M:
+GeoCoordinates:<<GeoCoordinatesType,GeoCoordinatesType>>:Geolocation of the charging station.:O:100
+Plugs:<<PlugType,PlugType List>>:List of plugs that are supported.:M:
+DynamicPowerLevel:Boolean:Informs is able to deliver different power outputs.:O:
+ChargingFacilities:<<ChargingFacilityType,ChargingFacilityType List>>:List of facilities that are supported.:M:
+RenewableEnergy:Boolean:If the Charging Station provides only renewable energy then the value must be” true”, if it use grey energy then value must be “false”.:M:
+EnergySource:<<EnergySourceType,EnergySourceType List>>:List of energy source that the charging station uses to supply electric energy.:O:
+EnvironmentalImpact:<<EnvironmentalImpactType,EnvironmentalImpactType>>:Environmental Impact produced by the energy sources used by the charging point:O:
+CalibrationLawDataAvailability:<<CalibrationLawDataAvailabilityType,CalibrationLawDataAvailabilityType>>:This field gives the information how the charging station provides metering law data.:M:
+AuthenticationModes:<<AuthenticationModeType,AuthenticationModeType List>>:List of authentication modes that are supported.:M:
+MaxCapacity:Integer:Maximum capacity in kWh:O:
+PaymentOptions:<<PaymentOptionType,PaymentOptionType List>>:List of payment options that are supported.:M:
+ValueAddedServices:<<ValueAddedServiceType,ValueAddedServiceType List>>:List of value added services that are supported.:M:
+Accessibility:<<AccessibilityType,AccessibilityType>>:Specifies how the charging station can be accessed.:M:
+AccessibilityLocation:<<AccessibilityLocationType,AccessibilityLocationType List>>:Inform the EV driver where the ChargingPoint could be accessed.:O:
+HotlinePhoneNumber:<<PhoneNumberType,PhoneNumberType>>:Phone number of a hotline of the charging station operator:M:
+AdditionalInfo:<<InfoTextType,InfoTextType List>>:Optional information.:O:200
+ChargingStationLocationReference:<<InfoTextType,InfoTextType List>>:Last meters information regarding the location of the Charging Station:O:
+GeoChargingPointEntrance:<<GeoCoordinatesType,GeoCoord inatesType>>:In case that the charging spot is part of a bigger facility (e.g. parking place), this attribute specifies the facilities entrance coordinates.:O:
+IsOpen24Hours:Boolean:Set in case the charging spot is open 24 hours.:M:
+OpeningTimes:<<OpeningTimesType,OpeningTimesType>>:Opening time in case that the charging station cannot be accessed around the clock.:M/O:
+ClearinghouseID:String:Identification of the corresponding clearing house in the event that roaming between different clearing houses must be processed in the future.:O:20
+IsHubjectCompatible:Boolean:Is eRoaming via intercharge at this charging station possible? If set to "false" the charge spot will not be started/stopped remotely via Hubject.:M:
+DynamicInfoAvailable:Enumeration:Values; true / false / auto This attribute indicates whether a CPO provides (dynamic) EVSE Status info in addition to the (static) EVSE Data for this EVSERecord. Value auto is set to true by Hubject if the operator offers Hubject EVSEStatus data.:M:
+|=====================
+
+ Best Practices:
+ For recommendations regarding specific usage of fields, please consider 8.1.
+
+[[OperatorEvseStatusType]]
+=== OperatorEvseStatusType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+OperatorID:<<OperatorIDType,OperatorIDType>>:The provider whose data records are listed below. : M:
+OperatorName:String:Free text for operator:O:100
+EvseStatusRecord:<<EvseStatusRecordType,EvseStatusRecordType>>:EvseStatus list:M  0...n:
+|=====================
+
+[[EvseStatusRecordType]]
+=== EvseStatusRecordType
+[%header,format=dsv, cols=4]
+|=====================
+Name:Data Type:Description:M/O
+EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M
+EvseStatus:<<EvseStatusType,EvseStatusType>>:The status of the charging spot.:M
+|=====================
+
+[[HashType]]
+=== HashType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Value:<<HashValueType,HashValueType>>:Hash value.: M:
+Function:<<HashFunctionType,HashFunctionType>>:Function that was used to generate the hash value.:M:
+Salt:String:In case that a salt value was used to generate the hash value (e.g. salted SHA-1 hash) the salt can be provided in this field. Where the Hash Function is Bcrypt, this value is undefined.:O:100
+|=====================
+
+[[ChargingFacilityType]]
+=== ChargingFacilityType
+
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+PowerType:<<PowerType,PowerType List>>:Charging Facility power type (e.g. AC or DC): M:
+Voltage:Integer:Voltage of the Charging Facility:O:3
+Amperage:Integer:Amperage of the Charging Facility:O:2
+Power:Integer:Charging Facility power in kW:M:3
+Charging Modes:<<ChargingModeType,List ChargingModeType>>:List of charging modes that are supported.:O:
+|=====================
+
+[[PricingProductDataType]]
+=== PricingProductDataType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+OperatorID:<<OperatorIDType,OperatorIDType>>:The provider whose data records are listed below. : M:
+OperatorName:String:Free text for operator:O:100
+ProviderID:<<ProviderIDType,ProviderIDType>>:The EMP for whom the pricing data is applicable. In case the data is to be made available for all EMPs (e.g. for Offer-to-All prices), the asterix character (*) can be set as the value in this field.:M:
+PricingDefaultPrice:Decimal:A default price for pricing sessions at undefined EVSEs:M:
+PricingDefaultPriceCurrency:<<CurrencyIDType,CurrencyIDType>>:Currency for default prices:M:
+PricingDefaultReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Default Reference Unit in time or kWh:M:
+PricingProductDataRecords:<<PricingProductDataRecordType,PricingProductDataRecordType>>:A list of pricing products:M:0...n
+|=====================
+
+[[PricingProductDataRecordType]]
+=== PricingProductDataRecordType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+ProductID:<<ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique: M:50
+ReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Reference unit in time or kWh:M:
+ProductPriceCurrency:<<CurrencyIDType,CurrencyIDType>>:Currency for default prices:M:
+MaximumProductChargingPower:Decimal:A value in kWh:M:
+IsValid24hours:Boolean:Set to TRUE if the respective pricing product is applicable 24 hours a day. If FALSE, the respective applicability times should be provided in the field “ProductAvailabilityTimes”.:M:
+ProductAvailabilityTimes:<<ProductAvailabilityTimesType,ProductAvailabilityTimesType>>:A list indicating when the pricing product is applicable:M:
+AdditionalReferences:<<AdditionalReferencesType,AdditionalReferencesType>>:A list of additional reference units and their respective prices:O:0...n
+|=====================
+
+[[EVSEPricingType]]
+=== EVSEPricingType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+EvseID:<<EvseIDType,EvseIDType>>:The EvseID of an EVSE for which the defined pricing products are applicable:M:
+ProviderID:<<ProviderIDType,ProviderIDType>>:The EMP for whom the pricing data is applicable. In case the data is to be made available for all EMPs (e.g. for Offer-to-All prices), the asterix character (*) can be set as the value in this field.:M:
+EvseIDProductList:<<EvseIDProductListType,EvseIDProductListType>>:A list of pricing products applicable per EvseID:M:1...n
+|=====================
+
+[[EvseIDProductListType]]
+=== EvseIDProductListType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+ProductID:<<ProductIDType,ProductIDType>>:The product name of the applicable pricing product: M:50
+|=====================
+
+[[ProductAvailabilityTimesType]]
+=== ProductAvailabilityTimesType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Periods:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
+On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available:M:
+|=====================
+
+[[AdditionalReferencesType]]
+=== AdditionalReferencesType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+AdditionalReference:<<AdditionalReferenceType,AdditionalReferenceType>>:Additional pricing components to be considered in addition to the base pricing:M:
+AdditionalReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Additional reference units that can be used in defining pricing products:M:
+PricePerAdditionalReferenceUnit:Decimal:A price in the given currency:M:
+|=====================
+
+[[PeriodType]]
+=== PeriodType
+[%header]
+|=====
+|Name|Data Type|Description|M/O|Field Length
+|begin|String
+
+Pattern:
+`[0-9]{2}:[0-9]{2}`|The opening time|M|
+|end|String
+
+Pattern:
+`[0-9]{2}:[0-9]{2}`|The closing time|M|
+|=====
+
+[[RFIDIdentificationType]]
+=== RFIDIdentificationType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+UID:<<UIDType,UIDType>>:The UID from the RFID-Card. It should be read´from left to right using big-endian format. Hubject will automatically convert all characters from lower case to upper case:M:
+EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier:O:
+RFID:<<RFIDType,RFIDType>>:The Type of the used RFID card like mifareclassic, desfire:M:
+PrintedNumber:String:A number printed on a customer’s card for manual authorization (e.q. via a call center):O:150
+ExpiryDate:Date/Time:Until when this card is valid. Should not be set if card does not have an expiration:O:
+|=====================
+
+[[InfoTextType]]
+=== InfoTextType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+lang:<<LanguageCodeType,LanguageCodeType>>:The language in which the additional info text is provided:M:
+value:String:The Additional Info text:M:150
+|=====================
+
+[[OpeningTimesType]]
+=== OpeningTimesType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Periods:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
+On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available. Workdays = Monday – Friday, Weekend = Saturday – Sunday:M:
+|=====================
+
+[[OperatorEVSEPricingType]]
+=== OperatorEVSEPricingType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+OperatorID:<<OperatorIDType,OperatorIDType>>:The provider whose status records are listed below.:M:
+OperatorName:String:Operator name:O:100
+EVSEPricing:<<EVSEPricingType,EVSEPricingType>>:List of EVSE pricings offered by the operator.:M  0...n:
+|=====================
+
+[[EnergySourceType]]
+=== EnergySourceType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Energy:<<EnergyType,EnergyType>>::M:
+Percentage:Integer:Percentage of EnergyType bein used by the charging stations:O:2
+|=====================
+
+[[EnvironmentalImpactType]]
+=== EnvironmentalImpactType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+CO2Emission:Decimal: Total CO2 emited by the energy source being used by this charging station to supply energy to EV. Units are in g/kWh:O:5
+NuclearWaste:Decimal:Total NuclearWaste emited by the energy source being used by this charging station to supply energy to EV. Units are in g/kWh:O:5
+|=====================
+
+[[SignedMeteringValuesType]]
+=== SignedMeteringValuesType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+SignedMeteringValue:String: Metering signature value provided by the charging station:O:3000
+MeteringStatus:<<MeteringStatusType,MeteringStatusType>>:The status type of the metering signature provided (e.g. Start, Progress, End):O:
+|=====================
+
+NOTE: Thie MeteringSignatureValue format provided must be supported by the Transparency Software
+
+[[CalibrationLawVerificationType]]
+=== CalibrationLawVerificationType
+[%header]
+|=====
+|Name|Data Type|Description|M/O|Field Length
+|CalibrationLawCertificateID|String| The Calibration Law Compliance ID from respective authority along with the revision and issueing date (Compliance ID : Revision : Date) For eg PTB - X-X-XXXX : V1 : 01Jan2020|O|100
+|PublicKey|String|Unique PublicKey for charging station can be provided here|O|1000
+|MeteringSignatureUrl|String|In this field additional information about Calibration law complaint charging session can be provided.|O|200
+|MeteringSignatureEncodingFormat|String|Encoding format of the metering signature data as well as the version (e.g. EDL40 Mennekes: V1)|O|50
+|SignedMeteringValuesVerificationInstruction|String|Additional information (e.g. instruction on how to use the transparency software)|O|400
+|=====
+
+
+[[SimpleSpecificationDataTypes]]
+== Simple Specification Data Types
+
+Specification types define a range of possible data values the data field that is assigned to the type can have.
+
+[[AuthorizationStatusType]]
+=== AuthorizationStatusType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Authorized:User is authorized.
+NotAuthorized:User is not authorized.
+|=====================
+
+[[AccessibilityType]]
+=== AccessibilityType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Free publicly accessible:EV Driver can reach the charging point without paying a fee, e.g. street, free public place, free parking lot, etc.
+Restricted access:EV Driver needs permission to reach the charging point, e.g. Campus, building complex, etc.
+Paying publicly accessible:EV Driver needs to pay a fee in order to reach the charging point, e.g. payable parking garage, etc.
+Test Station:Station is just for testing purposes. Access may be restricted.
+|=====================
+
+[[PlugType]]
+=== PlugType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Small Paddle Inductive	:	Defined plug type.
+Large Paddle Inductive	:	Defined plug type.
+AVCON Connector	:	Defined plug type.
+Tesla Connector	:	Defined plug type.
+NEMA 5-20	:	Defined plug type.
+Type E French Standard	:	CEE 7/5.
+Type F Schuko	:	CEE 7/4.
+Type G British Standard	:	BS 1363.
+Type J Swiss Standard	:	SEV 1011.
+Type 1 Connector (Cable Attached)	:	Cable attached to IEC 62196-1 type 1, SAE J1772 connector.
+Type 2 Outlet	:	IEC 62196-1 type 2.
+Type 2 Connector (Cable Attached)	:	Cable attached to IEC 62196-1 type 2 connector.
+Type 3 Outlet	:	IEC 62196-1 type 3.
+IEC 60309 Single Phase	:	IEC 60309.
+IEC 60309 Three Phase	:	IEC 60309.
+CCS Combo 2 Plug (Cable Attached)	:	IEC 62196-3 CDV DC Combined Charging Connector DIN SPEC 70121 refers to ISO / IEC 15118-1 DIS, -2 DIS and 15118-3.
+CCS Combo 1 Plug (Cable Attached)	:	IEC 62196-3 CDV DC Combined Charging Connector with IEC 62196-1 type 2 SAE J1772 connector.
+CHAdeMO	:	DC CHAdeMO Connector.
+|=====================
+
+[[ChargingModeType]]
+=== ChargingModeType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Mode_1	:	conductive connection between a standard socket-outlet of an AC supply network and electric vehicle without communication or additional safety features (IEC 61851-1)
+Mode_2	:	conductive connection between a standard socket-outlet of an AC supply network and electric vehicle with communication and additional safety features (IEC 61851-1)
+Mode_3	:	conductive connection of an EV to an AC EV supply equipment permanently connected to an AC supply network with communication and additional safety features (IEC 61851-1)
+Mode_4	:	conductive connection of an EV to an AC or DC supply network utilizing a DC EV supply equipment, with (high-level) communication and additional safety features (IEC 61851-1)
+CHAdeMO	:	CHAdeMo Specification
+|=====================
+
+[[AuthenticationModeType]]
+=== AuthenticationModeType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+NFC RFID Classic	:	Defined authentication.
+NFC RFID DESFire	:	Defined authentication.
+PnC	:	ISO/IEC 15118.
+REMOTE	:	App, QR-Code, Phone.
+Direct Payment	:	Remote use via direct payment. E.g. intercharge direct
+No Authentication Required: Not Authentication Method Required
+|=====================
+
+[[PaymentOptionType]]
+=== PaymentOptionType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+No Payment:Free.
+Direct:e. g. Cash, Card, SMS, …
+Contract:i. e. Subscription.
+|=====================
+NOTE: `No Payment` can not be combined with other payment option
+
+[[GeoCoordinatesResponseFormatType]]
+=== GeoCoordinatesResponseFormatType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Google	:	Based on WGS84.
+DegreeMinuteSeconds	:	Based on WGS84.
+DecimalDegree	:	Based on WGS84.
+|=====================
+
+[[HashFunctionType]]
+=== HashFunctionType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Bcrypt : Hash value is based on Bcrypt.
+|=====================
+
+[[EvseStatusType]]
+=== EvseStatusType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Available	:	Charging Spot is available for charging.
+Reserved	:	Charging Spot is reserved and not available for charging.
+Occupied	:	Charging Spot is busy.
+OutOfService	:	Charging Spot is out of service and not available for charging.
+EvseNotFound	:	The requested EvseID and EVSE status does not exist within the Hubject database.
+Unknown	:	No status information available.
+|=====================
+
+[[CodeType]]
+=== CodeType (list of error and status codes)
+[%header,format=dsv, cols=3]
+|=====================
+Option:Description:Area of Usage
+000	:	Success.	:	General codes
+001	:	Hubject system error.	:	Internal system codes
+002	:	Hubject database error.	:	Internal system codes
+009	:	Data transaction error.	:	Internal system codes
+017	:	Unauthorized Access.	:	Internal system codes
+018	:	Inconsistent EvseID.	:	Internal system codes
+019	:	Inconsistent EvcoID.	:	Internal system codes
+021	:	System error.	:	General codes
+022	:	Data error.	:	General codes
+101	:	QR Code Authentication failed – Invalid Credentials.	:	Authentication codes
+102	:	RFID Authentication failed – invalid UID.	:	Authentication codes
+103	:	RFID Authentication failed – card not readable.	:	Authentication codes
+105	:	PLC Authentication failed - invalid EvcoID.	:	Authentication codes
+106	:	No positive authentication response.	:	Authentication codes / Internal system codes
+110	:	QR Code App Authentication failed – time out error.	:	Authentication codes
+120	:	PLC (ISO/ IEC 15118) Authentication failed – invalid underlying EvcoID.	:	Authentication codes
+121	:	PLC (ISO/ IEC 15118) Authentication failed – invalid certificate.	:	Authentication codes
+122	:	PLC (ISO/ IEC 15118) Authentication failed – time out error.	:	Authentication codes
+200	:	EvcoID locked.	:	Authentication codes
+210	:	No valid contract.	:	Session codes
+300	:	Partner not found.	:	Session codes
+310	:	Partner did not respond.	:	Session codes
+320	:	Service not available.	:	Session codes
+400	:	Session is invalid.	:	Session codes
+501	:	Communication to EVSE failed.	:	EVSE codes
+510	:	No EV connected to EVSE.	:	EVSE codes
+601	:	EVSE already reserved.	:	EVSE codes
+602	:	EVSE already in use/ wrong token.	:	EVSE codes
+603	:	Unknown EVSE ID.	:	EVSE codes
+604	:	EVSE ID is not Hubject compatible.	:	EVSE codes
+700	:	EVSE out of service.	:	EVSE codes
+|=====================
+
+[[CountryCodeType]]
+=== CountryCodeType
+The CountryCodeType allows for Alpha-3 country codes only as of OICP 2.2 and OICP 2.3
+
+For Alpha-3 (three-letter) country codes as defined in http://unstats.un.org/unsd/methods/m49/m49alpha.htm[ISO 3166-1].
+
+*Examples*:
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+AUT	: Austria
+DEU	: Germany
+FRA	: France
+USA	: United States
+|=====================
+
+[[ProductIDType]]
+=== ProductIDType
+
+The ProductIDType defines some standard values (see below). The type however also supports custom ProductIDs that can be specified by partners (as a string of 50 characters maximum length).
+
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Standard Price	: Standard price
+AC1 :	Product for AC 1 Phase charging
+AC3	:Product for AC 3 Phase charging
+DC	:Product for DC charging
+CustomProductID	:There is no option “CustomProductID”, this sample option is meant to indicates that custom product ID specifications by partners (as a string of 50 characters maximum length) are allowed as well.
+|=====================
+
+[[ValueAddedServiceType]]
+=== ValueAddedServiceType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Reservation	: Can an EV driver reserve the charging sport via remote services?
+DynamicPricing	: Does the EVSE ID support dynamic pricing?
+ParkingSensors	: Is dynamic status info on the parking area in front of the EVSE-ID available?
+MaximumPowerCharging	: Does the EVSE-ID offer a dynamic maximum power charging?
+PredictiveChargePointUsage :	Is predictive charge Point usage info available for the EVSE-ID?
+ChargingPlans :	Does the EVSE-ID offer charging plans, e.g. As described in ISO15118-2?
+RoofProvided : Indicates if the charging station is under a roof
+None : There are no value-added services available.
+|=====================
+
+[[PowerType]]
+=== PowerType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+AC_1_PHASE	: Defined Charging Facility Power Type.
+AC_3_PHASE	: Defined Charging Facility Power Type.
+DC :	Defined Charging Facility Power Type.
+|=====================
+
+[[ReferenceUnitType]]
+=== ReferenceUnitType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+HOUR	:Defined Reference Unit Type
+KILOWATT_HOUR:	Defined Reference Unit Type
+MINUTE:	Defined Reference Unit Type
+|=====================
+
+[[AdditionalReferenceType]]
+=== AdditionalReferenceType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+START FEE	: Can be used in case a fixed fee is charged for the initiation of the charging session. This is a fee charged on top of the main base price defined in the field "PricePerReferenceUnit" for any particular pricing product.
+FIXED FEE	: Can be used if a single price is charged irrespective of charging duration or energy consumption (for instance if all sessions are to be charged a single fixed fee). When used, the value set in the field "PricePerReferenceUnit" for the main base price of respective pricing product should be set to zero.
+PARKING FEE	: Can be used in case sessions are to be charged for both parking and charging. When used, it needs to be specified in the corresponding service offer on the HBS Portal when parking applies (e.g. from session start to charging start and charging end to session end or for the entire session duration, or x-minutes after charging end, etc)
+MINIMUM FEE	: Can be used in case there is a minimum fee to be paid for all charging sessions. When used, this implies that the eventual price to be paid cannot be less than this minimum fee but can however be a price above/greater than the minimum fee.
+MAXIMUM FEE	: Can be used in case there is a maximum fee to be charged for all charging sessions. When used, this implies that the eventual price to be paid cannot be more than this maximum fee but can however be a price below/lower than the maximum fee.
+|=====================
+
+[[CurrencyIDType]]
+=== CurrencyIDType
+[%header,format=dsv, cols=2]
+The ProductPriceCurrencyType allows for the list of active codes of the official ISO 4217 currency names.
+
+For the full list of active codes of the official ISO 4217 currencies, see: https://en.wikipedia.org/wiki/ISO_4217
+
+*Examples*:
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+EUR : Euro
+CHF	: Swiss franc
+CAD	: Canadian Dollar
+GBP	: Pound sterling
+|=====================
+
+[[RFIDType]]
+=== RFIDType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+mifareCls	: Defined RFID Type
+mifareDes	: Defined RFID Type
+calypso	: Defined RFID Type
+nfc	: Defined RFID Type
+mifareFamily	: Defined RFID Type
+|=====================
+
+[[AccessibilityLocationType]]
+=== AccessibilityLocationType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+On Street :  The charging station is located on the street
+Parking Lot : The Charging Point is located inside a Parking Lot
+Parking Garage :  The Charging Point is located inside a Parking Garage
+Underground Parking Garage:  The Charging Point is located inside an Underground Parking Garage
+|=====================
+
+[[EnergyType]]
+=== EnergyType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Solar	:	Energy coming from Solar radiation
+Wind	:	Energy produced by wind
+Hydro Power	:	Energy produced by the movement of water
+Geothermal Energy	:	Energy coming from the sub-surface of the earth
+Biomass	:	Energy produced using plant or animal material as fuel
+Coal	:	Energy produced using coal as fuel
+Nuclear Energy	:	Energy being produced by nuclear fission
+Petroleum	:	Energy produced by using Petroleum as fuel
+Natural Gas	:	Energy produced using Natural Gas as fuel
+|=====================
+
+[[CalibrationLawDataAvailabilityType]]
+=== CalibrationLawDataAvailabilityType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Local	: Calibration law data is shown at the charging station.
+External	:	Calibration law data is provided externaly
+Not Available	:	Calibration law data is not provided.
+|=====================
+
+[[MeteringStatusType]]
+=== MeteringStatusType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Start	: Metering signature value of the beginning of charging process.
+Progress	:	An intermediate metering signature value of the charging process.
+End	:	Metering Signature Value of the end of the charging process.
+|=====================
+
+[[ErrorClassType]]
+=== ErrorClassType
+
+[%header]
+|===
+|Option|Description
+|Connector Error|Charging process cannot be started or stopped. EV driver needs to check if the the Plug is properly inserted or taken out from socket.
+|Critical Error| Charging process stopped abruptly.
+Reason: Physical check at the station is required. Station cannot be reset online.
+
+Or
+
+Error with the software or hardware of the station locally.
+
+Or
+
+Communication failure with the vehicle.
+
+Or
+
+The error needs to be investigated
+
+Or
+
+Ground Failure
+|===
+
+[[ChargingNotificationType]]
+=== ChargingNotificationType
+[%header,format=dsv, cols=2]
+|=====================
+Option:Description
+Start	: Indicates if the Notification refers to the start of a charging process.
+Progress	:	Indicates if the Notification of the progress of the charging session.
+End	:	Indicates if the Notification refers to an end of a charging process.
+Error: Indicates if the Notification refers to an error.
+|=====================
+
+[[SimpleRestrictedStringDataTypes]]
+== Simple Restricted String Data Types
+Restricted string types define a string that is restricted with respect to a certain regular expression.
+
+[[EvcoIDType]]
+=== EvcoIDType
+A string that `MUST` be valid with respect to the following regular expression: *ISO | DIN*.
+
+ ^(([A-Za-z]{2}\-?[A-Za-z0-9]{3}\-?C[A-Za-z0-9]{8}\-?[\d|A-Za-z])|([A-Za-z]{2}[\*|\-]?[A-Za-z0-9]{3}[\*|\-]?[A-Za-z0-9]{6}[\*|\-]?[\d|X]))$
+
+The expression validates the string as EvcoID. It supports both definitions DIN SPEC 91286:2011-11 as well as
+ISO 15118-1.
+
+In case the EvcoID is provided corresponding to ISO, the instance part must be eight characters long and must be
+provided with a prepended “C”. The optional separating character must be “-“.
+
+In case the EvcoID is provided corresponding to DIN, the instance part must be six characters long. The optional
+separating character can either be “*” or “-“.
+
+Examples ISO: *“DE-8EO-CAet5e4XY-3”*, *“DE8EOCAet5e43X1”*
+
+Examples DIN: *“DE*8EO*Aet5e4*3”*, *“DE-8EO-Aet5e4-3”*, *“DE8EOAet5e43”*
+
+[[EvseIDType]]
+=== EvseIDType
+A string that `MUST` be valid with respect to the following regular expression: ISO | DIN.
+
+ ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3}\*?E[A-Za-z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$
+
+The expression validates the string as EvseID. It supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
+
+In case the EvseID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN EN ISO-3166-1) and the separator character “*” is optional. Furthermore the ID must provide an “E” after the OperatorID in order to identify the ID as ISO EvseID without doubt.
+
+In case the EvseID is provided corresponding to DIN, the country code must be provided according to the international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is mandatory.
+
+Examples ISO: *“DE*AB7*E840*6487”*, *“DEAB7E8406487”*
+
+Example DIN: *“+49*810*000*438”*
+
+[[ProviderIDType]]
+=== ProviderIDType
+A string that `MUST` be valid with respect to the following regular expression: ISO | DIN
+
+ ^([A-Za-z]{2}\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\*|-]?[A-Za-z0-9]{3})$
+
+The expression validates the string as ProviderID including the preceding country code, which is part of EvcoID. It
+supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
+
+In case the ProviderID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN
+EN ISO-3166-1) and the separator character “-” is optional.
+
+Examples ISO: *“DE8EO”*, *“DE-8EO”*
+
+Examples DIN: *“DE8EO”*, *“DE*8EO”*, *“DE-8EO”*
+
+[[OperatorIDType]]
+=== OperatorIDType
+A string that `MUST` be valid with respect to the following regular expression: ISO | DIN
+
+ ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3})|(\+?[0-9]{1,3}\*[0-9]{3}))$
+
+The expression validates the string as OperatorID including the preceding country code, which is part of EvseID. It
+supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118.
+In case the OperatorID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN
+EN ISO-3166-1) and the separator character “*” is optional.
+
+In case the OperatorID is provided corresponding to DIN, the country code must be provided according to the
+international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is
+mandatory.
+
+Examples ISO: *“DE*A36”*, *“DEA36”*
+
+Example DIN: *“+49*536”*
+
+[[GeoCoordinatesGoogleFormatType]]
+=== GeoCoordinatesGoogleFormatType
+
+A string that `MUST` be valid with respect to the following regular expression:
+
+ ^-?1?\d{1,2}\.\d{1,6}\s*\,?\s*-?1?\d{1,2}\.\d{1,6}$
+
+The expression validates the string as geo coordinates with respect to the Google standard. The string contains
+latitude and longitude (in this sequence) separated by a space.
+
+Example: *“47.662249 9.360922”*
+
+[[GeoCoordinatesDecimalDegreeFormatType]]
+=== GeoCoordinatesDecimalDegreeFormatType
+
+A string that `MUST` be valid with respect to the following regular expression:
+
+ ^-?1?\d{1,2}\.\d{1,6}$
+
+The expression validates the string as a geo coordinate (longitude or latitude) with decimal degree syntax.
+
+Examples: *“9.360922”, “-21.568201”*
+
+[[GeoCoordinatesDegreeMinuteSecondsFormatType]]
+=== GeoCoordinatesDegreeMinuteSecondsFormatType
+A string that `MUST` be valid with respect to the following regular expression:
+
+ ^-?1?\d{1,2}°[ ]?\d{1,2}'[ ]?\d{1,2}\.\d+’'$
+
+The expression validates the string as a geo coordinate (longitude or latitude) consisting of degree, minutes, and
+seconds
+
+Examples: *“9°21'39.32''”, “-21°34'23.16''*
+
+[[SessionIDType]]
+=== SessionIDType
+A string that `MUST` be valid with respect to the following regular expression:
+
+ ^[A-Za-z0-9]{8}(-[A-Za-z0-9]{4}){3}-[A-Za-z0-9]{12}$
+
+The expression validates the string as a GUID.
+
+Example: *“b2688855-7f00-0002-6d8e-48d883f6abb6”*
+
+[[PhoneNumberType]]
+=== PhoneNumberType
+ ^\+[0-9]{5,15}$
+
+The expression validates the string as a telephone number starting with “+” and containing only numbers.
+
+Example: *“+0305132787”*
+
+[[UIDType]]
+=== UIDType
+ ^([0-9A-F]{8,8}|[0-9A-F]{14,14}|[0-9A-F]{20,20})$
+
+The expression validates the string as a unique RFID with a length of 8, 14 or 20 characters.
+
+Examples: *“AFFH1768”*, *“7568290FFF765F”*
+
+[[HashValueType]]
+=== HashValueType
+ ^[0-9A-Za-z]{10,100}$
+
+The expression validates the string as a hash function result value with a length between 10 and 100 characters
+
+Example: *“a5ghdhf73h”*
+
+[[LanguageCodeType]]
+=== LanguageCodeType
+ ^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?(?:-x-[a-zA-Z0-9]{1,8})?$
+
+The expression validates the string as a language code as per https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes[ISO-639-1] or ISO-639-2/T
+
+The LanguageCodeType is used in the AdditionalInfo field, which is part of the EvseDataRecordType.
+
+[[ChargingPoolIDType]]
+=== ChargingPoolIDType
+EVSEs may be grouped by using a charging pool id according to emi³ standard definition. The Evse Pool ID MUST
+match the following structure (the notation corresponds to the augmented Backus-Naur Form (ABNF) as defined in
+RFC5234):
+
+<Evse Pool ID> = <Country Code> <S> <Spot Operator ID> <S> <ID Type> <Pool ID>
+
+with:
+
+<Country Code> = 2 ALPHA ; two character country code according to ISO-3166-1 (Alpha-2-Code).
+
+<Spot Operator ID> = 3 (ALPHA / DIGIT); three alphanumeric characters.
+
+<ID Type> = “P”; one character “P” indicating that this ID represents a “Pool”.
+
+<Pool Instance> = (ALPHA / DIGIT) 1 * 30 ( 1*(ALPHA / DIGIT) [/ <S>] ); between 1 and 31sequence of
+alphanumeric characters, including additional optional separators. Starts with alphanumeric character referring to a
+specific Pool in EVSE Operator data system.
+
+- ALPHA = %x41-5A / %x61-7A; according to RFC 5234 (7-Bit ASCII).
+- DIGIT = %x30-39; according to RFC 5234 (7-Bit ASCII).
+- <S> = \*1 ( “*” ); optional separator
+
+An example for a valid Evse Pool ID is “IT*123*P456*AB789” with :
+
+- “IT” indicating Italy,
+- “123” representing a particular Spot Operator,
+- “P” indicating the Pool, and
+- “456*AB789” representing one of its POOL.
+
+NOTE: In contrast to the eMA ID, no check digit is specified for the Evse Pool ID in this document. Alpha characters
+`SHALL` be interpreted case insensitively. emi³ strongly recommends that implementations `SHOULD`
+- use the separator between Country Code and Spot Operator ID
+- use the separator between Spot Operator ID and ID type
+
+This leads to the following regular expression:
+
+ ([A-Za-z]{2}\*?[A-Za-z0-9]{3}\*?P[A-Za-z0-9\*]{1,30})
+
+This regular expression is similar to that of the ISO EvseIDType but E is replaced with P to indicate a pool.
+
+[[TimezoneType]]
+=== TimezoneType
+ [U][T][C][+,-][0-9][0-9][:][0-9][0-9]
+
+The expression validates a string as a Time zone with UTC offset.
+
+Examples:
+
+- UTC+01:00
+- UTC-05:00
+
+
+
+
+
+
+

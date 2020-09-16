@@ -1,0 +1,179 @@
+:toc:
+
+= OICP 2.3 Release Notes
+
+:numbered:
+
+[[Introduction]]
+== Introduction
+
+This document aims to provide an overview of all changes implemented with the release of version 2.3 of the OICP protocol.
+In the Chapters that follow, the respective changes in comparison to OICP 2.2 are highlighted to provide a quick overview of the affected services and data fields.
+For detailed descriptions, please refer to the full-blown OICP 2.3 specification. Please note that the leading document for a fully compliant implementation of OICP 2.3 is the full-blown OICP 2.3 document rather than this document.
+
+From OICP 2.3 version only REST API’s are offered.
+
+[[OICP2.3ChangesOnEndpoint]]
+== OICP 2.3 Changes on Endpoint
+
+The table below gives an overview of all web services upgraded with the release of OICP 2.3
+
+NOTE: not all existing services experienced endpoint changes with the release of OICP 2.3.
+
+[%header,format=dsv, cols=3]
+|=====================
+Service: Version in OICP 2.2: Version in OICP 2.3
+eRoamingChargeDetailRecord: 2.1: 2.2
+eRoamingGetChargeDetailRecord: 2.1: 2.2
+eRoamingPushEvseData: 2.2: 2.3
+eRoamingPullEvseData: 2.2: 2.3
+eRoamingChargingNotification: 1.0: 1.1
+|=====================
+
+The sections that follow provide the following details with respect to endpoint level changes:
+
+* An overview of changes per affected OICP service
+* Type of change
+* Affected Fields
+* Affected OICP operations/messages
+* Brief description of the change implemented
+* Mapping
+
+
+[[eRoamingChargeDetailRecord]]
+=== eRoamingChargeDetailRecord
+
+The table below provides an overview of field level changes to existing operations.
+
+[%header]
+|====
+|Change| Field Name | Affected operations/ messages | Change Details
+|Deleted Field | MeteringSignature | eRoamingChargeDetailRecord | For the new OICP version, the MeteringSignature field is not part anymore for the eRoamingChargeDetailRecord.
+|New Field | SignedMeteringValues, CalibrationLawVerificationInfo | eRoamingChargeDetailRecord | New fields:
+
+*_(SignedMeteringValues and CalibrationLawVerificationInfo)_* were introduced to substitute and enhance the opportunity to provide more detail information about Calibration Law.
+
+*_SignedMeteringValues and CalibrationLawVerificationInfo_* fields contain new DataTypes that are described in the OICP 2.3 Docuemntation as well in section 3 of this document (Data Types).
+
+* SignedMeteringValues data type - SignedMeteringValuesType
+
+* CalibrationLawVerificationInfo data type - CalibrationLawVerificationType
+|Updated Format | ChargingStart, ChargingEnd | eRoamingChargeDetailRecord | ChargingStart and ChargingEnd are in OICP 2.3 version *mandatory*.
+|====
+
+
+[[eRoamingGetChargeDetailRecord]]
+=== eRoamingGetChargeDetailRecord
+[%header]
+|=====
+|Change| Field Name| Affected operations/ messages| Change Details
+|New Field| SessionID| eRoamingGetChargeDetailRecord|Allows to filter the eRoamingGetChargeDetailRecord by SessionID.
+
+Data Type = SessionIDType
+|New Field| OperatorID| eRoamingGetChargeDetailRecord|Allows to filter the eRoamingGetChargeDetailRecord by OperatorID.
+
+Data Type= OperatorIDType
+|New Field| CDRForwarded| eRoamingGetChargeDetailRecord| Allows to filter the eRoamingGetChargeDetailRecord by choosing if the CDR was forwarded or not.
+
+Data Type = BooleanIn case of selecting false as a value, it will provide CDRs that does not have a forwarded status as Forwarded.
+|=====
+
+[[eRoamingEVSEData]]
+=== eRoamingEVSEData
+
+The table below provides an overview of field level changes to existing operations.
+
+[%header]
+|====
+|	Change| Field Name| Affected operations/ messages| Change Details
+|	Deleted Field| EngChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| This field is not part of the OICP 2.3 EvseDataRecordType.
+|   Deleted Field|OperatorEvseData|eRoamingPullEvseData|Due to the new pagination feature OperatorEvseData field is not longer provided in the PullEvseData response
+|	Updated Field| OperatorName| eRoamingPushEVSEData, eRoamingPullEVSEData| OperatorName field is in OICP 2.3 Version mandatory
+|	Updated Field| ChargingModes| eRoamingPushEVSEData, eRoamingPullEVSEData| This field is not part of the OICP 2.3 EvseDataRecordType anymore. This field is part of ChargingFaclitiyType in the OICP 2.3
+|	Updated Format| Address (PostalCode, HouseNum, ParkingFacility, ParkingSpot)| eRoamingPushEVSEData, eRoamingPullEVSEData| PostalCode and HouseNum fields within the AddressIso19773Type are on OICP 2.3 version mandatory. ParkingFacility and ParkingSpot are new optional fields in the AddressIso19773Type to be provided by the CPO
+|	Updated Format| ChargingFacilities - Power, PowerType| eRoamingPushEVSEData, eRoamingPullEVSEData| Power and PowerType fields within the ChargingFacilityType are on OICP 2.3 version mandatory
+|	Updated Format| AuthenticationModes| eRoamingPushEVSEData, eRoamingPullEVSEData| In the AuthenticationModeType the new value “No Authentication Requires” is added.
+|	Updated Format| ChargingStationName| eRoamingPushEVSEData, eRoamingPullEVSEData| 1.ChargingStationName in OICP 2.3 version is mandatory 2.ChargingStationName field changes data type from being string to InfoTexType. Mapping from OICP 2.2 to OICP 2.3 - The string value given in ChargingStationName in OICP 2.2 it will be mapped into InfoTextType format providing just the “value” as string. Note - NO value will be provided in the “lang” field. The string value given in EnChargingStationName in OICP 2.2 it will be mapped itno InfoTextType format providing “eng” as a value of “lang” and “value” as string
+|	Updated Format| PaymentOptions| eRoamingPushEVSEData, eRoamingPullEVSEData| PaymentOptions field is in OICP 2.3 Version mandatory
+|	Updated Format| ValueAddedServices - RoofProvided |eRoamingPushEVSEData, eRoamingPullEVSEData| The value RoofProvided is added in ValueAddedServiceType. This new value informs if the charging station is under a roof.
+|   New Format |PullEvseDataRecordType|eRoamingPullEvseData|Due to the new pagination feature PullEvseDataRecordType was created and only available for the response of the PullEvseData
+|	New Field| HardwareManufacturer| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field HardwareManufacturer is a string field which allows the CPO to provide information about who is the producer of the charging station.
+|	New Field| ChargingStationImage| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field ChargingStationImage allows the CPO to provide a URL where the EMP can see a picture of the charging station.
+|	New Field| SubOperatorName| eRoamingPushEVSEData, eRoamingPullEVSEData| In case that the EVSEID belongs to a Sub Partner, the Hub CPO can provide the name of such sub-partner in the field SubOperatorName
+|	New Field| DynamicPowerLevel| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field DynamicPowerLevel informs the EMP is the charging station is capable to deliver dynamic power level on demand e.g. smart charging.
+|	New Field| RenewableEnergy| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field RenewableEnergy allows the CPO to inform if the charging station supply Renewable energy. If the charging station provides 100% renewable energy, then the value must be set as “true”
+|	New Field| EnergySource| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field EnergySource allows the CPO to provide what kind of energy is the charging station using to provide to the EV.
+|	New Field| EnvironmentalImpact| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field EnvinronmentalImapct allows the CPO to provide information about the CO2 emission and nuclear waste generated by the energy that supply the charging station.
+|	New Field| CalibrationLawDataAvailability| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field CalibrationLawDataAvailability allows the CPO to inform the EMP how calibration law data is being provided.
+|	New Field| AccessibilityLocation| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field AccessibilityLocation allows the CPO to provide more precise information to the EV driver about how the charging station can be reached, e.g. if the charging station is publicly accessible and it is located in a parking lot.
+|	New Field| ChargingStationLocationReference| eRoamingPushEVSEData, eRoamingPullEVSEData| The new field ChargingStationLocationReference allows the CPO to provide more detail information that make reference to the location of the charging station. E.g. Charging station is in front of Caffe Blues
+|	New Field| AuthenticationModes |  eRoamingPullEVSEData| The new field AuthenticationModes in the PullEvseData allows the EMP to filter EVSEIDs by AuthenticationModeType,
+|	New Field| Accessibility |  eRoamingPullEVSEData| The new field Accessibility in the PullEvseData allows the EMP to filter EVSEIDs by AccessibilityType.
+|	New Field| CalibrationLawDataAvailability |  eRoamingPullEVSEData| The new field CalibrationLawDataAvailability in the PullEvseData allows the EMP to filter EVSEIDs by CalibrationLawDataAvailabilityType
+|	New Field| RenewableEnergy |  eRoamingPullEVSEData| The new field RenewableEnergy in the PullEvseData allows the EMP to filter EVSEIDs which has RenewableEnergy value as “true” or “false”
+|	New Field| IsHubjectCompatible |  eRoamingPullEVSEData| The new field IsHubjectCompatible in the PullEvseData allows the EMP to filter EVSEIDs which are Hubject compatible.
+|	New Field| IsOpen24Hours |  eRoamingPullEVSEData| The new field IsOpen24Hours in the PullEvseData allows the EMP to filter EVSEIDs which are open 24 hours.
+|   New Function| Pagination | eRoamingPullEvseData|eRoamingPullEvseData supports now pagination which parameters needs to be given at the end of the request endpoint.
+
+NOTE: The default number of records provided in the eRoamingEvseData response are 20 elements.
+
+|====
+
+[[eRoamingChargingNotification]]
+=== eRoamingChargingNotification
+
+[%header]
+|=====
+|Change| Field Name| Affected operations/ messages| Change Details
+|New Field| ChargingDuration| eRoamingChargingnotification| Charging Duration = EventOccurred - Charging Duration. It is a time in millisecond.
+Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.
+
+|New Field| ConsumedEnergyProgress| eRoamingChargingnotification|This is consumed energy when from Start of charging process till the charging progress notification generated (EventOccurred)
+|New Field| PenaltyTimeStart|eRoamingChargingnotification|The date and time at which the penalty time start after the grace period.
+|New Field| ErrorType| eRoamingChargingnotification|The error code can be chosen from the list
+|New Field| ErrorAdditionalInfo| eRoamingChargingnotification|The CPO can put in the additional information about the error
+|===
+
+[[OICP2.3DataTypeChanges]]
+== OICP 2.3 Data Type Changes
+
+The OICP 2.3 include new fields which also include new data types that are being share in a list below. For more detail of each data type, please refer to the Data Types section of the OICP 2.3 documentation in GitHub.
+
+*New Data Type:*
+
+* EnergySourceType
+* EnvironmentalImpactType
+* SignedMeteringValuesType
+* CalibrationLawVerificationType
+* AccessibilityLocationType
+* EnergyType
+* CalibrationLawDataAvailabilityType
+* MeteringStatusType
+* ErrorClassType
+
+
+[[OICPVersionsCrossFunctional]]
+== OICP Versions - Cross Functional
+
+The OICP 2.3 contains new fields that does not exists in the OICP 2.1 and OICP 2.2 versions. Therefore, when an EMP using OICP 2.3 performs an eRoamingPullEvseData it may not receive some values that are mandatory to provide for the CPO using OICP 2.3.
+
+As well in OICP 2.3 there are fields that are mandatory for the CPO to provide but are optional for the CPO using OICP 2.2 or OICP 2.1 version.  Therefore, when an EMP using OICP 2.3 performs an eRoamingPullEvseData it may not receive some values (delivered by HBS as “null” that are mandatory to provide for the CPO using OICP 2.3.
+
+In the following table you will find a comparison of mandatory fields between OICP 2.1, OICP 2.2 and OICP 2.3.
+
+[%header,format=dsv, cols=5]
+|=====================
+Field Name: Webservice: OICP 2.1: OICP 2.2: OICP 2.3
+OperatorName: EVSEData: O: O: M
+ChargingStationName: EVSEData: O: O: M
+HouseNum (Address): EVSEData: O: O: M
+PostalCode (Address): EVSEData: O: O: M
+Power (ChargingFacilities): EVSEData: O: O: M
+PowerType (ChargingFacilities): EVSEData: O: O: M
+PaymentOptions: EVSEData: O: O: M
+RenewableEnergy: EVSEData: -: -: M
+CalibrationLawDataAvailability : EVSEData: -: -: M
+ChargingStart: ChargeDetailRecord: O: O: M
+ChargingEnd: ChargeDetailRecord: O: O: M
+|=====================
+
