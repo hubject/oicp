@@ -303,7 +303,7 @@ MeterValueStart:Decimal (,3):The starting meter value in kWh.:O:
 MeterValueEnd:Decimal (,3):The ending meter value in kWh.:O:
 MeterValueInBetween:List Meter Value (Decimal (,3)):List of meter values that may have been taken in between (kWh).:O:
 ConsumedEnergy:Decimal (,3):The difference between MeterValueEnd and MeterValueStart in kWh.:M:
-SignedMeteringValues:<<03_EMP_Data_Types.adoc#SignedMeteringValuesType,SignedMeteringValuesType>>:Metering Signature basically contains all metering signature values for different status of charging session for eg start, end or progress. In total you can provide maximum 10 metering signature values:O:
+SignedMeteringValues:List <<03_EMP_Data_Types.adoc#SignedMeteringValuesType,SignedMeteringValuesType>>:Metering Signature basically contains all metering signature values for different status of charging session for eg start, end or progress. In total you can provide maximum 10 metering signature values:O:
 CalibrationLawVerificationInfo:<<03_EMP_Data_Types.adoc#CalibrationLawVerificationType,CalibrationLawVerificationType>>:This field provides additional information which could help directly or indirectly to verify the signed metering value:O:
 HubOperatorID:<<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>:Hub operator:O:
 HubProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:Hub provider:O:
