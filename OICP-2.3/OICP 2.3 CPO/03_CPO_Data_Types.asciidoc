@@ -203,7 +203,7 @@ lastUpdate:Date/Time:The attribute indicates the date and time of the last updat
 EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 ChargingPoolID:<<ChargingPoolIDType,ChargingPoolIDType>>:The ID that identifies the charging station.:O:
 ChargingStationId:String:The ID that identifies the charging station.:O:50
-ChargingStationNames:List <<InfoTextType,InfoTextType>>:Name of the charging station:M:5
+ChargingStationNames:List <<InfoTextType,InfoTextType>>:Name of the charging station:M:
 HardwareManufacturer:String:Name of the charging point manufacturer:O:50
 ChargingStationImage:String:URL that redirect to an online image of the related EVSEID:O:200
 SubOperatorName:String:Name of the Sub Operator owning the Charging Station:O:100
@@ -403,7 +403,7 @@ EVSEPricing:<<EVSEPricingType,EVSEPricingType>>:List of EVSE pricings offered by
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-Energy:<<EnergyType,EnergyType>>::M:
+Energy:<<EnergyType,EnergyType>>::O:
 Percentage:Integer:Percentage of EnergyType bein used by the charging stations:O:2
 |=====================
 
