@@ -29,16 +29,16 @@ https://www.hubject.com/downloads/
   "Local"
   ],
   "CountryCodes": [
-    "string"
+    "DEU"
   ],
   "GeoCoordinatesResponseFormat": "Google",
   "IsHubjectCompatible": true,
   "IsOpen24Hours": true,
-  "LastCall": "2018-01-23T14:27:43.052Z",
+  "LastCall": "2020-09-23T14:27:43.052Z",
   "OperatorIds": [
-    "string"
+    "DE*ABC"
   ],
-  "ProviderID": "string",
+  "ProviderID": "DE-DCB",
   "RenewableEnergy": true,
   "SearchCenter": {
     "GeoCoordinates": {
@@ -65,145 +65,132 @@ https://www.hubject.com/downloads/
 ----
 {
   "content": [
-          {
-            "Accessibility": "Restricted access",
-            "AccessibilityLocation": "ParkingLot",
-            "AdditionalInfo": [
               {
-                "lang": "string",
-                "value": "string"
-              }
-            ],
-            "AccessibilityLocation": "ParkingLot",
-            "Address": {
-                "City": "string",
-                "Country": "string",
-                "Floor": "string",
-                "HouseNum": "string",
-                "PostalCode": "string",
-                "Region": "string",
-                "Street": "string",
-                "TimeZone": "string",
-                "ParkingFacility": true,
-                "ParkingSpot": "string"
-                },
-            "AuthenticationModes": [
-              "NFC RFID Classic"
-                ],
-            "CalibrationLawDataAvailability":"Local",
-            "ChargingFacilities": [
-              {
-                "Amperage": 0,
-                "Power": 0,
-                "PowerType": "AC_1_PHASE",
-                "Voltage": 0,
-                "ChargingModes": [
-                  "Mode_1"
-                  ]
-               }
-              ],
-            "ChargingPoolID": "string",
-            "ChargingStationID": "string",
-            "ChargingStationImage": "string",
-            "ChargingStationNames": [
-              {
-                "lang": "string",
-                "value": "string"
-              }
-            ],
-            "ChargingStationLocationReference":[
-              {
-                "lang": "string",
-                "value": "string"
-              }
-            ],
-            "ClearinghouseID": "string",
-            "DynamicInfoAvailable": "true",
-            "DynamicPowerLevel": true,
-            "EvseID": "string",
-            "EnergySource": [
-              {
-               "Energy":"Solar",
-               "Percentage": 0
-              },
-              {
-               "Energy": "Wind",
-               "Percentage": 0
-              }
-             ],
-            "EnvironmentalImpact":{
-              "CO2Emission": 0,
-              "NuclearWaste": 0
-             },
-            "GeoChargingPointEntrance": {
-              "Google": {
-                "Coordinates": "string"
-               },
-              "DecimalDegree": {
-                "Latitude": "string",
-                "Longitude": "string"
-                },
-              "DegreeMinuteSeconds": {
-                "Latitude": "string",
-                "Longitude": "string"
-                }
-              },
-            "GeoCoordinates": {
-              "Google": {
-                "Coordinates": "string"
-                },
-              "DecimalDegree": {
-                "Latitude": "string",
-                "Longitude": "string"
-                },
-              "DegreeMinuteSeconds": {
-                "Latitude": "string",
-                "Longitude": "string"
-                }
-              },
-            "HardwareManufacturer":"string",
-            "HotlinePhoneNumber": "string",
-            "HubOperatorID": "string",
-            "IsHubjectCompatible": false,
-            "IsOpen24Hours": false,
-            "MaxCapacity": 0,
-            "OpeningTimes": [
-              {
-                "Period": [
+                "Accessibility": "Restricted access",
+                "AccessibilityLocation": "Parking Garage",
+                "AdditionalInfo": [
                   {
-                    "begin": "string",
-                    "end": "string"
+                    "lang": "en",
+                    "value": "This charging station is for testing purposes"
                   }
                 ],
-                "on": "Everyday"
-              }
-            ],
-            "PaymentOptions": [
-              "No Payment"
-            ],
-            "Plugs": [
-              "Small Paddle Inductive"
-            ],
-            "RenewableEnergy": true,
-            "SubOperatorName":"string",
-            "ValueAddedServices": [
-              "Reservation"
-            ],
-            "deltaType": "insert",
-            "lastUpdate": "2018-01-23T14:04:29.377Z",
-            "OperatorID": "string",
-            "OperatorName": "string"
-          }
+                "Address": {
+                    "City": "Berlin",
+                    "Country": "DEU",
+                    "Floor": "6OG",
+                    "HouseNum": "22",
+                    "PostalCode": "10829",
+                    "Region": "Berlin",
+                    "Street": "EUREF CAMPUS",
+                    "TimeZone": "string",
+                    "ParkingFacility": true,
+                    "ParkingSpot": "E36"
+                    },
+                "AuthenticationModes": [
+                  "NFC RFID Classic",
+                  "REMOTE"
+                    ],
+                "CalibrationLawDataAvailability":"Local",
+                "ChargingFacilities": [
+                  {
+                    "Amperage": 32,
+                    "Power": 22,
+                    "PowerType": "AC_3_PHASE",
+                    "Voltage":480,
+                    "ChargingModes": [
+                      "Mode_4"
+                      ]
+                   }
+                  ],
+                "ChargingPoolID": "DE*ABC*P1234TEST*1",
+                "ChargingStationID": "TEST 1",
+                "ChargingStationImage": "http://www.testlink.com",
+                "ChargingStationNames": [
+                  {
+                    "lang": "en",
+                    "value": "ABC Charging Station Test"
+                  },
+                  {
+                    "lang": "de",
+                    "value": "ABC Testladestation"
+                  }
+                ],
+                "ChargingStationLocationReference":[
+                  {
+                    "lang": "en",
+                    "value": "Charging station is inside Hubject Officem Parking Lot"
+                  }
+                ],
+                "ClearinghouseID": "TEST ID",
+                "DynamicInfoAvailable": "true",
+                "DynamicPowerLevel": true,
+                "EvseID": "DE*XYZ*ETEST1",
+                "EnergySource": [
+                  {
+                   "Energy":"Solar",
+                   "Percentage": 85
+                  },
+                  {
+                   "Energy": "Wind",
+                   "Percentage": 15
+                  }
+                 ],
+                "EnvironmentalImpact":{
+                  "CO2Emission": 30.3
+                 },
+                "GeoChargingPointEntrance": {
+                  "Google": {
+                    "Coordinates": "52.480495 13.356465"
+                   }
+                  },
+                "GeoCoordinates": {
+                  "Google": {
+                    "Coordinates": "52.480495 13.356465"
+                    }
+                  },
+                "HardwareManufacturer":"Charger Hardware Muster Company",
+                "HotlinePhoneNumber": "+49123123123123",
+                "HubOperatorID": "DE*ABC",
+                "IsHubjectCompatible": true,
+                "IsOpen24Hours": false,
+                "MaxCapacity": 50,
+                "OpeningTimes": [
+                  {
+                    "Period": [
+                      {
+                        "begin": "09:00",
+                        "end": "18:00"
+                      }
+                    ],
+                    "on": "Everyday"
+                  }
+                ],
+                "PaymentOptions": [
+                  "No Payment"
+                ],
+                "Plugs": [
+                  "Type 2 Outlet"
+                ],
+                "RenewableEnergy": true,
+                "SubOperatorName":"XYZ Technologies",
+                "ValueAddedServices": [
+                  "Reservation"
+                ],
+                "deltaType": "insert",
+                "lastUpdate": "2018-01-23T14:04:29.377Z",
+                "OperatodId": "DE*ABC",
+                "OperatorName": "ABC technologies"
+           }
       ],
   "number": 0,
-  "size": 20,
+  "size": 1,
   "totalElements": 8,
   "last": true,
-  "totalPages": 1,
+  "totalPages": 8,
   "first": true,
-  "numberOfElements": 8,
+  "numberOfElements": 1,
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
     "Description": "string"
   }
@@ -228,7 +215,7 @@ https://www.hubject.com/downloads/
 ----
 {
   "EvseStatus": "Available",
-  "ProviderID": "string",
+  "ProviderID": "DE-DCB",
   "SearchCenter": {
       "GeoCoordinates": {
         "Google": {
@@ -257,17 +244,17 @@ https://www.hubject.com/downloads/
       {
         "EvseStatusRecord": [
           {
-            "EvseID": "string",
+            "EvseID": "DE*XYZ*ETEST1",
             "EvseStatus": "Available"
           }
         ],
-        "OperatorID": "string",
-        "OperatorName": "string"
+        "OperatorID": "DE*ABC",
+        "OperatorName": "ABC technologies"
       }
     ]
   },
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
     "Description": "string"
   }
@@ -291,44 +278,44 @@ https://www.hubject.com/downloads/
 === Request Code
 [source,JSON]
 ----
-{
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "EvseID": "string",
-  "Identification": {
-    "RFIDMifareFamilyIdentification": {
-      "UID": "string"
+ {
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "TestSession",
+    "EvseID": "DE*XYZ*ETEST1",
+    "Identification": {
+      "RFIDMifareFamilyIdentification": {
+      "UID": "12345ABCD"
     },
     "QRCodeIdentification": {
-      "EvcoID": "string",
+      "EvcoID": "DE-DCB-C12345678-X",
       "HashedPIN": {
         "Function": "Bcrypt",
-          "LegacyHashData": {
-            "Function": "MD5",
-            "Salt": "string",
-            "Value": "string"
-          },
-        "Value": "string"
+        "LegacyHashData": {
+          "Function": "MD5",
+          "Salt": "string",
+          "Value": "string"
         },
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:21:23.744Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-},
-"OperatorID": "string",
-"PartnerProductID": "string",
-"SessionID": "string"
+        "Value": "string"
+      },
+      "PIN": "1234"
+    },
+    "PlugAndChargeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RemoteIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RFIDIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "ExpiryDate": "2021-01-23T14:21:23.744Z",
+      "PrintedNumber": "9876655",
+      "RFID": "mifareCls",
+      "UID": "1234ABCD"
+    }
+  },
+  "OperatorID": "DE*ABC",
+  "PartnerProductID": "AC 1",
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527"
 }
 ----
 
@@ -336,49 +323,49 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"AuthorizationStatus": "Authorized",
-"AuthorizationStopIdentifications": [
-{
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:21:36.954Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-}
-],
-"CPOPartnerSessionID": "string",
-"EMPPartnerSessionID": "string",
-"ProviderID": "string",
-"SessionID": "string",
-"StatusCode": {
-"AdditionalInfo": "string",
-"Code": "000",
-"Description": "string"
-}
+  "AuthorizationStatus": "Authorized",
+  "AuthorizationStopIdentifications": [
+   {
+    "RFIDMifareFamilyIdentification": {
+      "UID": "12345ABCD"
+    },
+    "QRCodeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "HashedPIN": {
+        "Function": "Bcrypt",
+        "LegacyHashData": {
+          "Function": "MD5",
+          "Salt": "string",
+          "Value": "string"
+        },
+        "Value": "string"
+      },
+      "PIN": "1234"
+    },
+    "PlugAndChargeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RemoteIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+      },
+    "RFIDIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "ExpiryDate": "2021-01-23T14:21:23.744Z",
+      "PrintedNumber": "9876655",
+      "RFID": "mifareCls",
+      "UID": "1234ABCD"
+     }
+    }
+  ],
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "2345ABC",
+    "ProviderID": "DE-DCB",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+    "StatusCode": {
+      "AdditionalInfo": "Success",
+      "Code": "000",
+      "Description": "string"
+    }
 }
 ----
 == eRoamingAuthorizeStop
@@ -399,43 +386,43 @@ https://www.hubject.com/downloads/
 
 [source,JSON]
 ----
-{
-"CPOPartnerSessionID": "string",
-"EMPPartnerSessionID": "string",
-"EvseID": "string",
-"Identification": {
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:22:18.319Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-},
-"OperatorID": "string",
-"SessionID": "string"
+ {
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "TestSession",
+    "EvseID": "DE*XYZ*ETEST1",
+    "Identification": {
+      "RFIDMifareFamilyIdentification": {
+      "UID": "12345ABCD"
+    },
+    "QRCodeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "HashedPIN": {
+        "Function": "Bcrypt",
+        "LegacyHashData": {
+          "Function": "MD5",
+          "Salt": "string",
+          "Value": "string"
+        },
+        "Value": "string"
+      },
+      "PIN": "1234"
+    },
+    "PlugAndChargeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RemoteIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RFIDIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "ExpiryDate": "2021-01-23T14:21:23.744Z",
+      "PrintedNumber": "9876655",
+      "RFID": "mifareCls",
+      "UID": "1234ABCD"
+    }
+  },
+  "OperatorID": "DE*ABC",
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527"
 }
 ----
 
@@ -445,14 +432,14 @@ https://www.hubject.com/downloads/
 ----
 {
   "AuthorizationStatus": "Authorized",
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "ProviderID": "string",
-  "SessionID": "string",
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
-    "Description": "string"
+    "Description": "Success"
   }
 }
 ----
@@ -476,43 +463,43 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"CPOPartnerSessionID": "string",
-"EMPPartnerSessionID": "string",
-"EvseID": "string",
-"Identification": {
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:23:54.228Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-},
-"PartnerProductID": "string",
-"ProviderID": "string",
-"SessionID": "string"
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "EvseID": "DE*XYZ*ETEST1",
+  "Identification": {
+    "RFIDMifareFamilyIdentification": {
+      "UID": "1234ABCD"
+    },
+    "QRCodeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "HashedPIN": {
+        "Function": "Bcrypt",
+        "LegacyHashData": {
+          "Function": "MD5",
+          "Salt": "string",
+          "Value": "string"
+        },
+        "Value": "string"
+      },
+      "PIN": "1234"
+    },
+    "PlugAndChargeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RemoteIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RFIDIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "ExpiryDate": "2021-01-23T14:23:54.228Z",
+      "PrintedNumber": "9876655",
+      "RFID": "mifareCls",
+      "UID": "1234ABCD"
+    }
+  },
+  "PartnerProductID": "AC 1",
+  "ProviderID": "DE-DCB",
+  "SessionID": "string"
 }
 ----
 
@@ -521,14 +508,14 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "Result": false,
-  "SessionID": "string",
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
-    "Description": "string"
+    "Description": "Success"
   }
 }
 ----
@@ -551,11 +538,11 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"CPOPartnerSessionID": "string",
-"EMPPartnerSessionID": "string",
-"EvseID": "string",
-"ProviderID": "string",
-"SessionID": "string"
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "2345ABC",
+    "EvseID": "DE*XYZ*ETEST1",
+    "ProviderID": "DE-DCB",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527"
 }
 ----
 
@@ -564,14 +551,14 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "Result": false,
-  "SessionID": "string",
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
-    "Description": "string"
+    "Description": "Success"
   }
 }
 ----
@@ -594,11 +581,11 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-  "CDRForwarded": true,
-  "From": "2018-01-23T14:20:10.285Z",
-  "OperatorID": "string",
-  "ProviderID": "string",
-  "To": "2018-01-23T14:20:10.285Z",
+  "CDRForwarded": false,
+  "From": "2020-08-23T14:20:10.285Z",
+  "OperatorID": "DE*ABC",
+  "ProviderID": "DE-DCN",
+  "To": "2020-09-23T14:20:10.285Z",
   "SessionID":[
     "string"
   ]
@@ -612,70 +599,74 @@ https://www.hubject.com/downloads/
 {
   "content": [
                 {
-            "CalibrationLawVerificationInfo":{
-              "CalibrationLawCertificateID": "string",
-              "PublicKey": "string",
-              "MeteringSignatureUrl": "string",
-              "MeteringSignatureEncodingFormat": "string",
-              "SignedMeteringValuesVerificationInstruction": "string"
-            },
-            "CPOPartnerSessionID": "string",
-            "ChargingEnd": "2018-01-23T14:17:53.038Z",
-            "ChargingStart": "2018-01-23T14:17:53.038Z",
-            "ConsumedEnergy": 0,
-            "EMPPartnerSessionID": "string",
-            "EvseID": "string",
-            "HubOperatorID": "string",
-            "HubProviderID": "string",
-            "Identification": {
-            "PlugAndChargeIdentification": {
-            "EvcoID": "string"
-            },
-            "QRCodeIdentification": {
-            "EvcoID": "string",
-            "HashedPIN": {
-            "Function": "Bcrypt",
-            "LegacyHashData": {
-            "Function": "MD5",
-            "Salt": "string",
-            "Value": "string"
-            },
-            "Value": "string"
-            },
-            "PIN": "string"
-            },
-            "RFIDIdentification": {
-            "EvcoID": "string",
-            "ExpiryDate": "2018-01-23T14:17:53.039Z",
-            "PrintedNumber": "string",
-            "RFID": "mifareCls",
-            "UID": "string"
-            },
-            "RFIDMifareFamilyIdentification": {
-            "UID": "string"
-            },
-            "RemoteIdentification": {
-            "EvcoID": "string"
-            }
-            },
-            "MeterValueEnd": 0,
-            "MeterValueInBetween": {
-            "meterValues": [
-            0
-            ]
-            },
-            "MeterValueStart": 0,
-            "SignedMeteringValues": [
-              {
-                "SignedMeteringValue": "string",
-                "MeteringStatus": "Start"
-              }
-            ],
-            "PartnerProductID": "string",
-            "SessionEnd": "2018-01-23T14:17:53.039Z",
-            "SessionID": "string",
-            "SessionStart": "2018-01-23T14:17:53.039Z"
-            }
+                  "CalibrationLawVerificationInfo":{
+                    "CalibrationLawCertificateID": "CD-12BD-2783T",
+                    "PublicKey": "a9sdh839alskldh/WEDjaskdjis20ij2wdpasodpjlkofi3ed3ed",
+                    "MeteringSignatureUrl": "http://www.meteringexample1234.com",
+                    "MeteringSignatureEncodingFormat": "UTF-8",
+                    "SignedMeteringValuesVerificationInstruction": "please follow instructions provided in the mentioned URL"
+                  },
+                  "CPOPartnerSessionID": "1234XYZ",
+                  "ChargingEnd": "2020-09-23T14:17:53.038Z",
+                  "ChargingStart": "2020-09-23T14:17:53.038Z",
+                  "ConsumedEnergy": 10,
+                  "EMPPartnerSessionID": "9876655",
+                  "EvseID": "DE*XYZ*ETEST1",
+                  "HubOperatorID": "DE*ABC",
+                  "HubProviderID": "DE-DCB",
+                  "Identification": {
+                    "PlugAndChargeIdentification": {
+                      "EvcoID": "DE-DCB-C12345678-X"
+                    },
+                    "QRCodeIdentification": {
+                      "EvcoID": "DE-DCB-C12345678-X",
+                      "HashedPIN": {
+                        "Function": "Bcrypt",
+                        "LegacyHashData": {
+                          "Function": "MD5",
+                          "Salt": "string",
+                          "Value": "string"
+                        },
+                        "Value": "string"
+                      },
+                      "PIN": "1234"
+                    },
+                    "RFIDIdentification": {
+                      "EvcoID": "DE-DCB-C12345678-X",
+                      "ExpiryDate": "2021-01-23T14:17:53.039Z",
+                      "PrintedNumber": "9876655",
+                      "RFID": "mifareCls",
+                      "UID": "1234ABCD"
+                    },
+                    "RFIDMifareFamilyIdentification": {
+                      "UID": "1234ABCD"
+                    },
+                    "RemoteIdentification": {
+                      "EvcoID": "DE-DCB-C12345678-X"
+                    }
+                  },
+                  "MeterValueEnd": 10,
+                  "MeterValueInBetween": {
+                    "meterValues": [
+                      10
+                    ]
+                  },
+                  "MeterValueStart": 0,
+                  "SignedMeteringValues": [
+                    {
+                      "SignedMeteringValue": "AAAAAAAAAAAAAAABasdno2e89d2ekasdeBBBBBBBBBBBBBBBBCCCCCCCCC23423BBBBBBBBBBBBBAS",
+                      "MeteringStatus": "Start"
+                    },
+                    {
+                      "SignedMeteringValue": "AAAAAAAAAAAAAAABBBBdaskjhadksiqwd2309nede9owineBBBBBBBBBBBBBCCCCCCCCC23423BBBBBBBBBBBBBAS",
+                      "MeteringStatus": "End"
+                    }
+                  ],
+                  "PartnerProductID": "AC 1",
+                  "SessionEnd": "2020-09-23T14:17:53.039Z",
+                  "SessionID": "string",
+                  "SessionStart": "2020-09-23T14:17:53.039Z"
+                }
   ],
   "number": 0,
   "size": 20,
@@ -706,44 +697,44 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"CPOPartnerSessionID": "string",
-"Duration": 0,
-"EMPPartnerSessionID": "string",
-"EvseID": "string",
-"Identification": {
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:29:25.333Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-},
-"PartnerProductID": "string",
-"ProviderID": "string",
-"SessionID": "string"
+  "CPOPartnerSessionID": "1234XYZ",
+  "Duration": 15,
+  "EMPPartnerSessionID": "2345ABC",
+  "EvseID": "DE*XYZ*ETEST1",
+  "Identification": {
+    "RFIDMifareFamilyIdentification": {
+      "UID": "1234ABCD"
+    },
+    "QRCodeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "HashedPIN": {
+        "Function": "Bcrypt",
+        "LegacyHashData": {
+          "Function": "MD5",
+          "Salt": "string",
+          "Value": "string"
+        },
+        "Value": "string"
+      },
+      "PIN": "1234"
+    },
+    "PlugAndChargeIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RemoteIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X"
+    },
+    "RFIDIdentification": {
+      "EvcoID": "DE-DCB-C12345678-X",
+      "ExpiryDate": "2021-01-23T14:23:54.228Z",
+      "PrintedNumber": "9876655",
+      "RFID": "mifareCls",
+      "UID": "1234ABCD"
+    }
+  },
+  "PartnerProductID": "Reservation",
+  "ProviderID": "DE-DCB",
+  "SessionID": "string"
 }
 ----
 
@@ -752,14 +743,14 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "Result": false,
-  "SessionID": "string",
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
-    "Description": "string"
+    "Description": "Success"
   }
 }
 ----
@@ -782,44 +773,11 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"CPOPartnerSessionID": "string",
-"Duration": 0,
-"EMPPartnerSessionID": "string",
-"EvseID": "string",
-"Identification": {
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:29:25.333Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-},
-"PartnerProductID": "string",
-"ProviderID": "string",
-"SessionID": "string"
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "2345ABC",
+    "EvseID": "DE*XYZ*ETEST1",
+    "ProviderID": "DE-DCB",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527"
 }
 ----
 
@@ -828,14 +786,14 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-  "CPOPartnerSessionID": "string",
-  "EMPPartnerSessionID": "string",
-  "Result": false,
-  "SessionID": "string",
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
-    "Description": "string"
+    "Description": "Success"
   }
 }
 ----
@@ -858,9 +816,9 @@ https://www.hubject.com/downloads/
 ----
 {
 "EvseID": [
-"string"
+"DE*XYZ*ETEST1"
 ],
-"ProviderID": "string"
+"ProviderID": "DE-DCB"
 }
 ----
 
@@ -872,13 +830,13 @@ https://www.hubject.com/downloads/
   "EVSEStatusRecords": {
     "EvseStatusRecord": [
       {
-        "EvseID": "string",
+        "EvseID": "DE*XYZ*ETEST1",
         "EvseStatus": "Available"
       }
     ]
   },
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
     "Description": "string"
   }
@@ -902,9 +860,9 @@ https://www.hubject.com/downloads/
 ----
 {
 "OperatorID": [
-"string"
+"DE*ABC"
 ],
-"ProviderID": "string"
+"ProviderID": "DE-DCB"
 }
 ----
 
@@ -913,25 +871,25 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"EvseStatuses": {
-"OperatorEvseStatus": [
-{
-"EvseStatusRecord": [
-{
-"EvseID": "string",
-"EvseStatus": "Available"
-}
-],
-"OperatorID": "string",
-"OperatorName": "string"
-}
-]
-},
-"StatusCode": {
-"AdditionalInfo": "string",
-"Code": "000",
-"Description": "string"
-}
+  "EvseStatuses": {
+  "OperatorEvseStatus": [
+    {
+      "EvseStatusRecord": [
+      {
+        "EvseID": "DE*XYZ*ETEST1",
+        "EvseStatus": "Available"
+      }
+      ],
+      "OperatorID": "DE*ABC",
+      "OperatorName": "ABC technologies"
+    }
+    ]
+  },
+  "StatusCode": {
+  "AdditionalInfo": "Success",
+  "Code": "000",
+  "Description": "string"
+  }
 }
 ----
 
@@ -951,45 +909,45 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"ActionType": "fullLoad",
-"ProviderAuthenticationData": {
-"AuthenticationDataRecord": [
-{
-"Identification": {
-"RFIDMifareFamilyIdentification": {
-"UID": "string"
-},
-"QRCodeIdentification": {
-"EvcoID": "string",
-"HashedPIN": {
-"Function": "Bcrypt",
-"LegacyHashData": {
-"Function": "MD5",
-"Salt": "string",
-"Value": "string"
-},
-"Value": "string"
-},
-"PIN": "string"
-},
-"PlugAndChargeIdentification": {
-"EvcoID": "string"
-},
-"RemoteIdentification": {
-"EvcoID": "string"
-},
-"RFIDIdentification": {
-"EvcoID": "string",
-"ExpiryDate": "2018-01-23T14:08:45.718Z",
-"PrintedNumber": "string",
-"RFID": "mifareCls",
-"UID": "string"
-}
-}
-}
-],
-"ProviderID": "string"
-}
+  "ActionType": "fullLoad",
+  "ProviderAuthenticationData": {
+  "AuthenticationDataRecord": [
+    {
+      "Identification": {
+        "RFIDMifareFamilyIdentification": {
+        "UID": "12345ABCD"
+        },
+        "QRCodeIdentification": {
+          "EvcoID": "DE-DCB-C12345678-X",
+          "HashedPIN": {
+            "Function": "Bcrypt",
+            "LegacyHashData": {
+              "Function": "MD5",
+              "Salt": "string",
+              "Value": "string"
+            },
+            "Value": "string"
+          },
+          "PIN": "1234"
+        },
+        "PlugAndChargeIdentification": {
+          "EvcoID": "DE-DCB-C12345678-X"
+        },
+        "RemoteIdentification": {
+          "EvcoID": "DE-DCB-C12345678-X"
+        },
+        "RFIDIdentification": {
+          "EvcoID": "DE-DCB-C12345678-X",
+          "ExpiryDate": "2021-01-23T14:21:23.744Z",
+          "PrintedNumber": "9876655",
+          "RFID": "mifareCls",
+          "UID": "1234ABCD"
+        }
+      }
+    }
+  ],
+  "ProviderID": "DE-DCB"
+  }
 }
 ----
 
@@ -1000,10 +958,10 @@ https://www.hubject.com/downloads/
 {
   "CPOPartnerSessionID": "string",
   "EMPPartnerSessionID": "string",
-  "Result": false,
+  "Result": true,
   "SessionID": "string",
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
     "Description": "string"
   }
@@ -1027,11 +985,11 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"LastCall": "2018-01-23T14:33:03.126Z",
+"LastCall": "2020-09-23T14:33:03.126Z",
 "OperatorIDs": [
-"string"
+"DE*ABC"
 ],
-"ProviderID": "string"
+"ProviderID": "DE-DCB"
 }
 ----
 
@@ -1044,19 +1002,19 @@ https://www.hubject.com/downloads/
     {
       "EVSEPricing": [
         {
-          "EvseID": "string",
+          "EvseID": "DE*XYZ*ETEST1",
           "EvseIDProductList": [
-            "string"
+            "AC 1"
           ],
-          "ProviderID": "string"
+          "ProviderID": "DE-DCB"
         }
       ],
-      "OperatorID": "string",
-      "OperatorName": "string"
+      "OperatorID": "DE*ABC",
+      "OperatorName": "ABC technologies"
     }
   ],
   "StatusCode": {
-    "AdditionalInfo": "string",
+    "AdditionalInfo": "Success",
     "Code": "000",
     "Description": "string"
   }
@@ -1080,10 +1038,10 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"LastCall": "2018-01-23T14:33:42.246Z",
-"OperatorIDs": [
-"string"
-]
+  "LastCall": "2020-09-23T14:33:42.246Z",
+  "OperatorIDs": [
+    "DE*ABC"
+  ]
 }
 ----
 
@@ -1092,15 +1050,15 @@ https://www.hubject.com/downloads/
 [source,JSON]
 ----
 {
-"CPOPartnerSessionID": "string",
-"EMPPartnerSessionID": "string",
-"Result": false,
-"SessionID": "string",
-"StatusCode": {
-"AdditionalInfo": "string",
-"Code": "000",
-"Description": "string"
-}
+    "CPOPartnerSessionID": "string",
+    "EMPPartnerSessionID": "string",
+    "Result": true,
+    "SessionID": "string",
+    "StatusCode": {
+    "AdditionalInfo": "Success",
+    "Code": "000",
+    "Description": "string"
+    }
 }
 ----
 [[eRoamingChargingNotificationStart]]
@@ -1121,20 +1079,20 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-	"CPOPartnerSessionID": "string",
-	"ChargingStart": "2018-01-23T14:17:53.038Z",
-	"EMPPartnerSessionID": "string",
-	"EvseID": "string",
+	"CPOPartnerSessionID": "1234XYZ",
+	"ChargingStart": "2020-09-23T14:17:53.038Z",
+	"EMPPartnerSessionID": "2345ABC",
+	"EvseID": "DE*XYZ*ETEST1",
 	"Identification": {
 		"RFIDMifareFamilyIdentification": {
-			"UID": "string"
+			"UID": "1234ABCD"
 		}
 	},
 	"MeterValueStart": 0,
-	"PartnerProductID": "string",
-	"SessionID": "string",
-	"SessionStart": "2018-01-23T14:17:53.038Z",
-	"OperatorID": "string",
+	"PartnerProductID": "AC 1",
+	"SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+	"SessionStart": "2020-09-23T14:17:53.038Z",
+	"OperatorID": "DE*ABC",
 	"Type": "Start"
 }
 ----
@@ -1144,15 +1102,15 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-	"CPOPartnerSessionID": "string",
-	"EMPPartnerSessionID": "string",
-	"Result": false,
-	"SessionID": "string",
-	"StatusCode": {
-		"AdditionalInfo": "string",
-		"Code": "000",
-		"Description": "string"
-	}
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+  "StatusCode": {
+    "AdditionalInfo": "Success",
+    "Code": "000",
+    "Description": "Success"
+  }
 }
 ----
 
@@ -1174,29 +1132,29 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-    "CPOPartnerSessionID": "string",
-    "ChargingEnd": "2018-01-23T14:17:53.038Z",
-    "ChargingStart": "2018-01-23T14:17:53.038Z",
-    "EventOccurred": "2018-01-23T14:25:53.038Z",
+    "CPOPartnerSessionID": "1234XYZ",
+    "ChargingEnd": "2020-09-23T14:17:53.038Z",
+    "ChargingStart": "2020-09-23T14:17:53.038Z",
+    "EventOccurred": "2020-09-23T14:25:53.038Z",
     "ChargingDuration": "48000",
-    "ConsumedEnergyProgress": 0,
-    "EMPPartnerSessionID": "string",
-    "EvseID": "string",
+    "ConsumedEnergyProgress": 9,
+    "EMPPartnerSessionID": "2345ABC",
+    "EvseID": "DE*XYZ*ETEST1",
     "Identification": {
         "RFIDMifareFamilyIdentification": {
-            "UID": "string"
+            "UID": "1234ABCD"
         }
     },
     "MeterValueStart": 0,
     "MeterValueInBetween": {
         "meterValues": [
-            0
+            9
         ]
     },
-    "PartnerProductID": "string",
-    "OperatorID": "string",
-    "SessionID": "string",
-    "SessionStart": "2018-01-23T14:17:53.038Z",
+    "PartnerProductID": "AC 1",
+    "OperatorID": "DE*ABC",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+    "SessionStart": "2020-09-23T14:17:53.038Z",
     "Type": "Progress"
 }
 ----
@@ -1206,15 +1164,15 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-	"CPOPartnerSessionID": "string",
-	"EMPPartnerSessionID": "string",
-	"Result": false,
-	"SessionID": "string",
-	"StatusCode": {
-		"AdditionalInfo": "string",
-		"Code": "000",
-		"Description": "string"
-	}
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+  "StatusCode": {
+    "AdditionalInfo": "Success",
+    "Code": "000",
+    "Description": "Success"
+  }
 }
 ----
 
@@ -1236,31 +1194,31 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-    "CPOPartnerSessionID": "string",
-    "ChargingEnd": "2018-01-23T14:17:53.038Z",
-    "ChargingStart": "2018-01-23T14:50:53.038Z",
-    "ConsumedEnergy": 0,
-    "EMPPartnerSessionID": "string",
-    "EvseID": "string",
+    "CPOPartnerSessionID": "1234XYZ",
+    "ChargingEnd": "2020-09-23T14:17:53.038Z",
+    "ChargingStart": "2020-09-23T14:50:53.038Z",
+    "ConsumedEnergy": 10,
+    "EMPPartnerSessionID": "2345ABC",
+    "EvseID": "DE*XYZ*ETEST1",
     "Identification": {
         "RFIDMifareFamilyIdentification": {
-            "UID": "string"
+            "UID": "1234ABCD"
         }
     },
     "MeterValueStart": 0,
-    "MeterValueEnd": 0,
+    "MeterValueEnd": 10,
     "MeterValueInBetween": {
         "meterValues": [
             0
         ]
     },
-    "PartnerProductID": "string",
-    "PenaltyTimeStart": "2018-01-23T14:17:53.038Z",
-    "OperatorID": "string",
-    "SessionID": "string",
-    "SessionStart": "2018-01-23T14:17:53.038Z",
-	"SessionEnd": "2018-01-23T14:50:53.038Z",
-    "Type": "Progress"
+    "PartnerProductID": "AC 1",
+    "PenaltyTimeStart": "2020-09-23T14:17:53.038Z",
+    "OperatorID": "DE*ABC",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+    "SessionStart": "2020-09-23T14:17:53.038Z",
+	"SessionEnd": "2020-09-23T14:50:53.038Z",
+    "Type": "End"
 }
 ----
 
@@ -1269,15 +1227,15 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-	"CPOPartnerSessionID": "string",
-	"EMPPartnerSessionID": "string",
-	"Result": false,
-	"SessionID": "string",
-	"StatusCode": {
-		"AdditionalInfo": "string",
-		"Code": "000",
-		"Description": "string"
-	}
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+  "StatusCode": {
+    "AdditionalInfo": "Success",
+    "Code": "000",
+    "Description": "Success"
+  }
 }
 ----
 
@@ -1299,18 +1257,18 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-    "CPOPartnerSessionID": "string",
-    "EMPPartnerSessionID": "string",
-    "EvseID": "string",
-    "ErrorType": "string",
-    "ErrorAdditionalInfo": "string",
+    "CPOPartnerSessionID": "1234XYZ",
+    "EMPPartnerSessionID": "2345ABC",
+    "EvseID": "DE*XYZ*ETEST1",
+    "ErrorType": "Connector Error",
+    "ErrorAdditionalInfo": "Plug was not connected, EVSEID timed out reached",
     "Identification": {
         "RFIDMifareFamilyIdentification": {
-            "UID": "string"
+            "UID": "1234ABCD"
         }
     },
-    "OperatorID": "string",
-    "SessionID": "string",
+    "OperatorID": "DE*ABC",
+    "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
     "Type": "Error"
 }
 ----
@@ -1320,14 +1278,14 @@ https://www.hubject.com/downloads/
 [source,json]
 ----
 {
-	"CPOPartnerSessionID": "string",
-	"EMPPartnerSessionID": "string",
-	"Result": false,
-	"SessionID": "string",
-	"StatusCode": {
-		"AdditionalInfo": "string",
-		"Code": "000",
-		"Description": "string"
-	}
+  "CPOPartnerSessionID": "1234XYZ",
+  "EMPPartnerSessionID": "2345ABC",
+  "Result": true,
+  "SessionID": "f98efba4-02d8-4fa0-b810-9a9d50d2c527",
+  "StatusCode": {
+    "AdditionalInfo": "Success",
+    "Code": "000",
+    "Description": "Success"
+  }
 }
 ----

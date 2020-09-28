@@ -664,7 +664,7 @@ eRoamingPullEVSEStatus is a message that is sent in order to request the downloa
 |	Name	|	Data Type	|	Description	|	M/O
 |	ProviderID	|	<<03_EMP_Data_Types.adoc#ProviderID,ProviderID>>	|	Identifies the provider	|	M
 |	SearchCenter	|	<<03_EMP_Data_Types.adoc#SearchCenterType,SearchCenterType>>	|	The data can be restricted using search parameters, which are provided in this field.	|	O
-|	EVSEStatus	|	<<03_EMP_Data_Types.adoc#EVSEStatus,EVSEStatus>>	|	Status of the EVSE	|	O
+|	EVSEStatus	|	<<03_EMP_Data_Types.adoc#EVSEStatusType,EVSEStatusType>>	|	Status of the EVSE	|	O
 |====
 
 [TIP]
