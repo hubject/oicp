@@ -422,12 +422,27 @@ NuclearWaste:Decimal:Total NuclearWaste emited by the energy source being used b
 
 [[SignedMeteringValuesType]]
 === SignedMeteringValuesType
-[%header,format=dsv, cols=5]
-|=====================
-Name:Data Type:Description:M/O:Field Length
-SignedMeteringValue:String: Metering signature value provided by the charging station:O:3000
-MeteringStatus:<<MeteringStatusType,MeteringStatusType>>:The status type of the metering signature provided (e.g. Start, Progress, End):O:
-|=====================
+[%header]
+|=====
+|Name|Data Type|Description|M/O|Field Length
+|SignedMeteringValue|String| Metering signature value (in the Transparency software format)
+
+SignedMeteringValue should be always sent in following order
+
+1.SignedMeteringValue for Metering Status “Start”
+
+2.SignedMeteringValue for Metering Status “Progress1”
+
+3.SignedMeteringValue for Metering Status “Progress2”
+
+4.…
+
+5.SignedMeteringValue for Metering Status “Progress8”
+
+6.SignedMeteringValue for Metering Status “End”
+|O|3000
+|MeteringStatus|<<MeteringStatusType,MeteringStatusType>>|The status type of the metering signature provided (e.g. Start, Progress, End)|O|
+|=====
 
 NOTE: Thie MeteringSignatureValue format provided must be supported by the Transparency Software
 
@@ -437,8 +452,11 @@ NOTE: Thie MeteringSignatureValue format provided must be supported by the Trans
 |=====
 |Name|Data Type|Description|M/O|Field Length
 |CalibrationLawCertificateID|String| The Calibration Law Compliance ID from respective authority along with the revision and issueing date (Compliance ID : Revision : Date) For eg PTB - X-X-XXXX : V1 : 01Jan2020|O|100
-|PublicKey|String|Unique PublicKey for charging station can be provided here|O|1000
-|MeteringSignatureUrl|String|In this field additional information about Calibration law complaint charging session can be provided.|O|200
+|PublicKey|String|Unique PublicKey for EVSEID can be provided here|O|1000
+|MeteringSignatureUrl|String|In this field CPO can also provide a url for xml file. This xml file can give the compiled Calibration Law Data information which can be simply added to invoices for Customer of EMP.
+
+The information can contain for eg Charging Station Details, Charging Session Date/Time, SignedMeteringValues (Transparency Software format), SignedMeterValuesVerificationInstruction etc.
+|O|200
 |MeteringSignatureEncodingFormat|String|Encoding format of the metering signature data as well as the version (e.g. EDL40 Mennekes: V1)|O|50
 |SignedMeteringValuesVerificationInstruction|String|Additional information (e.g. instruction on how to use the transparency software)|O|400
 |=====
