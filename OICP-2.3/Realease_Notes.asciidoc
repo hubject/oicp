@@ -58,7 +58,7 @@ The table below provides an overview of field level changes to existing operatio
 * SignedMeteringValues data type - SignedMeteringValuesType
 
 * CalibrationLawVerificationInfo data type - CalibrationLawVerificationType
-|Updated Format | ChargingStart, ChargingEnd | eRoamingChargeDetailRecord | ChargingStart and ChargingEnd are in OICP 2.3 version *mandatory*.
+|Updated Format | ChargingStart, ChargingEnd and ConsumedEnergy| eRoamingChargeDetailRecord | ChargingStart, ChargingEnd and ConsumedEnergy are in OICP 2.3 version *mandatory*.
 |====
 
 
