@@ -729,10 +729,10 @@ mifareFamily	: Defined RFID Type
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
-On Street :  The charging station is located on the street
-Parking Lot : The Charging Point is located inside a Parking Lot
-Parking Garage :  The Charging Point is located inside a Parking Garage
-Underground Parking Garage:  The Charging Point is located inside an Underground Parking Garage
+OnStreet :  The charging station is located on the street
+ParkingLot : The Charging Point is located inside a Parking Lot
+ParkingGarage :  The Charging Point is located inside a Parking Garage
+UndergroundParkingGarage:  The Charging Point is located inside an Underground Parking Garage
 |=====================
 
 [[EnergyType]]
@@ -742,13 +742,13 @@ Underground Parking Garage:  The Charging Point is located inside an Underground
 Option:Description
 Solar	:	Energy coming from Solar radiation
 Wind	:	Energy produced by wind
-Hydro Power	:	Energy produced by the movement of water
-Geothermal Energy	:	Energy coming from the sub-surface of the earth
+HydroPower	:	Energy produced by the movement of water
+GeothermalEnergy	:	Energy coming from the sub-surface of the earth
 Biomass	:	Energy produced using plant or animal material as fuel
 Coal	:	Energy produced using coal as fuel
-Nuclear Energy	:	Energy being produced by nuclear fission
+NuclearEnergy	:	Energy being produced by nuclear fission
 Petroleum	:	Energy produced by using Petroleum as fuel
-Natural Gas	:	Energy produced using Natural Gas as fuel
+NaturalGas	:	Energy produced using Natural Gas as fuel
 |=====================
 
 [[CalibrationLawDataAvailabilityType]]
