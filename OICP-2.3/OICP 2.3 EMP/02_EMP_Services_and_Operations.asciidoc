@@ -314,7 +314,7 @@ HubProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:Hub provi
 [NOTE]
 ====
 - To `SEND`
-- Implementation: EMP Offline `OPTIONAL`, EMP Offline `MANDATORY`
+- Implementation: EMP Online `OPTIONAL`, EMP Offline `MANDATORY`
 ====
 - Request Message: <<eRoamingGetChargeDetailRecordsmessage,eRoamingGetChargeDetailRecord>>
 - Response Message: <<eRoamingChargeDetailRecordmessage,eRoamingChargeDetailRecords>>
