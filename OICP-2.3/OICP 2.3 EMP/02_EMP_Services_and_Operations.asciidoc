@@ -610,8 +610,8 @@ NOTE: This message describes the response which has to be received as response t
 [%header]
 |====
 |	Name	|	Data Type	|	Description	|	M/O
-|	Content	|	List <<03_EMP_Data_Types.adoc#PullEvseDataRecordType,PullEvseDataRecordType>>	|	A list of EVSE data blocks that are each assigned to a certain operator.	|	M
-|Number|Integer|Number of the page|M
+|	content	|	List <<03_EMP_Data_Types.adoc#PullEvseDataRecordType,PullEvseDataRecordType>>	|	A list of EVSE data blocks that are each assigned to a certain operator.	|	M
+|number|Integer|Number of the page|M
 |size|Integer|Size of records requested per page|M
 |totalElements|Integer|Number of total charging stations available from the request|M
 |last|Boolean|Indicates if the current page is the last page|M
