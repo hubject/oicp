@@ -314,7 +314,7 @@ HubProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:Hub provi
 [NOTE]
 ====
 - To `SEND`
-- Implementation: EMP Offline `OPTIONAL`, EMP Offline `MANDATORY`
+- Implementation: EMP Online `OPTIONAL`, EMP Offline `MANDATORY`
 ====
 - Request Message: <<eRoamingGetChargeDetailRecordsmessage,eRoamingGetChargeDetailRecord>>
 - Response Message: <<eRoamingChargeDetailRecordmessage,eRoamingChargeDetailRecords>>
@@ -331,7 +331,7 @@ Hubject does not check whether a requested CDR has already been provided to the 
 
 *Pagination:*
 
-Starting from OICP 2.3, eRoaminGetChargeDetailRecords supports pagination. This is an optional imeplementation that EMPs can use in order to divide the amount of ChargeDetailRecords contained in the response of the pull request.
+Starting from OICP 2.3, eRoaminGetChargeDetailRecords supports pagination. This is an optional implementation that EMPs can use in order to divide the amount of ChargeDetailRecords contained in the response of the pull request.
 
 The parameters of the pagination are given at the end of the end point: `...?page=0&size=20` where `page` indicates the number of the page for the response and `size` the amount of records to be provided in the response.
 
@@ -564,7 +564,7 @@ NOTE: The delta pull option cannot be combined with radial search, because in so
 
 *Pagination:*
 
-Starting from OICP 2.3, eRoaminPullEvseData supports pagination. This is an optional imeplementation that EMPs can use in order to divide the amount of EvseDataRecords contained in the response of the pull request.
+Starting from OICP 2.3, eRoamingPullEvseData supports pagination. This is an optional imeplementation that EMPs can use in order to divide the amount of EvseDataRecords contained in the response of the pull request.
 
 The parameters of the pagination are given at the end of the end point: `...?page=0&size=20` where `page` indicates the number of the page for the response and `size` the amount of records to be provided in the response.
 
@@ -593,8 +593,8 @@ Cannot be combined with “LastCall”."	|	O
 |	Accessibility	|	List <<03_EMP_Data_Types.adoc#AccessibilityType,AccessibilityType>>	|	A list of accessibility of the charging point	|	O
 |	CalibrationLawDataAvailability	|	List <<03_EMP_Data_Types.adoc#CalibrationLawDataAvailabilityType,CalibrationLawDataAvailabilityType>>	|	A list of how caliration law data is provided by the charging point	|	O
 |	RenewableEnergy	|	Boolean	|	Select the charging stations use Renewable energy or not	|	O
-|	IsHubjectCompatible	|	Boolean	|	Select if the charging station is Hubject Compaitble	|	O
-|	IsOpen24Hours	|	Boolean	|	Select the charging stations that are opne 24 hours.	|	O
+|	IsHubjectCompatible	|	Boolean	|	Select if the charging station is Hubject Compatible	|	O
+|	IsOpen24Hours	|	Boolean	|	Select the charging stations that are open 24 hours.	|	O
 |====
 
 TIP: We recommend to send a daily request
@@ -610,8 +610,8 @@ NOTE: This message describes the response which has to be received as response t
 [%header]
 |====
 |	Name	|	Data Type	|	Description	|	M/O
-|	Content	|	List <<03_EMP_Data_Types.adoc#PullEvseDataRecordType,PullEvseDataRecordType>>	|	A list of EVSE data blocks that are each assigned to a certain operator.	|	M
-|Number|Integer|Number of the page|M
+|	content	|	List <<03_EMP_Data_Types.adoc#PullEvseDataRecordType,PullEvseDataRecordType>>	|	A list of EVSE data blocks that are each assigned to a certain operator.	|	M
+|number|Integer|Number of the page|M
 |size|Integer|Size of records requested per page|M
 |totalElements|Integer|Number of total charging stations available from the request|M
 |last|Boolean|Indicates if the current page is the last page|M
@@ -884,7 +884,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 
 A customer of EMP has started the charging session. Just like as that of regular gasoline stations customer would like to know either how much charging Duration have passed or how much energy is consumed by the EV so far. This information will help Customer to decide if he/she wants to stop the charging session as per their affordability or journey planning.
 
-The CPO’s backend system MAY send a ChargingNotification of type “Progess” after the CPO gets the charging energy or time information from EVSEID. This is required in order to inform the EMP that the progress energy or chargingduration for a perticular charging session.
+The CPO’s backend system MAY send a ChargingNotification of type “Progess” after the CPO gets the charging energy or time information from EVSEID. This is required in order to inform the EMP that the progress energy or charging duration for a particular charging session.
 
 [[eRoamingChargingNotificationsprogressmessage]]
 ==== eRoamingChargingNotifications Progress Message
@@ -947,7 +947,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |Identification|<<03_EMP_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
 |EvseID|<<03_EMP_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
 |ChargingStart |Date/Time |The date and time at which the charging process started.|O|
-|ChargingEnd |Date/Time |The date and time at which the charging process stoped.|M|
+|ChargingEnd |Date/Time |The date and time at which the charging process stopped.|M|
 |SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
 |SessionEnd  |Date/Time|The date and time at which the session ended, e.g. swipe of RFID or cable disconnected.|O|
 |ConsumedEnergy|Decimal(,3)|The difference between MeterValueEnd and MeterValueStart in kWh.|O|
