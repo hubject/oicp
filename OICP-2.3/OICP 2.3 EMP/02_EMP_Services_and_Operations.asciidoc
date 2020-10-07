@@ -216,7 +216,7 @@ Name: Data Type: Description: M/O: Field Length
 SessionID: <<03_EMP_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
 CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
 EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
-ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP.:M:
 EvseID:<<03_EMP_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 Identification:<<03_EMP_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
 PartnerProductID:<<03_EMP_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
@@ -402,7 +402,7 @@ Name: Data Type: Description: M/O: Field Length
 SessionID: <<03_EMP_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:O:
 CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
 EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
-ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP.:M:
 EvseID:<<03_EMP_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 Identification:<<03_EMP_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
 PartnerProductID:<<03_EMP_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
@@ -438,7 +438,7 @@ Name: Data Type: Description: M/O: Field Length
 SessionID: <<03_EMP_Data_Types.adoc#SessionIDType,SessionIDType>>:The Hubject SessionID that identifies the process:M:
 CPOPartnerSessionID:String:Optional field containing the session id assigned by the CPO to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
 EMPPartnerSessionID:String:Optional field containing the session id assigned by an EMP to the related operation. Partner systems can use this field to link their own session handling to HBS processes.:O:250
-ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:TThe ProviderID is defined by Hubject and is used to identify the EMP.:M:
+ProviderID:<<03_EMP_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The ProviderID is defined by Hubject and is used to identify the EMP.:M:
 EvseID:<<03_EMP_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 |========================
 
@@ -459,7 +459,7 @@ Furthermore, Hub EMPs may also push authentication data of sub-EMPs. Hubject doe
 [NOTE]
 ====
 - To `SEND`
-- Implementation: `MAANDATORY`
+- Implementation: `MANDATORY`
 ====
 - Request message: <<eRoamingPushAuthenticationDatamessage,eRoamingAuthorizeRemoteReservationStop>>
 - Response message: <<eRoamingAcknowledgementmessage,eRoamingAcknowledgement>>
@@ -471,7 +471,7 @@ Hubject checks whether there is a valid contract between Hubject and the EMP for
 If so, the operation allows uploading authentication data to Hubject. Furthermore, it is possible to update authentication data that has been pushed with
 an earlier operation request. How Hubject handles the transferred data MUST be defined in the request field “ActionType”, which offers four options (see below).
 
-The authentication data to be inserted or updated MUST be provided with the “ProviderAuthenticationData” field, which consists of “AuthenticationDataRecord”
+The authentication data to be inserted or updated `MUST` be provided with the “ProviderAuthenticationData” field, which consists of “AuthenticationDataRecord”
 structures. Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed action – leads to a
 new version of currently valid data records. Furthermore, each operation is logged with the current timestamp.
 Thus, Hubject can reconstruct the status of authentication data for every point in time in the past.
@@ -500,7 +500,7 @@ In case that an EMP provides already hashed PINs, he `MUST` also specify the cor
 
 EvcoIDs contain the ID of the corresponding EMP. With every data upload operation Hubject checks whether the given EMP’s ProviderID (or Sub-ProviderIDs if necessary) matches every given EvcoID. If not, Hubject refuses the data upload and responds with the status code 019.
 
-NOTE: The eRoamingPushAuthenticationData operation MUST always be used sequentially.
+NOTE: The eRoamingPushAuthenticationData operation `MUST` always be used sequentially.
 
 [[eRoamingPushAuthenticationDatamessage]]
 ==== eRoamingPushAuthenticationData Message
@@ -964,7 +964,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 
 A customer of EMP Authorizes the charging session at particular charging station (via any means for eg REFID card, Mobile etc). Due to some errors sometime, it is possible that charging does not start or charging process is abruptly stopped or fluctuations in the charging process. It is really important for Customer as well as EMP to know what exactly is happening at the charging process. This notification eventually helps EMPs well informed about the problem occurred with the charging process. This information can be easily passed onto Customer so that he/she can take appropriate action.
 
-The CPO’s backend system MAY send a ChargingNotification of type “Error” after the CPO gets an information about the error at the charging station. The CPO can transmit one of the ErrorClass defined by Hubject along with the additional information which elaborated the Error. The customer has to take one of the three action EV needs to be charged at some different station, Cables is properly attached or the error is for information only no action required by customer.
+The CPO’s backend system `MAY` send a ChargingNotification of type “Error” after the CPO gets an information about the error at the charging station. The CPO can transmit one of the ErrorClass defined by Hubject along with the additional information which elaborated the Error. The customer has to take one of the three action EV needs to be charged at some different station, Cables is properly attached or the error is for information only no action required by customer.
 
 [[eRoamingChargingNotificationserrormessage]]
 ==== eRoamingChargingNotifications Error Message
