@@ -1023,5 +1023,3 @@ regarding the result.|M|
 |CPOPartnerSessionID|String|Optional field containing the session id assigned by the CPO to the related operation.|O|250
 |EMPPartnerSessionID|String|Optional field containing the session id assigned by an EMP to the related operation.|O|250
 |=====
-
-
