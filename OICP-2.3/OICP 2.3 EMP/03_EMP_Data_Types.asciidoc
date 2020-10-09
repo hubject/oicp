@@ -40,8 +40,8 @@ IMPORTANT: *One of the following five options `MUST` be provided*
 
 [NOTE]
 ====
-. The option RFIDIdentification MUST not be used in the eRoamingAuthorization process. For RFID Authorization, only the option RFIDMifareFamilyIdentification should be used in the respective eRoamingAuthorization messages.
-. For the Remote Authorization process, only the option RemoteIdentification MUST be used in the respective messages.
+. The option RFIDIdentification `MUST` not be used in the eRoamingAuthorization process. For RFID Authorization, only the option RFIDMifareFamilyIdentification should be used in the respective eRoamingAuthorization messages.
+. For the Remote Authorization process, only the option RemoteIdentification `MUST` be used in the respective messages.
 ====
 
 [[EvseMatchType]]
@@ -118,7 +118,7 @@ Identification: <<IdentificationType,IdentificationType>>:Authentication data: M
 |Name |Data Type |Description|M/O|Field Length
 |UID|<<UIDType,UIDType>>|The UID from the RFID-Card.
 
-It should be read from left to right using big-endian format.
+It `SHOULD` be read from left to right using big-endian format.
 
 Hubject will automatically convert all characters from lower case to upper case |M |50
 |=====
@@ -214,7 +214,7 @@ GeoCoordinates:<<GeoCoordinatesType,GeoCoordinatesType>>:Geolocation of the char
 Plugs:<<PlugType,PlugType List>>:List of plugs that are supported.:M:
 DynamicPowerLevel:Boolean:Informs is able to deliver different power outputs.:O:
 ChargingFacilities:<<ChargingFacilityType,ChargingFacilityType List>>:List of facilities that are supported.:M:
-RenewableEnergy:Boolean:If the Charging Station provides only renewable energy then the value must be” true”, if it use grey energy then value must be “false”.:M:
+RenewableEnergy:Boolean:If the Charging Station provides only renewable energy then the value `MUST` be” true”, if it use grey energy then value `MUST` be “false”.:M:
 EnergySource:<<EnergySourceType,EnergySourceType List>>:List of energy source that the charging station uses to supply electric energy.:O:
 EnvironmentalImpact:<<EnvironmentalImpactType,EnvironmentalImpactType>>:Environmental Impact produced by the energy sources used by the charging point:O:
 CalibrationLawDataAvailability:<<CalibrationLawDataAvailabilityType,CalibrationLawDataAvailabilityType>>:This field gives the information how the charging station provides metering law data.:M:
@@ -301,7 +301,7 @@ PricingProductDataRecords:<<PricingProductDataRecordType,PricingProductDataRecor
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-ProductID:<<ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique: M:50
+ProductID:<<ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that `MUST` be unique: M:50
 ReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Reference unit in time or kWh:M:
 ProductPriceCurrency:<<CurrencyIDType,CurrencyIDType>>:Currency for default prices:M:
 MaximumProductChargingPower:Decimal:A value in kWh:M:
@@ -367,11 +367,11 @@ Pattern:
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-UID:<<UIDType,UIDType>>:The UID from the RFID-Card. It should be read´from left to right using big-endian format. Hubject will automatically convert all characters from lower case to upper case:M:
+UID:<<UIDType,UIDType>>:The UID from the RFID-Card. It `SHOULD` be read´from left to right using big-endian format. Hubject will automatically convert all characters from lower case to upper case:M:
 EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier:O:
 RFID:<<RFIDType,RFIDType>>:The Type of the used RFID card like mifareclassic, desfire:M:
 PrintedNumber:String:A number printed on a customer’s card for manual authorization (e.q. via a call center):O:150
-ExpiryDate:Date/Time:Until when this card is valid. Should not be set if card does not have an expiration:O:
+ExpiryDate:Date/Time:Until when this card is valid. `SHOULD` not be set if card does not have an expiration:O:
 |=====================
 
 [[InfoTextType]]
@@ -444,7 +444,7 @@ SignedMeteringValue should be always sent in following order
 |MeteringStatus|<<MeteringStatusType,MeteringStatusType>>|The status type of the metering signature provided (e.g. Start, Progress, End)|O|
 |=====
 
-NOTE: Thie MeteringSignatureValue format provided must be supported by the Transparency Software
+NOTE: The MeteringSignatureValue format provided `MUST` be supported by the Transparency Software
 
 [[CalibrationLawVerificationType]]
 === CalibrationLawVerificationType
@@ -700,7 +700,7 @@ MAXIMUM FEE	: Can be used in case there is a maximum fee to be charged for all c
 [%header,format=dsv, cols=2]
 The ProductPriceCurrencyType allows for the list of active codes of the official ISO 4217 currency names.
 
-For the full list of active codes of the official ISO 4217 currencies, see: https://en.wikipedia.org/wiki/ISO_4217
+For the full list of active codes of the official https://en.wikipedia.org/wiki/ISO_4217[ISO 4217] currencies
 
 *Examples*:
 [%header,format=dsv, cols=2]
@@ -823,10 +823,10 @@ A string that `MUST` be valid with respect to the following regular expression: 
 The expression validates the string as EvcoID. It supports both definitions DIN SPEC 91286:2011-11 as well as
 ISO 15118-1.
 
-In case the EvcoID is provided corresponding to ISO, the instance part must be eight characters long and must be
+In case the EvcoID is provided corresponding to ISO, the instance part `MUST` be eight characters long and `MUST` be
 provided with a prepended “C”. The optional separating character must be “-“.
 
-In case the EvcoID is provided corresponding to DIN, the instance part must be six characters long. The optional
+In case the EvcoID is provided corresponding to DIN, the instance part `MUST` be six characters long. The optional
 separating character can either be “*” or “-“.
 
 Examples ISO: *“DE-8EO-CAet5e4XY-3”*, *“DE8EOCAet5e43X1”*
@@ -841,9 +841,9 @@ A string that `MUST` be valid with respect to the following regular expression: 
 
 The expression validates the string as EvseID. It supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
 
-In case the EvseID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN EN ISO-3166-1) and the separator character “*” is optional. Furthermore the ID must provide an “E” after the OperatorID in order to identify the ID as ISO EvseID without doubt.
+In case the EvseID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN EN ISO-3166-1) and the separator character “*” is optional. Furthermore the ID `MUST` provide an “E” after the OperatorID in order to identify the ID as ISO EvseID without doubt.
 
-In case the EvseID is provided corresponding to DIN, the country code must be provided according to the international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is mandatory.
+In case the EvseID is provided corresponding to DIN, the country code `MUST` be provided according to the international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is mandatory.
 
 Examples ISO: *“DE*AB7*E840*6487”*, *“DEAB7E8406487”*
 
@@ -858,7 +858,7 @@ A string that `MUST` be valid with respect to the following regular expression: 
 The expression validates the string as ProviderID including the preceding country code, which is part of EvcoID. It
 supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
 
-In case the ProviderID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN
+In case the ProviderID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN
 EN ISO-3166-1) and the separator character “-” is optional.
 
 Examples ISO: *“DE8EO”*, *“DE-8EO”*
@@ -873,10 +873,10 @@ A string that `MUST` be valid with respect to the following regular expression: 
 
 The expression validates the string as OperatorID including the preceding country code, which is part of EvseID. It
 supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118.
-In case the OperatorID is provided corresponding to ISO, the country code must be provided as Alpha-2-Code (DIN
+In case the OperatorID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN
 EN ISO-3166-1) and the separator character “*” is optional.
 
-In case the OperatorID is provided corresponding to DIN, the country code must be provided according to the
+In case the OperatorID is provided corresponding to DIN, the country code `MUST` be provided according to the
 international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is
 mandatory.
 
@@ -962,7 +962,7 @@ The LanguageCodeType is used in the AdditionalInfo field, which is part of the E
 
 [[ChargingPoolIDType]]
 === ChargingPoolIDType
-EVSEs may be grouped by using a charging pool id according to emi³ standard definition. The Evse Pool ID MUST
+EVSEs may be grouped by using a charging pool id according to https://emi3group.com/documents-links/[emi³ standard definition]. The Evse Pool ID `MUST`
 match the following structure (the notation corresponds to the augmented Backus-Naur Form (ABNF) as defined in
 RFC5234):
 
@@ -1012,10 +1012,3 @@ Examples:
 
 - UTC+01:00
 - UTC-05:00
-
-
-
-
-
-
-
