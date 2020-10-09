@@ -100,4 +100,3 @@ The table below provides an overview of all changes made to this document after 
 |Date of Update |Chapter Updated     | Comments |
 |:---|:---:|:---|
 |15th Septmeber 2020|OICP 2.3   |   Implementation description of the new OICP 2.3  
-
