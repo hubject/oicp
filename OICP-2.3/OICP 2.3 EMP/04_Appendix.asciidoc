@@ -58,4 +58,3 @@ image::images/chargingnotificationend.png[]
 === Business Process Diagram eRoaming ChargingNotification Error
 
 image::images/chargingnotificationerror.png[]
-
