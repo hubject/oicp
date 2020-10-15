@@ -1,0 +1,1399 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.2",
+    "title": "OICP 2.2 EVSE Data and Status API"
+  },
+  "host": "localhost:8012",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "EVSE Push Data API v2.2 operations",
+      "description": "Push Evse Data Controller 22"
+    },
+    {
+      "name": "EVSE Status API v2.1 operations",
+      "description": "Pull Evse Status Controller"
+    },
+    {
+      "name": "EVSE Pull Data API v2.2 operations",
+      "description": "Pull Evse Data Controller 22"
+    }
+  ],
+  "paths": {
+    "/api/oicp/evsepull/v21/providers/{providerID}/status-records": {
+      "post": {
+        "tags": [
+          "EVSE Status API v2.1 operations"
+        ],
+        "summary": "eRoamingPullEvseStatus",
+        "operationId": "eRoamingPullEvseStatusUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "providerID",
+            "in": "path",
+            "description": "providerID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPullEvseStatus",
+            "description": "eRoamingPullEvseStatus",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPullEvseStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingEvseStatus",
+            "schema": {
+              "$ref": "#/definitions/ERoamingEvseStatus"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    },
+    "/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-id": {
+      "post": {
+        "tags": [
+          "EVSE Status API v2.1 operations"
+        ],
+        "summary": "eRoamingPullEvseStatusByID",
+        "operationId": "eRoamingPullEvseStatusByIDUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "providerID",
+            "in": "path",
+            "description": "providerID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPullEvseStatusByID",
+            "description": "eRoamingPullEvseStatusByID",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPullEvseStatusByID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingEvseStatusByID",
+            "schema": {
+              "$ref": "#/definitions/ERoamingEvseStatusByID"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    },
+    "/api/oicp/evsepull/v21/providers/{providerID}/status-records-by-operator-id": {
+      "post": {
+        "tags": [
+          "EVSE Status API v2.1 operations"
+        ],
+        "summary": "eRoamingPullEvseStatusByOperatorID",
+        "operationId": "eRoamingPullEvseStatusByOperatorIDUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "providerID",
+            "in": "path",
+            "description": "providerID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPullEvseStatusByOperatorID",
+            "description": "eRoamingPullEvseStatusByOperatorID",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPullEvseStatusByOperatorID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingEvseStatusByOperatorID",
+            "schema": {
+              "$ref": "#/definitions/ERoamingEvseStatus"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    },
+    "/api/oicp/evsepull/v22/providers/{providerID}/data-records": {
+      "post": {
+        "tags": [
+          "EVSE Pull Data API v2.2 operations"
+        ],
+        "summary": "eRoamingPullEvseData",
+        "operationId": "eRoamingPullEVSEDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "providerID",
+            "in": "path",
+            "description": "providerID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPullEvseData",
+            "description": "eRoamingPullEvseData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPullEvseData"
+            }
+          },
+          {
+            "name": "X-HUBJECT-Client-Request-Origin",
+            "in": "header",
+            "description": "X-HUBJECT-Client-Request-Origin",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SOAP21",
+              "SOAP22",
+              "EXTERNAL"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingEvseData",
+            "schema": {
+              "$ref": "#/definitions/ERoamingEvseData"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    },
+    "/api/oicp/evsepush/v21/operators/{operatorID}/status-records": {
+      "post": {
+        "tags": [
+          "EVSE Status API v2.1 operations"
+        ],
+        "summary": "eRoamingPushEvseStatus",
+        "operationId": "eRoamingPushEvseStatusUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "operatorID",
+            "in": "path",
+            "description": "operatorID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPushEvseStatus",
+            "description": "eRoamingPushEvseStatus",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPushEvseStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingAcknowledgement",
+            "schema": {
+              "$ref": "#/definitions/ERoamingAcknowledgement"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    },
+    "/api/oicp/evsepush/v22/operators/{operatorID}/data-records": {
+      "post": {
+        "tags": [
+          "EVSE Push Data API v2.2 operations"
+        ],
+        "summary": "eRoamingPushEvseData",
+        "operationId": "eRoamingPushEvseDataUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "operatorID",
+            "in": "path",
+            "description": "operatorID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "eRoamingPushEvseData22",
+            "description": "eRoamingPushEvseData22",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ERoamingPushEvseData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "eRoamingAcknowledgement",
+            "schema": {
+              "$ref": "#/definitions/ERoamingAcknowledgement"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Call not authorized",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddressIso19773": {
+      "type": "object",
+      "required": [
+        "City",
+        "Country",
+        "Street"
+      ],
+      "properties": {
+        "City": {
+          "type": "string",
+          "description": "City",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "Country": {
+          "type": "string",
+          "description": "Country code",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "Floor": {
+          "type": "string",
+          "description": "Floor",
+          "minLength": 0,
+          "maxLength": 5
+        },
+        "HouseNum": {
+          "type": "string",
+          "description": "House number",
+          "minLength": 0,
+          "maxLength": 10
+        },
+        "PostalCode": {
+          "type": "string",
+          "description": "Postal code",
+          "minLength": 0,
+          "maxLength": 10
+        },
+        "Region": {
+          "type": "string",
+          "description": "Region",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "Street": {
+          "type": "string",
+          "description": "Street",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "TimeZone": {
+          "type": "string",
+          "description": "Timezone",
+          "pattern": "[U][T][C][+,-][0-9][0-9][:][0-9][0-9]"
+        }
+      },
+      "description": "Address model"
+    },
+    "ChargingFacility": {
+      "type": "object",
+      "properties": {
+        "PowerType": {
+          "type": "string",
+          "enum": [
+            "AC_1_PHASE",
+            "AC_3_PHASE",
+            "DC",
+            "Unspecified"
+          ]
+        },
+        "Voltage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Amperage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Power": {
+          "type": "number"
+        }
+      },
+      "description": "ChargingFacility model"
+    },
+    "ERoamingAcknowledgement": {
+      "type": "object",
+      "required": [
+        "StatusCode"
+      ],
+      "properties": {
+        "CPOPartnerSessionID": {
+          "type": "string",
+          "description": "Optional field containing the session id assigned by the CPO to the related operation.",
+          "minLength": 0,
+          "maxLength": 250
+        },
+        "EMPPartnerSessionID": {
+          "type": "string",
+          "description": "Optional field containing the session id assigned by the EMP to the related operation.",
+          "minLength": 0,
+          "maxLength": 250
+        },
+        "Result": {
+          "type": "boolean",
+          "example": false,
+          "description": "Message was received, the respective operation was performed or not performed successfully."
+        },
+        "SessionID": {
+          "type": "string",
+          "description": "Represents the service process.",
+          "pattern": "[A-Za-z0-9]{8}(-[A-Za-z0-9]{4}){3}-[A-Za-z0-9]{12}"
+        },
+        "StatusCode": {
+          "description": "Structured status details.",
+          "$ref": "#/definitions/StatusCodeType"
+        }
+      },
+      "description": "The acknowledgement is a message that is sent in response to several requests."
+    },
+    "ERoamingEvseData": {
+      "type": "object",
+      "required": [
+        "EvseData"
+      ],
+      "properties": {
+        "EvseData": {
+          "description": "A list of EVSE data blocks that are each assigned to a certain operator.",
+          "$ref": "#/definitions/EvseData"
+        },
+        "StatusCode": {
+          "description": "This can be used e.g. for failure messages or further information regarding the result.",
+          "$ref": "#/definitions/StatusCodeType"
+        }
+      },
+      "description": "ERoamingEvseData model"
+    },
+    "ERoamingEvseStatus": {
+      "type": "object",
+      "required": [
+        "EvseStatuses"
+      ],
+      "properties": {
+        "EvseStatuses": {
+          "description": "A list of EVSE status blocks that are each assigned to a certain operator",
+          "$ref": "#/definitions/EvseStatuses"
+        },
+        "StatusCode": {
+          "description": "This can be used e.g. for failure messages or further information regarding the result",
+          "$ref": "#/definitions/StatusCodeType"
+        }
+      },
+      "description": "ERoamingEvseStatus model"
+    },
+    "ERoamingEvseStatusByID": {
+      "type": "object",
+      "properties": {
+        "EVSEStatusRecords": {
+          "description": "A list of EVSE status records",
+          "$ref": "#/definitions/EvseStatusRecords"
+        },
+        "StatusCode": {
+          "description": "This can be used e.g. for failure messages or further information regarding the result",
+          "$ref": "#/definitions/StatusCodeType"
+        }
+      },
+      "description": "ERoamingEvseStatus model"
+    },
+    "ERoamingPullEvseData": {
+      "type": "object",
+      "required": [
+        "GeoCoordinatesResponseFormat",
+        "ProviderID"
+      ],
+      "properties": {
+        "CountryCodes": {
+          "type": "array",
+          "description": "A list of countries whose EVSE's a provider wants to retrieve.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "GeoCoordinatesResponseFormat": {
+          "type": "string",
+          "description": "Defines the format of geo coordinates that shall be provided with the response.",
+          "enum": [
+            "Google",
+            "DegreeMinuteSeconds",
+            "DecimalDegree"
+          ]
+        },
+        "LastCall": {
+          "type": "string",
+          "format": "date-time",
+          "description": "In case that this field is set, Hubject does not return the currently valid set of EVSE data but the changes compared to the status of EVSE data at the time of the last call."
+        },
+        "OperatorIds": {
+          "type": "array",
+          "description": "A list of Operator Ids in ISO or DIN standard to download only EVSE's of one or more operators.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ProviderID": {
+          "type": "string",
+          "description": "Identifies the provider.",
+          "pattern": "^([A-Za-z]{2}\\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\\*|-]?[A-Za-z0-9]{3})$"
+        },
+        "SearchCenter": {
+          "description": "The data can be restricted using search parameters that are provided in this field. Cannot be combined with LastCall.",
+          "$ref": "#/definitions/SearchCenter"
+        }
+      },
+      "description": "ERoamingPullEvseData model"
+    },
+    "ERoamingPullEvseStatus": {
+      "type": "object",
+      "required": [
+        "ProviderID"
+      ],
+      "properties": {
+        "EvseStatus": {
+          "type": "string",
+          "description": "Status of the EVSE",
+          "enum": [
+            "Available",
+            "Reserved",
+            "Occupied",
+            "OutOfService",
+            "Unknown",
+            "EvseNotFound"
+          ]
+        },
+        "ProviderID": {
+          "type": "string",
+          "description": "Identifies the provider",
+          "pattern": "^([A-Za-z]{2}\\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\\*|-]?[A-Za-z0-9]{3})$"
+        },
+        "SearchCenter": {
+          "description": "The data can be restricted using search parameters, which are provided in this field",
+          "$ref": "#/definitions/SearchCenter"
+        }
+      },
+      "description": "ERoamingPullEvseStatus model"
+    },
+    "ERoamingPullEvseStatusByID": {
+      "type": "object",
+      "required": [
+        "EvseID",
+        "ProviderID"
+      ],
+      "properties": {
+        "EvseID": {
+          "type": "array",
+          "description": "The list MUST not contain more than 100 EVSEIDs",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ProviderID": {
+          "type": "string",
+          "description": "Identifies the provider",
+          "pattern": "^([A-Za-z]{2}\\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\\*|-]?[A-Za-z0-9]{3})$"
+        }
+      },
+      "description": "ERoamingPullEvseStatusByID model"
+    },
+    "ERoamingPullEvseStatusByOperatorID": {
+      "type": "object",
+      "required": [
+        "OperatorID",
+        "ProviderID"
+      ],
+      "properties": {
+        "OperatorID": {
+          "type": "array",
+          "description": "A list of Operator Ids in ISO or DIN standard to download only EVSE's of one or more operators.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ProviderID": {
+          "type": "string",
+          "description": "Identifies the provider",
+          "pattern": "^([A-Za-z]{2}\\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\\*|-]?[A-Za-z0-9]{3})$"
+        }
+      },
+      "description": "ERoamingEvseStatus model"
+    },
+    "ERoamingPushEvseData": {
+      "type": "object",
+      "required": [
+        "ActionType",
+        "OperatorEvseData"
+      ],
+      "properties": {
+        "ActionType": {
+          "type": "string",
+          "description": "Describes the action that has to be performed by Hubject with the provided data.",
+          "enum": [
+            "fullLoad",
+            "update",
+            "insert",
+            "delete"
+          ]
+        },
+        "OperatorEvseData": {
+          "description": "OperatorEvseData entry.",
+          "$ref": "#/definitions/OperatorEvseData"
+        }
+      },
+      "description": "ERoamingPushEvseData model"
+    },
+    "ERoamingPushEvseStatus": {
+      "type": "object",
+      "required": [
+        "ActionType",
+        "OperatorEvseStatus"
+      ],
+      "properties": {
+        "ActionType": {
+          "type": "string",
+          "description": "Describes the action that has to be performed by Hubject with the provided data.",
+          "enum": [
+            "fullLoad",
+            "update",
+            "insert",
+            "delete"
+          ]
+        },
+        "OperatorEvseStatus": {
+          "description": "OperatorEvseStatus entry.",
+          "$ref": "#/definitions/OperatorEvseStatus"
+        }
+      },
+      "description": "ERoamingPushEvseStatus model"
+    },
+    "EvseData": {
+      "type": "object",
+      "properties": {
+        "OperatorEvseData": {
+          "type": "array",
+          "description": "A list of EVSE data blocks that are each assigned to a certain operator.",
+          "items": {
+            "$ref": "#/definitions/OperatorEvseData"
+          }
+        }
+      },
+      "description": "EvseData model"
+    },
+    "EvseDataRecord": {
+      "type": "object",
+      "required": [
+        "Accessibility",
+        "Address",
+        "AuthenticationModes",
+        "DynamicInfoAvailable",
+        "EvseID",
+        "GeoCoordinates",
+        "IsHubjectCompatible",
+        "IsOpen24Hours"
+      ],
+      "properties": {
+        "Accessibility": {
+          "type": "string",
+          "description": "Specifies how the charging station can be accessed.",
+          "enum": [
+            "Unspecified",
+            "Free publicly accessible",
+            "Restricted access",
+            "Paying publicly accessible",
+            "Test Station"
+          ]
+        },
+        "AdditionalInfo": {
+          "type": "array",
+          "description": "Optional information.",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
+        },
+        "Address": {
+          "description": "Address of the charging station.",
+          "$ref": "#/definitions/AddressIso19773"
+        },
+        "AuthenticationModes": {
+          "type": "array",
+          "description": "List of authentication modes that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "NFC RFID Classic",
+              "NFC RFID DESFire",
+              "PnC",
+              "REMOTE",
+              "Direct Payment"
+            ]
+          }
+        },
+        "ChargingFacilities": {
+          "type": "array",
+          "description": "List of facilities that are supported. ",
+          "items": {
+            "$ref": "#/definitions/ChargingFacility"
+          }
+        },
+        "ChargingModes": {
+          "type": "array",
+          "description": "List of charging modes that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Mode_1",
+              "Mode_2",
+              "Mode_3",
+              "Mode_4",
+              "CHAdeMO"
+            ]
+          }
+        },
+        "ChargingPoolID": {
+          "type": "string",
+          "description": "Evses may be grouped by using a charging pool id",
+          "pattern": "^([A-Za-z]{2}\\*?[A-Za-z0-9]{3}\\*?P[A-Za-z0-9\\*]{1,30})$"
+        },
+        "ChargingStationID": {
+          "type": "string",
+          "description": "The ID that identifies the charging station.",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "ChargingStationName": {
+          "type": "string",
+          "description": "Name of the charging station.",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "ClearinghouseID": {
+          "type": "string",
+          "description": "Identification of the clearing house in case of roaming between different clearing houses must be processed in the future.",
+          "minLength": 0,
+          "maxLength": 20
+        },
+        "DynamicInfoAvailable": {
+          "type": "string",
+          "description": "Does the operator send a EVSEStatus information for this EVSERecord?",
+          "enum": [
+            "true",
+            "false",
+            "auto"
+          ]
+        },
+        "EnChargingStationName": {
+          "type": "string",
+          "description": "Name of the charging station in English.",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "EvseID": {
+          "type": "string",
+          "description": "The ID that identifies the charging spot.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3}\\*?E[A-Za-z0-9\\*]{1,30})|(\\+?[0-9]{1,3}\\*[0-9]{3}\\*[0-9\\*]{1,32}))$"
+        },
+        "GeoChargingPointEntrance": {
+          "description": "In case that the charging spot is part of a bigger facility, this attribute specifies the facilities entrance coordinates.",
+          "$ref": "#/definitions/GeoCoordinates"
+        },
+        "GeoCoordinates": {
+          "description": "Location of the charging station.",
+          "$ref": "#/definitions/GeoCoordinates"
+        },
+        "HotlinePhoneNumber": {
+          "type": "string",
+          "description": "Phone number of a hotline of the charging station operator.",
+          "pattern": "^\\+[0-9]{5,15}$"
+        },
+        "HubOperatorID": {
+          "type": "string",
+          "description": "Hub operator.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "IsHubjectCompatible": {
+          "type": "boolean",
+          "example": false,
+          "description": "Is eRoaming via intercharge at this charging station possible?"
+        },
+        "IsOpen24Hours": {
+          "type": "boolean",
+          "example": false,
+          "description": "Set in case the charging spot is open 24 hours."
+        },
+        "MaxCapacity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Maximum capacity in kWh."
+        },
+        "OpeningTimes": {
+          "type": "array",
+          "description": "Opening time in case that the charging station cannot be accessed around the clock.",
+          "items": {
+            "$ref": "#/definitions/OpeningTime"
+          }
+        },
+        "PaymentOptions": {
+          "type": "array",
+          "description": "List of payment options that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "No Payment",
+              "Direct",
+              "Contract"
+            ]
+          }
+        },
+        "Plugs": {
+          "type": "array",
+          "description": "List of plugs that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Small Paddle Inductive",
+              "Large Paddle Inductive",
+              "AVCON Connector",
+              "Tesla Connector",
+              "NEMA 5-20",
+              "Type E French Standard",
+              "Type F Schuko",
+              "Type G British Standard",
+              "Type J Swiss Standard",
+              "Type 1 Connector (Cable Attached)",
+              "Type 2 Outlet",
+              "Type 2 Connector (Cable Attached)",
+              "Type 3 Outlet",
+              "IEC 60309 Single Phase",
+              "IEC 60309 Three Phase",
+              "CCS Combo 2 Plug (Cable Attached)",
+              "CCS Combo 1 Plug (Cable Attached)",
+              "CHAdeMO",
+              "Unspecified"
+            ]
+          }
+        },
+        "ValueAddedServices": {
+          "type": "array",
+          "description": "List of value added services that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Reservation",
+              "DynamicPricing",
+              "ParkingSensors",
+              "MaximumPowerCharging",
+              "PredictiveChargePointUsage",
+              "ChargingPlans",
+              "None"
+            ]
+          }
+        },
+        "deltaType": {
+          "type": "string",
+          "description": "Changes compared to the last call in case that the operation was “PullEVSEData” with “LastCall” parameter.",
+          "enum": [
+            "insert",
+            "update",
+            "delete"
+          ]
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The attribute indicates the date and time of the last update of the record."
+        }
+      },
+      "description": "EvseDataRecord model for OICP v2.2"
+    },
+    "EvseStatusRecord": {
+      "type": "object",
+      "required": [
+        "EvseID",
+        "EvseStatus"
+      ],
+      "properties": {
+        "EvseID": {
+          "type": "string",
+          "description": "The ID that identifies the charging spot.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3}\\*?E[A-Za-z0-9\\*]{1,30})|(\\+?[0-9]{1,3}\\*[0-9]{3}\\*[0-9\\*]{1,32}))$"
+        },
+        "EvseStatus": {
+          "type": "string",
+          "description": "The status of the charging spot.",
+          "enum": [
+            "Available",
+            "Reserved",
+            "Occupied",
+            "OutOfService",
+            "Unknown",
+            "EvseNotFound"
+          ]
+        }
+      },
+      "description": "EvseStatusRecord model"
+    },
+    "EvseStatusRecords": {
+      "type": "object",
+      "properties": {
+        "EvseStatusRecord": {
+          "type": "array",
+          "description": "A list of EVSE status records",
+          "items": {
+            "$ref": "#/definitions/EvseStatusRecord"
+          }
+        }
+      },
+      "description": "EvseStatusRecords model"
+    },
+    "EvseStatuses": {
+      "type": "object",
+      "required": [
+        "OperatorEvseStatus"
+      ],
+      "properties": {
+        "OperatorEvseStatus": {
+          "type": "array",
+          "description": "A list of EVSE status blocks that are each assigned to a certain operator",
+          "items": {
+            "$ref": "#/definitions/OperatorEvseStatus"
+          }
+        }
+      },
+      "description": "EvseStatuses model"
+    },
+    "FaultBody": {
+      "type": "object",
+      "properties": {
+        "extendedInfo": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "validationErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldValidationError"
+          }
+        }
+      },
+      "description": "FaultBody model"
+    },
+    "FieldValidationError": {
+      "type": "object",
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "fieldReference": {
+          "type": "string"
+        }
+      },
+      "description": "FieldValidationError model"
+    },
+    "GeoCoordinates": {
+      "type": "object",
+      "properties": {
+        "Google": {
+          "$ref": "#/definitions/GeoCoordinatesGoogle"
+        },
+        "DecimalDegree": {
+          "$ref": "#/definitions/GeoCoordinatesDecimalDegree"
+        },
+        "DegreeMinuteSeconds": {
+          "$ref": "#/definitions/GeoCoordinatesDegreeMinuteSeconds"
+        }
+      },
+      "description": "GeoCoordinates model"
+    },
+    "GeoCoordinatesDecimalDegree": {
+      "type": "object",
+      "required": [
+        "Latitude",
+        "Longitude"
+      ],
+      "properties": {
+        "Latitude": {
+          "type": "string",
+          "pattern": "^-?1?\\d{1,2}\\.\\d{1,6}$"
+        },
+        "Longitude": {
+          "type": "string",
+          "pattern": "^-?1?\\d{1,2}\\.\\d{1,6}$"
+        }
+      },
+      "description": "GeoCoordinatesDecimalDegree model"
+    },
+    "GeoCoordinatesDegreeMinuteSeconds": {
+      "type": "object",
+      "required": [
+        "Latitude",
+        "Longitude"
+      ],
+      "properties": {
+        "Latitude": {
+          "type": "string",
+          "pattern": "^-?1?\\d{1,2}°[ ]?\\d{1,2}'[ ]?\\d{1,2}\\.\\d+''$"
+        },
+        "Longitude": {
+          "type": "string",
+          "pattern": "^-?1?\\d{1,2}°[ ]?\\d{1,2}'[ ]?\\d{1,2}\\.\\d+''$"
+        }
+      },
+      "description": "GeoCoordinatesDegreeMinuteSeconds model"
+    },
+    "GeoCoordinatesGoogle": {
+      "type": "object",
+      "required": [
+        "Coordinates"
+      ],
+      "properties": {
+        "Coordinates": {
+          "type": "string",
+          "pattern": "^-?1?\\d{1,2}\\.\\d{1,6}\\s*,?\\s*-?1?\\d{1,2}\\.\\d{1,6}$"
+        }
+      },
+      "description": "GeoCoordinatesGoogle model"
+    },
+    "InfoText": {
+      "type": "object",
+      "required": [
+        "lang",
+        "value"
+      ],
+      "properties": {
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?(?:-x-[a-zA-Z0-9]{1,8})?$"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "description": "InfoText model"
+    },
+    "OicpERoamingFault": {
+      "type": "object",
+      "properties": {
+        "StatusCode": {
+          "description": "Status code",
+          "$ref": "#/definitions/StatusCodeType"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        }
+      },
+      "description": "OicpERoamingFault model"
+    },
+    "OpeningTime": {
+      "type": "object",
+      "properties": {
+        "Period": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Period"
+          }
+        },
+        "on": {
+          "type": "string",
+          "enum": [
+            "Everyday",
+            "Workdays",
+            "Weekend",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        },
+        "unstructuredOpeningTime": {
+          "type": "string"
+        }
+      },
+      "description": "OpeningTime model"
+    },
+    "OperatorEvseData": {
+      "type": "object",
+      "required": [
+        "OperatorID"
+      ],
+      "properties": {
+        "EvseDataRecord": {
+          "type": "array",
+          "description": "EVSE entries.",
+          "items": {
+            "$ref": "#/definitions/EvseDataRecord"
+          }
+        },
+        "OperatorID": {
+          "type": "string",
+          "description": "The provider whose status records are listed below.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "OperatorName": {
+          "type": "string",
+          "description": "Operator name.",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      },
+      "description": "OperatorEvseData model"
+    },
+    "OperatorEvseStatus": {
+      "type": "object",
+      "required": [
+        "OperatorID"
+      ],
+      "properties": {
+        "EvseStatusRecord": {
+          "type": "array",
+          "description": "EVSE Status entries.",
+          "items": {
+            "$ref": "#/definitions/EvseStatusRecord"
+          }
+        },
+        "OperatorID": {
+          "type": "string",
+          "description": "The provider whose status records are listed below.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "OperatorName": {
+          "type": "string",
+          "description": "Operator name.",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      },
+      "description": "OperatorEvseStatus model"
+    },
+    "Period": {
+      "type": "object",
+      "required": [
+        "begin",
+        "end"
+      ],
+      "properties": {
+        "begin": {
+          "type": "string",
+          "description": "The opening time",
+          "pattern": "[0-9]{2}:[0-9]{2}"
+        },
+        "end": {
+          "type": "string",
+          "description": "The closing time",
+          "pattern": "[0-9]{2}:[0-9]{2}"
+        }
+      },
+      "description": "Period model"
+    },
+    "SearchCenter": {
+      "type": "object",
+      "required": [
+        "GeoCoordinates",
+        "Radius"
+      ],
+      "properties": {
+        "GeoCoordinates": {
+          "$ref": "#/definitions/GeoCoordinates"
+        },
+        "Radius": {
+          "type": "number"
+        }
+      },
+      "description": "SearchCenter model"
+    },
+    "StatusCodeType": {
+      "type": "object",
+      "required": [
+        "Code"
+      ],
+      "properties": {
+        "AdditionalInfo": {
+          "type": "string",
+          "description": "More information can be provided here.",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "Code": {
+          "type": "string",
+          "description": "To be selected from valid range.",
+          "enum": [
+            "000",
+            "001",
+            "002",
+            "009",
+            "017",
+            "018",
+            "019",
+            "021",
+            "022",
+            "101",
+            "102",
+            "103",
+            "105",
+            "106",
+            "110",
+            "120",
+            "121",
+            "122",
+            "200",
+            "210",
+            "300",
+            "310",
+            "320",
+            "400",
+            "501",
+            "510",
+            "601",
+            "602",
+            "603",
+            "604",
+            "700"
+          ]
+        },
+        "Description": {
+          "type": "string",
+          "description": "Description.",
+          "minLength": 0,
+          "maxLength": 200
+        }
+      },
+      "description": "StatusCode model"
+    }
+  }
+}
