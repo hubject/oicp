@@ -4,8 +4,6 @@
     "version": "2.3",
     "title": "OICP 2.3 EVSE Data API API"
   },
-  "host": "localhost:8012",
-  "basePath": "/",
   "tags": [
     {
       "name": "EVSE Data API v2.3 operations",

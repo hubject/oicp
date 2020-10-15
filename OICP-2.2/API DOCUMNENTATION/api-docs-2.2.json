@@ -4,8 +4,6 @@
     "version": "2.2",
     "title": "OICP 2.2 EVSE Data and Status API"
   },
-  "host": "localhost:8012",
-  "basePath": "/",
   "tags": [
     {
       "name": "EVSE Push Data API v2.2 operations",
