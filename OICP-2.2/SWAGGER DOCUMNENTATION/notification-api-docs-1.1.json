@@ -1,0 +1,249 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "OICP 2.2 Notification API"
+  },
+  "tags": [
+    {
+      "name": "Charging Notifications API v1.1",
+      "description": "Charging Status Notification V 11 Controller"
+    }
+  ],
+  "paths": {
+    "/api/oicp/notificationmgmt/v11/charging-notifications": {
+      "post": {
+        "tags": [
+          "Charging Notifications API v1.1"
+        ],
+        "summary": "Charging Notification Endpoint",
+        "operationId": "handleChargingNotificationUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "notification",
+            "description": "notification",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AbstractChargingNotification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ERoamingAcknowledgement"
+            }
+          },
+          "201": {
+            "description": "eRoamingAcknowledgement",
+            "schema": {
+              "$ref": "#/definitions/ERoamingAcknowledgement"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Data not found",
+            "schema": {
+              "$ref": "#/definitions/OicpERoamingFault"
+            }
+          },
+          "500": {
+            "description": "Processing error",
+            "schema": {
+              "$ref": "#/definitions/FaultBody"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AbstractChargingNotification": {
+      "type": "object",
+      "required": [
+        "SessionID",
+        "Type"
+      ],
+      "properties": {
+        "OperatorID": {
+          "type": "string",
+          "description": "The OperatorID is used to identify the CPO.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "SessionID": {
+          "type": "string",
+          "description": "The Hubject SessionID that identifies the process. Hubject will accept only one CDR per SessionID.",
+          "minLength": 1,
+          "maxLength": 2147483647,
+          "pattern": "^[A-Za-z0-9]{8}(-[A-Za-z0-9]{4}){3}-[A-Za-z0-9]{12}$"
+        },
+        "Type": {
+          "type": "string",
+          "description": "Charging notification type.",
+          "enum": [
+            "Start",
+            "Progress",
+            "Error",
+            "End"
+          ]
+        }
+      }
+    },
+    "ERoamingAcknowledgement": {
+      "type": "object",
+      "required": [
+        "StatusCode"
+      ],
+      "properties": {
+        "CPOPartnerSessionID": {
+          "type": "string",
+          "description": "Optional field containing the session id assigned by the CPO to the related operation.",
+          "minLength": 0,
+          "maxLength": 250
+        },
+        "EMPPartnerSessionID": {
+          "type": "string",
+          "description": "Optional field containing the session id assigned by the EMP to the related operation.",
+          "minLength": 0,
+          "maxLength": 250
+        },
+        "Result": {
+          "type": "boolean",
+          "example": false,
+          "description": "Message was received, the respective operation was performed or not performed successfully."
+        },
+        "SessionID": {
+          "type": "string",
+          "description": "Represents the service process.",
+          "pattern": "[A-Za-z0-9]{8}(-[A-Za-z0-9]{4}){3}-[A-Za-z0-9]{12}"
+        },
+        "StatusCode": {
+          "description": "Structured status details.",
+          "$ref": "#/definitions/StatusCodeType"
+        }
+      },
+      "description": "The acknowledgement is a message that is sent in response to several requests."
+    },
+    "FaultBody": {
+      "type": "object",
+      "properties": {
+        "extendedInfo": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "validationErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldValidationError"
+          }
+        }
+      },
+      "description": "FaultBody model"
+    },
+    "FieldValidationError": {
+      "type": "object",
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "fieldReference": {
+          "type": "string"
+        }
+      },
+      "description": "FieldValidationError model"
+    },
+    "OicpERoamingFault": {
+      "type": "object",
+      "properties": {
+        "StatusCode": {
+          "description": "Status code",
+          "$ref": "#/definitions/StatusCodeType"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        }
+      },
+      "description": "OicpERoamingFault model"
+    },
+    "StatusCodeType": {
+      "type": "object",
+      "required": [
+        "Code"
+      ],
+      "properties": {
+        "AdditionalInfo": {
+          "type": "string",
+          "description": "More information can be provided here.",
+          "minLength": 0,
+          "maxLength": 1000
+        },
+        "Code": {
+          "type": "string",
+          "description": "To be selected from valid range.",
+          "enum": [
+            "000",
+            "001",
+            "002",
+            "009",
+            "017",
+            "018",
+            "019",
+            "021",
+            "022",
+            "101",
+            "102",
+            "103",
+            "105",
+            "106",
+            "110",
+            "120",
+            "121",
+            "122",
+            "200",
+            "210",
+            "300",
+            "310",
+            "320",
+            "400",
+            "501",
+            "510",
+            "601",
+            "602",
+            "603",
+            "604",
+            "700"
+          ]
+        },
+        "Description": {
+          "type": "string",
+          "description": "Description.",
+          "minLength": 0,
+          "maxLength": 200
+        }
+      },
+      "description": "StatusCode model"
+    }
+  }
+}
