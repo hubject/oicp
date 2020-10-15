@@ -1,21 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "2.2",
-    "title": "OICP 2.2 EVSE Data and Status API"
+    "version": "2.3",
+    "title": "OICP 2.3 EVSE Data API API"
   },
   "tags": [
-    {
-      "name": "EVSE Push Data API v2.2 operations",
-      "description": "Push Evse Data Controller 22"
-    },
     {
       "name": "EVSE Status API v2.1 operations",
       "description": "Pull Evse Status Controller"
     },
     {
-      "name": "EVSE Pull Data API v2.2 operations",
-      "description": "Pull Evse Data Controller 22"
+      "name": "EVSE Data API v2.3 operations",
+      "description": "Pull Evse Data Controller 23"
     }
   ],
   "paths": {
@@ -25,7 +21,7 @@
           "EVSE Status API v2.1 operations"
         ],
         "summary": "eRoamingPullEvseStatus",
-        "operationId": "eRoamingPullEvseStatusUsingPOST",
+        "operationId": "eRoamingPullEvseStatusUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -96,7 +92,7 @@
           "EVSE Status API v2.1 operations"
         ],
         "summary": "eRoamingPullEvseStatusByID",
-        "operationId": "eRoamingPullEvseStatusByIDUsingPOST",
+        "operationId": "eRoamingPullEvseStatusByIDUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -167,7 +163,7 @@
           "EVSE Status API v2.1 operations"
         ],
         "summary": "eRoamingPullEvseStatusByOperatorID",
-        "operationId": "eRoamingPullEvseStatusByOperatorIDUsingPOST",
+        "operationId": "eRoamingPullEvseStatusByOperatorIDUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -232,13 +228,13 @@
         }
       }
     },
-    "/api/oicp/evsepull/v22/providers/{providerID}/data-records": {
+    "/api/oicp/evsepull/v23/providers/{providerID}/data-records": {
       "post": {
         "tags": [
-          "EVSE Pull Data API v2.2 operations"
+          "EVSE Data API v2.3 operations"
         ],
         "summary": "eRoamingPullEvseData",
-        "operationId": "eRoamingPullEVSEDataUsingPOST",
+        "operationId": "eRoamingPullEVSEDataUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -263,16 +259,31 @@
             }
           },
           {
-            "name": "X-HUBJECT-Client-Request-Origin",
-            "in": "header",
-            "description": "X-HUBJECT-Client-Request-Origin",
+            "name": "page",
+            "in": "query",
+            "description": "Page number of the requested page",
             "required": false,
-            "type": "string",
-            "enum": [
-              "SOAP21",
-              "SOAP22",
-              "EXTERNAL"
-            ]
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Size of a page",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           }
         ],
         "responses": {
@@ -321,7 +332,7 @@
           "EVSE Status API v2.1 operations"
         ],
         "summary": "eRoamingPushEvseStatus",
-        "operationId": "eRoamingPushEvseStatusUsingPOST",
+        "operationId": "eRoamingPushEvseStatusUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -386,13 +397,13 @@
         }
       }
     },
-    "/api/oicp/evsepush/v22/operators/{operatorID}/data-records": {
+    "/api/oicp/evsepush/v23/operators/{operatorID}/data-records": {
       "post": {
         "tags": [
-          "EVSE Push Data API v2.2 operations"
+          "EVSE Data API v2.3 operations"
         ],
         "summary": "eRoamingPushEvseData",
-        "operationId": "eRoamingPushEvseDataUsingPOST",
+        "operationId": "eRoamingPushEvseDataUsingPOST_1",
         "consumes": [
           "application/json"
         ],
@@ -409,8 +420,8 @@
           },
           {
             "in": "body",
-            "name": "eRoamingPushEvseData22",
-            "description": "eRoamingPushEvseData22",
+            "name": "eRoamingPushEvseData",
+            "description": "eRoamingPushEvseData",
             "required": true,
             "schema": {
               "$ref": "#/definitions/ERoamingPushEvseData"
@@ -491,6 +502,17 @@
           "minLength": 0,
           "maxLength": 10
         },
+        "ParkingFacility": {
+          "type": "boolean",
+          "example": false,
+          "description": "Indicates if the address given is a Parking lot: true or false."
+        },
+        "ParkingSpot": {
+          "type": "string",
+          "description": "Indicates location of the Charging Station withing a parking house. Example: E27",
+          "minLength": 0,
+          "maxLength": 5
+        },
         "PostalCode": {
           "type": "string",
           "description": "Postal code",
@@ -519,7 +541,29 @@
     },
     "ChargingFacility": {
       "type": "object",
+      "required": [
+        "Power",
+        "PowerType"
+      ],
       "properties": {
+        "Amperage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChargingModes": {
+          "type": "array",
+          "description": "List of charging modes that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Mode_1",
+              "Mode_2",
+              "Mode_3",
+              "Mode_4",
+              "CHAdeMO"
+            ]
+          }
+        },
         "PowerType": {
           "type": "string",
           "enum": [
@@ -530,10 +574,6 @@
           ]
         },
         "Voltage": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "Amperage": {
           "type": "integer",
           "format": "int32"
         },
@@ -593,7 +633,7 @@
           "$ref": "#/definitions/StatusCodeType"
         }
       },
-      "description": "ERoamingEvseData model"
+      "description": "ERoamingPullEvseData model"
     },
     "ERoamingEvseStatus": {
       "type": "object",
@@ -626,13 +666,99 @@
       },
       "description": "ERoamingEvseStatus model"
     },
+    "ERoamingPageOfEvseDataRecord": {
+      "type": "object",
+      "properties": {
+        "StatusCode": {
+          "description": "This can be used e.g. for failure messages or further information regarding the result.",
+          "$ref": "#/definitions/StatusCodeType"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EvseDataRecord"
+          }
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "ERoamingPullEvseData": {
       "type": "object",
       "required": [
+        "Accessibility",
+        "AuthenticationModes",
         "GeoCoordinatesResponseFormat",
+        "IsHubjectCompatible",
+        "IsOpen24Hours",
         "ProviderID"
       ],
       "properties": {
+        "Accessibility": {
+          "type": "array",
+          "description": "A list of Accessibility types whose EVSE's a provider wants to retrieve.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Unspecified",
+              "Free publicly accessible",
+              "Restricted access",
+              "Paying publicly accessible",
+              "Test Station"
+            ]
+          }
+        },
+        "AuthenticationModes": {
+          "type": "array",
+          "description": "A list of authentication codes whose EVSE's a provider wants to retrieve.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "NFC RFID Classic",
+              "NFC RFID DESFire",
+              "PnC",
+              "REMOTE",
+              "Direct Payment",
+              "No Authentication Required"
+            ]
+          }
+        },
+        "CalibrationLawDataAvailability": {
+          "type": "array",
+          "description": "List of calibration law availability data type",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Local",
+              "External",
+              "Not Available"
+            ]
+          }
+        },
         "CountryCodes": {
           "type": "array",
           "description": "A list of countries whose EVSE's a provider wants to retrieve.",
@@ -648,6 +774,16 @@
             "DegreeMinuteSeconds",
             "DecimalDegree"
           ]
+        },
+        "IsHubjectCompatible": {
+          "type": "boolean",
+          "example": false,
+          "description": "RenewableEnergy fro whose EVSE's a provider wants to retrieve."
+        },
+        "IsOpen24Hours": {
+          "type": "boolean",
+          "example": false,
+          "description": "IsOpen24Hours fro whose EVSE's a provider wants to retrieve."
         },
         "LastCall": {
           "type": "string",
@@ -666,9 +802,25 @@
           "description": "Identifies the provider.",
           "pattern": "^([A-Za-z]{2}\\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\\*|-]?[A-Za-z0-9]{3})$"
         },
+        "RenewableEnergy": {
+          "type": "boolean",
+          "example": false,
+          "description": "RenewableEnergy fro whose EVSE's a provider wants to retrieve."
+        },
         "SearchCenter": {
           "description": "The data can be restricted using search parameters that are provided in this field. Cannot be combined with LastCall.",
           "$ref": "#/definitions/SearchCenter"
+        },
+        "calibrationLawDataAvailability": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Local",
+              "External",
+              "Not Available"
+            ]
+          }
         }
       },
       "description": "ERoamingPullEvseData model"
@@ -795,6 +947,54 @@
       },
       "description": "ERoamingPushEvseStatus model"
     },
+    "EnergySource": {
+      "type": "object",
+      "properties": {
+        "Energy": {
+          "type": "string",
+          "description": "Energy type",
+          "enum": [
+            "Solar",
+            "Wind",
+            "HydroPower",
+            "GeothermalEnergy",
+            "Biomass",
+            "Coal",
+            "NuclearEnergy",
+            "Petroleum",
+            "NaturalGas"
+          ]
+        },
+        "Percentage": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Energy percentage",
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "exclusiveMinimum": false,
+          "exclusiveMaximum": false
+        }
+      },
+      "description": "EnergySource model"
+    },
+    "EnvironmentalImpact": {
+      "type": "object",
+      "properties": {
+        "CO2Emission": {
+          "type": "number",
+          "description": "CO2 emission impact on Environment",
+          "minimum": 0.0,
+          "exclusiveMinimum": false
+        },
+        "NuclearWaste": {
+          "type": "number",
+          "description": "nuclear waste impact on Environment",
+          "minimum": 0.0,
+          "exclusiveMinimum": false
+        }
+      },
+      "description": "EnvironmentalImpact model"
+    },
     "EvseData": {
       "type": "object",
       "properties": {
@@ -814,11 +1014,14 @@
         "Accessibility",
         "Address",
         "AuthenticationModes",
+        "ChargingStationNames",
         "DynamicInfoAvailable",
         "EvseID",
         "GeoCoordinates",
         "IsHubjectCompatible",
-        "IsOpen24Hours"
+        "IsOpen24Hours",
+        "OperatorID",
+        "RenewableEnergy"
       ],
       "properties": {
         "Accessibility": {
@@ -830,6 +1033,15 @@
             "Restricted access",
             "Paying publicly accessible",
             "Test Station"
+          ]
+        },
+        "AccessibilityLocation": {
+          "type": "string",
+          "enum": [
+            "OnStreet",
+            "ParkingLot",
+            "ParkingGarage",
+            "UndergroundParkingGarage"
           ]
         },
         "AdditionalInfo": {
@@ -853,29 +1065,25 @@
               "NFC RFID DESFire",
               "PnC",
               "REMOTE",
-              "Direct Payment"
+              "Direct Payment",
+              "No Authentication Required"
             ]
           }
+        },
+        "CalibrationLawDataAvailability": {
+          "type": "string",
+          "description": "DataTypes to Calibration Law",
+          "enum": [
+            "Local",
+            "External",
+            "Not Available"
+          ]
         },
         "ChargingFacilities": {
           "type": "array",
           "description": "List of facilities that are supported. ",
           "items": {
             "$ref": "#/definitions/ChargingFacility"
-          }
-        },
-        "ChargingModes": {
-          "type": "array",
-          "description": "List of charging modes that are supported.",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Mode_1",
-              "Mode_2",
-              "Mode_3",
-              "Mode_4",
-              "CHAdeMO"
-            ]
           }
         },
         "ChargingPoolID": {
@@ -889,11 +1097,21 @@
           "minLength": 0,
           "maxLength": 50
         },
-        "ChargingStationName": {
-          "type": "string",
-          "description": "Name of the charging station.",
-          "minLength": 0,
-          "maxLength": 50
+        "ChargingStationImage": {
+          "$ref": "#/definitions/URL"
+        },
+        "ChargingStationLocationReference": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
+        },
+        "ChargingStationNames": {
+          "type": "array",
+          "description": "List of charging station name in different language",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
         },
         "ClearinghouseID": {
           "type": "string",
@@ -910,11 +1128,17 @@
             "auto"
           ]
         },
-        "EnChargingStationName": {
-          "type": "string",
-          "description": "Name of the charging station in English.",
-          "minLength": 0,
-          "maxLength": 50
+        "DynamicPowerLevel": {
+          "type": "boolean"
+        },
+        "EnergySource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnergySource"
+          }
+        },
+        "EnvironmentalImpact": {
+          "$ref": "#/definitions/EnvironmentalImpact"
         },
         "EvseID": {
           "type": "string",
@@ -928,6 +1152,12 @@
         "GeoCoordinates": {
           "description": "Location of the charging station.",
           "$ref": "#/definitions/GeoCoordinates"
+        },
+        "HardwareManufacturer": {
+          "type": "string",
+          "description": "Name of the hardware manufacturer.",
+          "minLength": 0,
+          "maxLength": 50
         },
         "HotlinePhoneNumber": {
           "type": "string",
@@ -960,6 +1190,17 @@
           "items": {
             "$ref": "#/definitions/OpeningTime"
           }
+        },
+        "OperatorID": {
+          "type": "string",
+          "description": "The provider whose status records are listed below.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "OperatorName": {
+          "type": "string",
+          "description": "Operator name.",
+          "minLength": 0,
+          "maxLength": 100
         },
         "PaymentOptions": {
           "type": "array",
@@ -1001,6 +1242,14 @@
             ]
           }
         },
+        "RenewableEnergy": {
+          "type": "boolean"
+        },
+        "SubOperatorName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 100
+        },
         "ValueAddedServices": {
           "type": "array",
           "description": "List of value added services that are supported.",
@@ -1013,7 +1262,8 @@
               "MaximumPowerCharging",
               "PredictiveChargePointUsage",
               "ChargingPlans",
-              "None"
+              "None",
+              "RoofProvided"
             ]
           }
         },
@@ -1032,7 +1282,283 @@
           "description": "The attribute indicates the date and time of the last update of the record."
         }
       },
-      "description": "EvseDataRecord model for OICP v2.2"
+      "description": "EvseDataRecord model"
+    },
+    "EvseDataRecordDTO": {
+      "type": "object",
+      "required": [
+        "Accessibility",
+        "Address",
+        "AuthenticationModes",
+        "ChargingStationNames",
+        "DynamicInfoAvailable",
+        "EvseID",
+        "GeoCoordinates",
+        "IsHubjectCompatible",
+        "IsOpen24Hours",
+        "OperatorID",
+        "RenewableEnergy"
+      ],
+      "properties": {
+        "Accessibility": {
+          "type": "string",
+          "description": "Specifies how the charging station can be accessed.",
+          "enum": [
+            "Unspecified",
+            "Free publicly accessible",
+            "Restricted access",
+            "Paying publicly accessible",
+            "Test Station"
+          ]
+        },
+        "AccessibilityLocation": {
+          "type": "string",
+          "enum": [
+            "OnStreet",
+            "ParkingLot",
+            "ParkingGarage",
+            "UndergroundParkingGarage"
+          ]
+        },
+        "AdditionalInfo": {
+          "type": "array",
+          "description": "Optional information.",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
+        },
+        "Address": {
+          "description": "Address of the charging station.",
+          "$ref": "#/definitions/AddressIso19773"
+        },
+        "AuthenticationModes": {
+          "type": "array",
+          "description": "List of authentication modes that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "NFC RFID Classic",
+              "NFC RFID DESFire",
+              "PnC",
+              "REMOTE",
+              "Direct Payment",
+              "No Authentication Required"
+            ]
+          }
+        },
+        "CalibrationLawDataAvailability": {
+          "type": "string",
+          "description": "DataTypes to Calibration Law",
+          "enum": [
+            "Local",
+            "External",
+            "Not Available"
+          ]
+        },
+        "ChargingFacilities": {
+          "type": "array",
+          "description": "List of facilities that are supported. ",
+          "items": {
+            "$ref": "#/definitions/ChargingFacility"
+          }
+        },
+        "ChargingPoolID": {
+          "type": "string",
+          "description": "Evses may be grouped by using a charging pool id",
+          "pattern": "^([A-Za-z]{2}\\*?[A-Za-z0-9]{3}\\*?P[A-Za-z0-9\\*]{1,30})$"
+        },
+        "ChargingStationID": {
+          "type": "string",
+          "description": "The ID that identifies the charging station.",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "ChargingStationImage": {
+          "$ref": "#/definitions/URL"
+        },
+        "ChargingStationLocationReference": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
+        },
+        "ChargingStationNames": {
+          "type": "array",
+          "description": "List of charging station name in different language",
+          "items": {
+            "$ref": "#/definitions/InfoText"
+          }
+        },
+        "ClearinghouseID": {
+          "type": "string",
+          "description": "Identification of the clearing house in case of roaming between different clearing houses must be processed in the future.",
+          "minLength": 0,
+          "maxLength": 20
+        },
+        "DynamicInfoAvailable": {
+          "type": "string",
+          "description": "Does the operator send a EVSEStatus information for this EVSERecord?",
+          "enum": [
+            "true",
+            "false",
+            "auto"
+          ]
+        },
+        "DynamicPowerLevel": {
+          "type": "boolean"
+        },
+        "EnergySource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnergySource"
+          }
+        },
+        "EnvironmentalImpact": {
+          "$ref": "#/definitions/EnvironmentalImpact"
+        },
+        "EvseID": {
+          "type": "string",
+          "description": "The ID that identifies the charging spot.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3}\\*?E[A-Za-z0-9\\*]{1,30})|(\\+?[0-9]{1,3}\\*[0-9]{3}\\*[0-9\\*]{1,32}))$"
+        },
+        "GeoChargingPointEntrance": {
+          "description": "In case that the charging spot is part of a bigger facility, this attribute specifies the facilities entrance coordinates.",
+          "$ref": "#/definitions/GeoCoordinates"
+        },
+        "GeoCoordinates": {
+          "description": "Location of the charging station.",
+          "$ref": "#/definitions/GeoCoordinates"
+        },
+        "HardwareManufacturer": {
+          "type": "string",
+          "description": "Name of the hardware manufacturer.",
+          "minLength": 0,
+          "maxLength": 50
+        },
+        "HotlinePhoneNumber": {
+          "type": "string",
+          "description": "Phone number of a hotline of the charging station operator.",
+          "pattern": "^\\+[0-9]{5,15}$"
+        },
+        "HubOperatorID": {
+          "type": "string",
+          "description": "Hub operator.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "IsHubjectCompatible": {
+          "type": "boolean",
+          "example": false,
+          "description": "Is eRoaming via intercharge at this charging station possible?"
+        },
+        "IsOpen24Hours": {
+          "type": "boolean",
+          "example": false,
+          "description": "Set in case the charging spot is open 24 hours."
+        },
+        "MaxCapacity": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Maximum capacity in kWh."
+        },
+        "OpeningTimes": {
+          "type": "array",
+          "description": "Opening time in case that the charging station cannot be accessed around the clock.",
+          "items": {
+            "$ref": "#/definitions/OpeningTime"
+          }
+        },
+        "OperatorID": {
+          "type": "string",
+          "description": "The provider whose status records are listed below.",
+          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
+        },
+        "OperatorName": {
+          "type": "string",
+          "description": "Operator name.",
+          "minLength": 0,
+          "maxLength": 100
+        },
+        "PaymentOptions": {
+          "type": "array",
+          "description": "List of payment options that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "No Payment",
+              "Direct",
+              "Contract"
+            ]
+          }
+        },
+        "Plugs": {
+          "type": "array",
+          "description": "List of plugs that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Small Paddle Inductive",
+              "Large Paddle Inductive",
+              "AVCON Connector",
+              "Tesla Connector",
+              "NEMA 5-20",
+              "Type E French Standard",
+              "Type F Schuko",
+              "Type G British Standard",
+              "Type J Swiss Standard",
+              "Type 1 Connector (Cable Attached)",
+              "Type 2 Outlet",
+              "Type 2 Connector (Cable Attached)",
+              "Type 3 Outlet",
+              "IEC 60309 Single Phase",
+              "IEC 60309 Three Phase",
+              "CCS Combo 2 Plug (Cable Attached)",
+              "CCS Combo 1 Plug (Cable Attached)",
+              "CHAdeMO",
+              "Unspecified"
+            ]
+          }
+        },
+        "RenewableEnergy": {
+          "type": "boolean"
+        },
+        "SubOperatorName": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 100
+        },
+        "ValueAddedServices": {
+          "type": "array",
+          "description": "List of value added services that are supported.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Reservation",
+              "DynamicPricing",
+              "ParkingSensors",
+              "MaximumPowerCharging",
+              "PredictiveChargePointUsage",
+              "ChargingPlans",
+              "None",
+              "RoofProvided"
+            ]
+          }
+        },
+        "deltaType": {
+          "type": "string",
+          "description": "Changes compared to the last call in case that the operation was “PullEVSEData” with “LastCall” parameter.",
+          "enum": [
+            "insert",
+            "update",
+            "delete"
+          ]
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The attribute indicates the date and time of the last update of the record."
+        }
+      },
+      "description": "EvseDataRecord model"
     },
     "EvseStatusRecord": {
       "type": "object",
@@ -1392,6 +1918,49 @@
         }
       },
       "description": "StatusCode model"
+    },
+    "URL": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "deserializedFields": {
+          "$ref": "#/definitions/URLStreamHandler"
+        },
+        "file": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "serializedHashCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userInfo": {
+          "type": "string"
+        }
+      }
+    },
+    "URLStreamHandler": {
+      "type": "object"
     }
   }
 }
