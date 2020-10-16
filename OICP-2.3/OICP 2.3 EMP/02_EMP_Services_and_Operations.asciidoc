@@ -464,7 +464,7 @@ Furthermore, Hub EMPs may also push authentication data of sub-EMPs. Hubject doe
 - Request message: <<eRoamingPushAuthenticationDatamessage,eRoamingAuthorizeRemoteReservationStop>>
 - Response message: <<eRoamingAcknowledgementmessage,eRoamingAcknowledgement>>
 
-image::images/pushauthentication.png[]
+image::images/pushauthenticationdata.png[]
 
 When an EMP sends an eRoamingPushAuthenticationData request,
 Hubject checks whether there is a valid contract between Hubject and the EMP for the service type (Hubject must be the subscriber).
