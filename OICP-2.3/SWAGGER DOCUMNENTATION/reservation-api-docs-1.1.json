@@ -4,6 +4,8 @@
     "version": "1.1",
     "title": "OICP 2.3 Reservation API"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Reservation API v1.1 operations",

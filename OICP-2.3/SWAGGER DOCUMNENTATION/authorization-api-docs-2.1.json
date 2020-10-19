@@ -4,6 +4,8 @@
     "version": "2.1",
     "title": "OICP 2.3 Authorization API v2.1"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Authorization API v2.1 operations",

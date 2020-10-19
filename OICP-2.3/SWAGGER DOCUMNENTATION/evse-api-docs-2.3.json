@@ -4,6 +4,8 @@
     "version": "2.3",
     "title": "OICP 2.3 EVSE Data API API"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "EVSE Status API v2.1 operations",

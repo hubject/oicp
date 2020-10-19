@@ -4,6 +4,8 @@
     "version": "1.0",
     "title": "OICP 2.3 Dynamic Pricing API"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Dynamic Pricing API v1.0 operations",

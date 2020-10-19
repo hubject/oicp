@@ -4,6 +4,8 @@
     "version": "2.1",
     "title": "OICP 2.2 Charge Detail Record API v2.1"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Charge Detail Record API v2.1 operations",

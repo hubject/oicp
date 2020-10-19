@@ -4,6 +4,8 @@
     "version": "1.0",
     "title": "OICP 2.3 Notification API"
   },
+  "host": "https://service-qa.hubject.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Charging Notifications API v1.1",
