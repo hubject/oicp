@@ -7,7 +7,7 @@
 - PROD: https://service.hubject.com
 
 ## How to use 
-The json files can be used with any swagger client or swaggerhub (https://swagger.io/). QA url is used as a host url by default. 
+The json files can be used with  swagger-ui (https://github.com/swagger-api/swagger-ui) or swaggerhub (https://swagger.io/). QA url is used as a host url by default. 
 For production, please change it to PROD. 
 
 
