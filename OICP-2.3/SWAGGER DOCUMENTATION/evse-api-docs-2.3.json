@@ -1100,7 +1100,7 @@
           "maxLength": 50
         },
         "ChargingStationImage": {
-          "$ref": "#/definitions/URL"
+          "type": "string"
         },
         "ChargingStationLocationReference": {
           "type": "array",
@@ -1927,8 +1927,12 @@
         "authority": {
           "type": "string"
         },
-        "deserializedFields": {
-          "$ref": "#/definitions/URLStreamHandler"
+        "content": {
+          "type": "object"
+        },
+        "defaultPort": {
+          "type": "integer",
+          "format": "int32"
         },
         "file": {
           "type": "string"
@@ -1952,17 +1956,10 @@
         "ref": {
           "type": "string"
         },
-        "serializedHashCode": {
-          "type": "integer",
-          "format": "int32"
-        },
         "userInfo": {
           "type": "string"
         }
       }
-    },
-    "URLStreamHandler": {
-      "type": "object"
     }
   }
 }
