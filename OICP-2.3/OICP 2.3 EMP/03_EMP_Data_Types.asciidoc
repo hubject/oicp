@@ -70,7 +70,7 @@ DegreeMinuteSeconds:<<GeoCoordinatesDegreeMinuteSecondsType,GeoCoordinatesDegree
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
-Coordinatea: <<GeoCoordinatesGoogleFormatType,GeoCoordinatesGoogleFormatType>>:Based on WGS84: M
+Coordinates: <<GeoCoordinatesGoogleFormatType,GeoCoordinatesGoogleFormatType>>:Based on WGS84: M
 |=====================
 
 [[GeoCoordinatesDecimalDegreeType]]
