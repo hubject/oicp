@@ -329,8 +329,8 @@ ProductID:<<ProductIDType,ProductIDType>>:The product name of the applicable pri
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-Periods:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
-On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available:M:
+Period:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
+on:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available:M:
 |=====================
 
 [[AdditionalReferencesType]]
@@ -695,7 +695,7 @@ MAXIMUM FEE	: Can be used in case there is a maximum fee to be charged for all c
 [%header,format=dsv, cols=2]
 The ProductPriceCurrencyType allows for the list of active codes of the official ISO 4217 currency names.
 
-For the full list of active codes of the official ISO 4217 currencies, see: https://en.wikipedia.org/wiki/ISO_4217
+For the full list of active codes of the official ISO 4217 currencies, see: https://www.iso.org/iso-4217-currency-codes.html
 
 *Examples*:
 [%header,format=dsv, cols=2]
@@ -814,8 +814,8 @@ A string that `MUST` be valid with respect to the following regular expression: 
 
  ^(([A-Za-z]{2}\-?[A-Za-z0-9]{3}\-?C[A-Za-z0-9]{8}\-?[\d|A-Za-z])|([A-Za-z]{2}[\*|\-]?[A-Za-z0-9]{3}[\*|\-]?[A-Za-z0-9]{6}[\*|\-]?[\d|X]))$
 
-The expression validates the string as EvcoID. It supports both definitions DIN SPEC 91286:2011-11 as well as
-ISO 15118-1.
+The expression validates the string as EvcoID. It supports both definitions https://www.din.de/en/wdc-beuth:din21:145915787[DIN SPEC 91286:2011-11] as well as
+https://www.iso.org/standard/55365.html[ISO 15118-1].
 
 In case the EvcoID is provided corresponding to ISO, the instance part `MUST` be eight characters long and `MUST` be
 provided with a prepended “C”. The optional separating character `MUST` be “-“.
@@ -833,11 +833,11 @@ A string that `MUST` be valid with respect to the following regular expression: 
 
  ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3}\*?E[A-Za-z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$
 
-The expression validates the string as EvseID. It supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
+The expression validates the string as EvseID. It supports both definitions https://www.din.de/en/wdc-beuth:din21:145915787[DIN SPEC 91286:2011-11] as well as https://www.iso.org/standard/55365.html[ISO 15118-1].
 
-In case the EvseID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN EN ISO-3166-1) and the separator character “*” is optional. Furthermore the ID `MUST` provide an “E” after the OperatorID in order to identify the ID as ISO EvseID without doubt.
+In case the EvseID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (https://www.iso.org/iso-3166-country-codes.html[DIN EN ISO-3166-1]) and the separator character “*” is optional. Furthermore the ID `MUST` provide an “E” after the OperatorID in order to identify the ID as ISO EvseID without doubt.
 
-In case the EvseID is provided corresponding to DIN, the country code `MUST` be provided according to the international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is mandatory.
+In case the EvseID is provided corresponding to DIN, the country code `MUST` be provided according to the international telecommunication numbering plan (https://www.itu.int/itu-t/recommendations/rec.aspx?rec=E.164#:~:text=164%20(11%2F2010),-%D8%B9%D8%B1%D8%A8%D9%8A%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20English&text=Recommendation%20ITU%2DT%20E.,GoC)%20and%20resources%20for%20trials[ITU-T E.164:11/2010]) and the separator character “*” is mandatory.
 
 Examples ISO: *“DE*AB7*E840*6487”*, *“DEAB7E8406487”*
 
@@ -850,7 +850,7 @@ A string that `MUST` be valid with respect to the following regular expression: 
  ^([A-Za-z]{2}\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\*|-]?[A-Za-z0-9]{3})$
 
 The expression validates the string as ProviderID including the preceding country code, which is part of EvcoID. It
-supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118-1.
+supports both definitions https://www.din.de/en/wdc-beuth:din21:145915787[DIN SPEC 91286:2011-11] as well as https://www.iso.org/standard/55365.html[ISO 15118-1].
 
 In case the ProviderID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN
 EN ISO-3166-1) and the separator character “-” is optional.
@@ -866,12 +866,12 @@ A string that `MUST` be valid with respect to the following regular expression: 
  ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3})|(\+?[0-9]{1,3}\*[0-9]{3}))$
 
 The expression validates the string as OperatorID including the preceding country code, which is part of EvseID. It
-supports both definitions DIN SPEC 91286:2011-11 as well as ISO 15118.
+supports both definitions https://www.din.de/en/wdc-beuth:din21:145915787[DIN SPEC 91286:2011-11] as well as https://www.iso.org/standard/55365.html[ISO 15118].
 In case the OperatorID is provided corresponding to ISO, the country code `MUST` be provided as Alpha-2-Code (DIN
 EN ISO-3166-1) and the separator character “*” is optional.
 
 In case the OperatorID is provided corresponding to DIN, the country code `MUST` be provided according to the
-international telecommunication numbering plan (ITU-T E.164:11/2010) and the separator character “*” is
+international telecommunication numbering plan (https://www.itu.int/itu-t/recommendations/rec.aspx?rec=E.164#:~:text=164%20(11%2F2010),-%D8%B9%D8%B1%D8%A8%D9%8A%20%7C%20%E4%B8%AD%E6%96%87%20%7C%20English&text=Recommendation%20ITU-T%20E.,GoC)%20and%20resources%20for%20trials[ITU-T E.164:11/2010]) and the separator character “*” is
 mandatory.
 
 Examples ISO: *“DE*A36”*, *“DEA36”*
