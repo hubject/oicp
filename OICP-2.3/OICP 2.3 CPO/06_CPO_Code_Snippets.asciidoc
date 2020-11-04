@@ -44,7 +44,7 @@ https://www.hubject.com/downloads/
         "PostalCode": "10829",
         "Region": "Berlin",
         "Street": "EUREF CAMPUS",
-        "TimeZone": "string",
+        "TimeZone": "UTC+01:00",
         "ParkingFacility": true,
         "ParkingSpot": "E36"
         },
