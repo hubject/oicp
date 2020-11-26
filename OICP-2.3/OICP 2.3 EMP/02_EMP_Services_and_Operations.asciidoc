@@ -335,7 +335,16 @@ Starting from OICP 2.3, eRoaminGetChargeDetailRecords supports pagination. This 
 
 The parameters of the pagination are given at the end of the end point: `...?page=0&size=20` where `page` indicates the number of the page for the response and `size` the amount of records to be provided in the response.
 
-IMPORTANT: The default number of records provided in the response are 20 elements.
+*Example*:
+
+
+Using OICP 2.3 PullEvseData endpoint for PROD environment:
+
+https://service.hubject.com/api/oicp/evsepull/v23/providers/{providerID}/data-records?page=0&size=1500
+
+In the previous request we are telling to provide page *0* with *1500* records in it.
+
+IMPORTANT: The default number of records provided in the response are *20* elements and the maximum number of records possible to obtain per page are *2000*.
 
 [[eRoamingGetChargeDetailRecordsmessage]]
 ==== eRoamingGetChargeDetailRecords Message
