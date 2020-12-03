@@ -3,7 +3,7 @@
 image::images/hubjectlogo.png[align="right"]
 
 [[DataTypes]]
-= Data Types (Release Candidate)
+= Data Types
 
 :numbered:
 
@@ -170,7 +170,7 @@ Floor:String:O:5
 Region:String:O:50
 ParkingFacility:Boolean:O:
 ParkingSpot:String:O:5
-Timezone:<<TimezoneType,TimezoneType>>:O:
+TimeZone:<<TimeZoneType,TimeZoneType>>:O:
 |=====================
 
 [[SearchCenterType]]
@@ -227,7 +227,8 @@ AdditionalInfo:<<InfoTextType,InfoTextType List>>:Optional information.:O:200
 ChargingStationLocationReference:<<InfoTextType,InfoTextType List>>:Last meters information regarding the location of the Charging Station:O:
 GeoChargingPointEntrance:<<GeoCoordinatesType,GeoCoord inatesType>>:In case that the charging spot is part of a bigger facility (e.g. parking place), this attribute specifies the facilities entrance coordinates.:O:
 IsOpen24Hours:Boolean:Set in case the charging spot is open 24 hours.:M:
-OpeningTimes:<<OpeningTimesType,OpeningTimesType>>:Opening time in case that the charging station cannot be accessed around the clock.:M/O:
+OpeningTimes:<<OpeningTimesType,OpeningTimesType List>>:Opening time in case that the charging station cannot be accessed around the clock.:M/O:
+HubOperatorID:<<OperatorIDType,OperatorIDType>>:Hub operator:O:
 ClearinghouseID:String:Identification of the corresponding clearing house in the event that roaming between different clearing houses `MUST` be processed in the future.:O:20
 IsHubjectCompatible:Boolean:Is eRoaming via intercharge at this charging station possible? If set to "false" the charge spot will not be started/stopped remotely via Hubject.:M:
 DynamicInfoAvailable:Enumeration:Values; true / false / auto This attribute indicates whether a CPO provides (dynamic) EVSE Status info in addition to the (static) EVSE Data for this EVSERecord. Value auto is set to true by Hubject if the operator offers Hubject EVSEStatus data.:M:
@@ -271,7 +272,7 @@ Salt:String:In case that a salt value was used to generate the hash value (e.g. 
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-PowerType:<<PowerType,PowerType List>>:Charging Facility power type (e.g. AC or DC): M:
+PowerType:<<PowerType,PowerType>>:Charging Facility power type (e.g. AC or DC): M:
 Voltage:Integer:Voltage of the Charging Facility:O:3
 Amperage:Integer:Amperage of the Charging Facility:O:2
 Power:Integer:Charging Facility power in kW:M:3
@@ -996,8 +997,8 @@ This leads to the following regular expression:
 
 This regular expression is similar to that of the ISO EvseIDType but E is replaced with P to indicate a pool.
 
-[[TimezoneType]]
-=== TimezoneType
+[[TimeZoneType]]
+=== TimeZoneType
  [U][T][C][+,-][0-9][0-9][:][0-9][0-9]
 
 The expression validates a string as a Time zone with UTC offset.
