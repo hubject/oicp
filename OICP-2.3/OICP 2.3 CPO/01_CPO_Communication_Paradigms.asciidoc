@@ -41,7 +41,7 @@ The StatusCode node additionally contains the optional “_AdditionalInfo_” fi
 [[session_handling]]
 === Session handling
 
-Some web service operations that are defined in <<02_CPO_Services_and_Operations,Services and Operations>> together form a functional business process, respectively a functional session.
+Some web service operations that are defined in <<02_CPO_Services_and_Operations.adoc,Services and Operations>> together form a functional business process, respectively a functional session.
 
 *Example:*
 
