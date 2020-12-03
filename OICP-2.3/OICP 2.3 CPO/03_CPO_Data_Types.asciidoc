@@ -130,13 +130,8 @@ Hubject will automatically convert all characters from lower case to upper case 
 |=====
 |Name |Data Type |Description|M/O|Field Length
 |EvcoID|<<EvcoIDType,EvcoIDType>>|Contract identifier Hubject will automatically convert all characters from lower case to upper case |M |
-|PIN|String
-1.2+|According to different processes, the PIN is transferred as encrypted hash or in clear text.
-1.2+|O
-
-One or none of the options can be provided.
-|20
-|HashedPIN|<<HashType,HashType>>|
+|HashedPIN|<<HashedPINType,HashedPINType>>|The hashed pin information. This field can be provided only when uploading Authentication data. In Authorization requests this field must be null!|O|
+|PIN|String|The pin number, this field is required in Authorization requests!|O|0-20
 |=====
 
 [[PlugAndChargeIdentificationType]]
@@ -256,14 +251,24 @@ EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M
 EvseStatus:<<EvseStatusType,EvseStatusType>>:The status of the charging spot.:M
 |=====================
 
-[[HashType]]
-=== HashType
+[[HashedPINType]]
+=== HashedPINType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-Value:<<HashValueType,HashValueType>>:Hash value.: M:
+Value:<<HashValueType,HashValueType>>:Hash value created by partner:M:
 Function:<<HashFunctionType,HashFunctionType>>:Function that was used to generate the hash value.:M:
-Salt:String:In case that a salt value was used to generate the hash value (e.g. salted SHA-1 hash) the salt can be provided in this field. Where the Hash Function is Bcrypt, this value is undefined.:O:100
+LegacyHashData:<<LegacyHashDataType,LegacyHashDataType>>:Field for hashing data related to OICP v2.1. It is unused in later versions.:O:
+|=====================
+
+[[LegacyHashDataType]]
+=== LegacyHashDataType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O:Field Length
+Function:Enum (MD5,SHA-1):Function used for hashing of the PIN at the partner.:M:
+Salt:String:The salt value used by the partner for hashing the PIN.:O:0-100
+Value:String:PIN hash at the partner.:O:0-20
 |=====================
 
 [[ChargingFacilityType]]
@@ -941,7 +946,7 @@ Examples: *“AFFH1768”*, *“7568290FFF765F”*
 
 [[HashValueType]]
 === HashValueType
- ^[0-9A-Za-z]{10,100}$
+ ^[0-9A-Za-z\\.+/=\\$]{10,100}$
 
 The expression validates the string as a hash function result value with a length between 10 and 100 characters
 

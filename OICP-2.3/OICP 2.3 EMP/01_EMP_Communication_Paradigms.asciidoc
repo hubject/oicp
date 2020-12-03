@@ -34,7 +34,7 @@ Each message requires a response message in return (at least an acknowledgement)
 
 Most service response messages contain a “StatusCode” field (e.g. _eRoamingAcknowledgement_). The node provides a standardized code and status description that can be used to return details about certain process statuses. If, for example, an _eRoamingAuthorizeStart_ request fails, the requested provider can specify why the user cannot be authorized.
 
-<<Data_Types.adoc#CodeType,Code Type>> contains an overview of all relevant status codes.
+<<03_EMP_Data_Types.adoc#CodeType,Code Type>> contains an overview of all relevant status codes.
 
 The different states are standardized in order to make automated status processing possible. Backend systems only have to analyze the provided status code, regardless of the functional status description.
 
@@ -57,7 +57,7 @@ NOTE: Regarding eRoaming services, the SessionID will be the leading process ide
 [[provider_and_operator_ids]]
 === ProviderIDs and OperatorIDs
 
-Most web service operations require the provision of a ProviderID (EMP) or OperatorID (CPO), depending on whether the operation is requested by EMPs or CPOs. The exact format and examples of theses ID’s can be seen in <<Data_Types.adoc#OperatorIDType,OperatorID>> and <<Data_Types.adoc#ProviderIDType,ProviderID>>
+Most web service operations require the provision of a ProviderID (EMP) or OperatorID (CPO), depending on whether the operation is requested by EMPs or CPOs. The exact format and examples of theses ID’s can be seen in <<03_EMP_Data_Types.adoc#OperatorIDType,OperatorID>> and <<03_EMP_Data_Types.adoc#ProviderIDType,ProviderID>>
 
 The IDs are assigned to a specific partner role and they are cross-market unique. There are two roles: eMobility Service Provider (EMP) and Charge Point Operator (CPO). A partner can have one or both roles. If a partner has both roles, two IDs (ProviderID and OperatorID) will be assigned to the partner. Hubject can identify the role that the partner has regarding the current service session depending on which ID is provided with a service request.
 
