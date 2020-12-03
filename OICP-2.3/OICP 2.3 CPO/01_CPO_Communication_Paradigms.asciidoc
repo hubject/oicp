@@ -1,7 +1,7 @@
 :numbered:
 
 [[communications_paradigms]]
-== Communication paradigms (Release Candidate)
+== Communication paradigms
 
 [[rest]]
 === REST

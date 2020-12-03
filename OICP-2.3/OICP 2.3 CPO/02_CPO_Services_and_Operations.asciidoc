@@ -4,7 +4,7 @@
 image::images/hubjectlogo.png[float="right", align="right"]
 
 [[services_and_operations]]
-= Services and Operations (Release Candidate)
+= Services and Operations
 
 Each message requires a message in return (at least an acknowledgement).
 

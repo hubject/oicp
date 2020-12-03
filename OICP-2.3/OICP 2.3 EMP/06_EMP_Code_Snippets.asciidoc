@@ -1,7 +1,7 @@
 :toc:
 :numbered:
 
-= Code Snippets (Release Candidate)
+= Code Snippets
 
 == eRoamingPullEVSEData
 

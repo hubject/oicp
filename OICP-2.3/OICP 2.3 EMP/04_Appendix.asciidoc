@@ -2,7 +2,7 @@
 :numbered:
 
 [[appendix]]
-== Appendix (Release Candidate)
+== Appendix
 
 [[BusinessProcessDiagrameRoamingAuthorization]]
 === Business Process Diagram eRoamingAuthorization

@@ -3,7 +3,7 @@
 image::images/hubjectlogo.png[float="right", align="right"]
 
 [[services_and_operations]]
-== Services and Operations (Release Candidate)
+== Services and Operations
 
 All described services are offered by Hubject. Some of the described services `MUST` also be offered by the connected provider systems because Hubject forwards incoming requests to partners which presumes that the corresponding service is offered by that partner (e.g. <<eRoamingAuthorization,eRoamingAuthorization>>)
 
@@ -659,7 +659,7 @@ type (EMP must be the subscriber). If so, the operation allows downloading EVSE 
 When an EMP sends an eRoamingPullEVSEStatus request, Hubject identifies all currently valid EVSE status records of all operators.
 
 Hubject groups all resulting EVSE status records according to the related CPO.
-The response structure contains an “EVSEStatuses” node that envelopes an “OperatorEVSEStatus”
+The response structure contains an “EvseStatuses” node that envelopes an “OperatorEVSEStatus”
 node for every CPO with currently valid and accessible status data records.
 
 [[eRoamingPullEVSEStatusmessage]]
@@ -714,7 +714,7 @@ NOTE: This message describes the response which will be received as response to 
 [%header]
 |====
 |	Name	|	Data Type	|	Description	|	M/O
-|	EVSEStatuses	|	List <<03_EMP_Data_Types.adoc#OperatorEVSEStatusType,OperatorEVSEStatusType>>	|	A list of EVSE status blocks that are each assigned to a certain operator.	|	M
+|	EvseStatuses	|	<<03_EMP_Data_Types.adoc#OperatorEVSEStatusType,OperatorEVSEStatusType>>	|	A list of EVSE status blocks that are each assigned to a certain operator.	|	M
 |	StatusCode	|	<<03_EMP_Data_Types.adoc#StatusCodeType,StatusCodeType>>	|	This can be used e.g. for failure messages or further information regarding the result.	|	O
 |====
 

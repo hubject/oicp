@@ -2,7 +2,7 @@
 :numbered:
 
 [[appendix]]
-== Appendix (Release Candidate)s
+== Appendix
 
 [[BusinessProcessDiagrameRoamingAuthorization]]
 === Business Process Diagram eRoamingAuthorization
@@ -23,11 +23,6 @@ image::images/eroamingreservation.png[]
 === Business Process Diagram eRoamingAuthorization GetCDRs
 
 image::images/eroaminggetcdrs.png[]
-
-[[BusinessProcessDiagrameRoamingAuthentificationData]]
-=== Business Process Diagram eRoamingAuthentificationData
-
-image::images/authentificationdata.png[]
 
 [[BusinessProcessDiagrameRoamingeEVSEData]]
 === Business Process Diagram eRoamingEVSEData

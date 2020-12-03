@@ -1,7 +1,7 @@
 
 image::images/hubjectlogo.png[]
 
-== Glossary and Abbreviations (Release Candidate)
+== Glossary and Abbreviations
 
 |===
 |	Charging Station	|	The unit where an electric vehicle is charged. A charging station consists of one or more charging spots (EVSE).
