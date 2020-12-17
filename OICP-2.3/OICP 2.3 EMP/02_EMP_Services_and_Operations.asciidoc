@@ -177,7 +177,7 @@ NOTE: This operation is used by EMPs in order to remotely start a charging proce
 
 The service that is offered by Hubject in order to allow customers to directly start a charging process via mobile app.
 
-- Request message:<<eRoamingAuthorizeRemoteStartmessage, eRoamingAuthorizeStop>>
+- Request message:<<eRoamingAuthorizeRemoteStartmessage, eRoamingAuthorizeStart>>
 - Response message:<<eRoamingAcknowledgementmessage, eRoamingAcknowledgement>>
 
 image::images/remotestart.png[]
