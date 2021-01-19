@@ -205,7 +205,7 @@ HardwareManufacturer:String:Name of the charging point manufacturer:O:50
 ChargingStationImage:String:URL that redirect to an online image of the related EVSEID:O:200
 SubOperatorName:String:Name of the Sub Operator owning the Charging Station:O:100
 Address:<<AddressIso19773Type,AddressIso19773Type>>:Address of the charging station.:M:
-GeoCoordinates:<<GeoCoordinatesType,GeoCoordinatesType>>:Geolocation of the charging station.:O:100
+GeoCoordinates:<<GeoCoordinatesType,GeoCoordinatesType>>:Geolocation of the charging station.:M:100
 Plugs:<<PlugType,PlugType List>>:List of plugs that are supported.:M:
 DynamicPowerLevel:Boolean:Informs is able to deliver different power outputs.:O:
 ChargingFacilities:<<ChargingFacilityType,ChargingFacilityType List>>:List of facilities that are supported.:M:
@@ -394,7 +394,7 @@ value:String:The Additional Info text:M:150
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
-Periods:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
+Period:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
 On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available. Workdays = Monday – Friday, Weekend = Saturday – Sunday:M:
 |=====================
 
