@@ -157,7 +157,7 @@ EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier Hubject will automatically
 |=====================
 Name:Data Type:M/O:Field Length
 Country: <<CountryCodeType,CountryCodeType>>:M:
-City:String:M:11-50
+City:String:M:1-50
 Street:String:M:2-100
 PostalCode:String:M:10
 HouseNum:String:M:10
