@@ -812,17 +812,6 @@
         "SearchCenter": {
           "description": "The data can be restricted using search parameters that are provided in this field. Cannot be combined with LastCall.",
           "$ref": "#/definitions/SearchCenter"
-        },
-        "calibrationLawDataAvailability": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "Local",
-              "External",
-              "Not Available"
-            ]
-          }
         }
       },
       "description": "ERoamingPullEvseData model"
