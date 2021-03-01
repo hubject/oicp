@@ -469,7 +469,7 @@ Furthermore, Hub EMPs may also push authentication data of sub-EMPs. Hubject doe
 - To `SEND`
 - Implementation: `MANDATORY`
 ====
-- Request message: <<eRoamingPushAuthenticationDatamessage,eRoamingAuthorizeRemoteReservationStop>>
+- Request message: <<eRoamingPushAuthenticationDatamessage,eRoamingPushAuthenticationData>>
 - Response message: <<eRoamingAcknowledgementmessage,eRoamingAcknowledgement>>
 
 image::images/pushauthentificationdata.png[]
