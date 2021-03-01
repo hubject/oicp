@@ -68,7 +68,7 @@ All partners using the HBS `MUST` indicate the OICP version they are currently r
 To enable a fast and efficient connection process between the Hubject Brokering System and Partner Systems, the following online webpage contains further information:
 
 * [*support.hubject.com*](https://support.hubject.com/hc/en-us) – Contains all relevant information regarding the onboarding process and other technical information (e.g. Dynamic Pricing 1.0 - Functional Guide for Service Implementation)
-* [*Release notes from OICP2.2 to OICP2.3*](https://github.com/oicp-moderator/OICP-2.3-Draft/blob/master/Realease_Notes.asciidoc)
+* [*Release notes from OICP2.2 to OICP2.3*](https://github.com/hubject/oicp/blob/master/OICP-2.3/Realease_Notes.asciidoc)
 
 ### OICP protocol version and service versions
 
