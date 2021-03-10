@@ -9,81 +9,10 @@
   "tags": [
     {
       "name": "Authentication Data API v2.1 operations",
-      "description": "Pull Authentication Data Controller"
+      "description": "Push Authentication Data Controller"
     }
   ],
   "paths": {
-    "/api/oicp/authdata/v21/operators/{operatorID}/pull-request": {
-      "post": {
-        "tags": [
-          "Authentication Data API v2.1 operations"
-        ],
-        "summary": "eRoamingPullAuthenticationData",
-        "operationId": "eRoamingPullAuthenticationDataUsingPOST_1",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json;charset=UTF-8"
-        ],
-        "parameters": [
-          {
-            "name": "operatorID",
-            "in": "path",
-            "description": "operatorID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "eRoamingPullAuthenticationData",
-            "description": "eRoamingPullAuthenticationData",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ERoamingPullAuthenticationData"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "eRoamingAuthenticationData",
-            "schema": {
-              "$ref": "#/definitions/ERoamingAuthenticationData"
-            }
-          },
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/FaultBody"
-            }
-          },
-          "401": {
-            "description": "Call not authorized",
-            "schema": {
-              "$ref": "#/definitions/OicpERoamingFault"
-            }
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Data not found",
-            "schema": {
-              "$ref": "#/definitions/OicpERoamingFault"
-            }
-          },
-          "500": {
-            "description": "Processing error",
-            "schema": {
-              "$ref": "#/definitions/FaultBody"
-            }
-          }
-        }
-      }
-    },
     "/api/oicp/authdata/v21/providers/{providerID}/push-request": {
       "post": {
         "tags": [
@@ -231,21 +160,7 @@
         }
       },
       "description": "ERoamingAuthenticationData model"
-    },
-    "ERoamingPullAuthenticationData": {
-      "type": "object",
-      "required": [
-        "OperatorID"
-      ],
-      "properties": {
-        "OperatorID": {
-          "type": "string",
-          "description": "The OperatorID is defined by Hubject and is used to identify the CPO",
-          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
-        }
-      },
-      "description": "ERoamingPullAuthenticationData model"
-    },
+    },    
     "ERoamingPushAuthenticationData": {
       "type": "object",
       "required": [

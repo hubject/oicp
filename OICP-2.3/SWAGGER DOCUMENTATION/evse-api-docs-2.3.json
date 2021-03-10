@@ -571,8 +571,7 @@
           "enum": [
             "AC_1_PHASE",
             "AC_3_PHASE",
-            "DC",
-            "Unspecified"
+            "DC"
           ]
         },
         "Voltage": {
@@ -726,7 +725,6 @@
           "items": {
             "type": "string",
             "enum": [
-              "Unspecified",
               "Free publicly accessible",
               "Restricted access",
               "Paying publicly accessible",
@@ -1030,7 +1028,6 @@
           "type": "string",
           "description": "Specifies how the charging station can be accessed.",
           "enum": [
-            "Unspecified",
             "Free publicly accessible",
             "Restricted access",
             "Paying publicly accessible",
@@ -1239,8 +1236,7 @@
               "IEC 60309 Three Phase",
               "CCS Combo 2 Plug (Cable Attached)",
               "CCS Combo 1 Plug (Cable Attached)",
-              "CHAdeMO",
-              "Unspecified"
+              "CHAdeMO"
             ]
           }
         },
@@ -1306,7 +1302,6 @@
           "type": "string",
           "description": "Specifies how the charging station can be accessed.",
           "enum": [
-            "Unspecified",
             "Free publicly accessible",
             "Restricted access",
             "Paying publicly accessible",
@@ -1515,8 +1510,7 @@
               "IEC 60309 Three Phase",
               "CCS Combo 2 Plug (Cable Attached)",
               "CCS Combo 1 Plug (Cable Attached)",
-              "CHAdeMO",
-              "Unspecified"
+              "CHAdeMO"
             ]
           }
         },
