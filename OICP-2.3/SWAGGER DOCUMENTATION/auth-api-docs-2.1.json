@@ -9,7 +9,7 @@
   "tags": [
     {
       "name": "Authentication Data API v2.1 operations",
-      "description": "Pull Authentication Data Controller"
+      "description": "Push Authentication Data Controller"
     }
   ],
   "paths": {
@@ -160,21 +160,7 @@
         }
       },
       "description": "ERoamingAuthenticationData model"
-    },
-    "ERoamingPullAuthenticationData": {
-      "type": "object",
-      "required": [
-        "OperatorID"
-      ],
-      "properties": {
-        "OperatorID": {
-          "type": "string",
-          "description": "The OperatorID is defined by Hubject and is used to identify the CPO",
-          "pattern": "^(([A-Za-z]{2}\\*?[A-Za-z0-9]{3})|(\\+?[0-9]{1,3}\\*[0-9]{3}))$"
-        }
-      },
-      "description": "ERoamingPullAuthenticationData model"
-    },
+    },    
     "ERoamingPushAuthenticationData": {
       "type": "object",
       "required": [
