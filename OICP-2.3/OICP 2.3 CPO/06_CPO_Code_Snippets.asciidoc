@@ -29,7 +29,7 @@ https://www.hubject.com/downloads/
   "EvseDataRecord": [
   {
     "Accessibility": "Restricted access",
-    "AccessibilityLocation": "Parking Garage",
+    "AccessibilityLocation": "ParkingGarage",
     "AdditionalInfo": [
       {
         "lang": "en",
