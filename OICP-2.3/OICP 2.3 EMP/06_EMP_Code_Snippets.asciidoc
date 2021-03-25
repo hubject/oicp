@@ -67,7 +67,7 @@ https://www.hubject.com/downloads/
   "content": [
               {
                 "Accessibility": "Restricted access",
-                "AccessibilityLocation": "Parking Garage",
+                "AccessibilityLocation": "ParkingGarage",
                 "AdditionalInfo": [
                   {
                     "lang": "en",
