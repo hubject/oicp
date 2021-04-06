@@ -560,8 +560,6 @@ image::images/pullevsedata.png[]
 
 When an EMP sends an eRoamingPullEVSEData request, Hubject checks whether there is a valid contract between Hubject and the EMP for the service type (EMP must be the subscriber). If so, the operation allows downloading EVSEData from Hubject. When an EMP sends an eRoamingPullEVSEData request, Hubject identifies all currently valid EVSEData records of all operators.
 
-Hubject groups all resulting EVSEData records according to the related CPO. The response structure contains an “EVSEData” node that envelopes an “OperatorEVSEData” node for every CPO with currently valid and accessible data records.
-
 For every EVSE data record Hubject identifies the timestamp of the last update, which has been performed on the record. The timestamp is returned with the attribute “lastUpdate”.
 
 *Delta pull:*
