@@ -893,7 +893,7 @@ https://www.hubject.com/downloads/
 }
 ----
 
-== eRoamingPushAuthentificationData
+== eRoamingPushAuthenticationData
 
 The Service End Points to which the below POST command should be sent are:
 
