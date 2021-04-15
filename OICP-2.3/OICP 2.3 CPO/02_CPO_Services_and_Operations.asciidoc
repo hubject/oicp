@@ -777,7 +777,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |Identification|<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>|Authentication data|O|
 |EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
 |ChargingStart |Date/Time |The date and time at which the charging process started.|M|
-|EventOcurred|Date/Time|The date and time at which the charging progress parameters are captured.|M|
+|EventOccurred|Date/Time|The date and time at which the charging progress parameters are captured.|M|
 |ChargingDuration|Integer|Charging Duration = EventOccurred - Charging Duration. It is a time in millisecond.
 
 Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O/M|
