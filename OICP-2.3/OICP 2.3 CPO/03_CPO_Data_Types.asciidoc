@@ -306,6 +306,7 @@ Name:Data Type:Description:M/O:Field Length
 ProductID:<<ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that `MUST` be unique: M:50
 ReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Reference unit in time or kWh:M:
 ProductPriceCurrency:<<CurrencyIDType,CurrencyIDType>>:Currency for default prices:M:
+PricePerReferenceUnit:Decimal:A price per reference unit:M:
 MaximumProductChargingPower:Decimal:A value in kWh:M:
 IsValid24hours:Boolean:Set to TRUE if the respective pricing product is applicable 24 hours a day. If FALSE, the respective applicability times `SHOULD` be provided in the field “ProductAvailabilityTimes”.:M:
 ProductAvailabilityTimes:<<ProductAvailabilityTimesType,ProductAvailabilityTimesType>>:A list indicating when the pricing product is applicable:M:
