@@ -218,7 +218,7 @@ ValueAddedServices:<<ValueAddedServiceType,ValueAddedServiceType List>>:List of 
 Accessibility:<<AccessibilityType,AccessibilityType>>:Specifies how the charging station can be accessed.:M:
 AccessibilityLocation:<<AccessibilityLocationType,AccessibilityLocationType List>>:Inform the EV driver where the ChargingPoint could be accessed.:O:
 HotlinePhoneNumber:<<PhoneNumberType,PhoneNumberType>>:Phone number of a hotline of the charging station operator:M:
-AdditionalInfo:<<InfoTextType,InfoTextType List>>:Optional information.:O:200
+AdditionalInfo:<<InfoTextType,InfoTextType List>>:Optional information.:O:
 ChargingStationLocationReference:<<InfoTextType,InfoTextType List>>:Last meters information regarding the location of the Charging Station:O:
 GeoChargingPointEntrance:<<GeoCoordinatesType,GeoCoord inatesType>>:In case that the charging spot is part of a bigger facility (e.g. parking place), this attribute specifies the facilities entrance coordinates.:O:
 IsOpen24Hours:Boolean:Set in case the charging spot is open 24 hours.:M:
