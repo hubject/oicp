@@ -918,7 +918,7 @@ Examples: *“9.360922”, “-21.568201”*
 === GeoCoordinatesDegreeMinuteSecondsFormatType
 A string that `MUST` be valid with respect to the following regular expression:
 
- ^-?1?\d{1,2}°[ ]?\d{1,2}'[ ]?\d{1,2}\.\d+’'$
+ ^-?1?\d{1,2}°[ ]?\d{1,2}'[ ]?\d{1,2}\.\d+''$
 
 The expression validates the string as a geo coordinate (longitude or latitude) consisting of degree, minutes, and
 seconds
