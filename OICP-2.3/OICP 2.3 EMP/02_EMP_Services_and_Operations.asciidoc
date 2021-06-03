@@ -337,9 +337,9 @@ The parameters of the pagination are given at the end of the end point: `...?pag
 
 *Example*:
 
-Using OICP 2.3 PullEvseData endpoint for PROD environment:
+Using OICP 2.3 GetChargeDetailRecords endpoint for PROD environment:
 
-https://service.hubject.com/api/oicp/evsepull/v23/providers/{providerID}/data-records?page=0&size=1500
+https://service.hubject.com/api/oicp/cdrmgmt/v22/providers/{providerID}/get-charge-detail-records-request?page=0&size=1500
 
 In the previous request we are telling to provide page *0* with *1500* records in it.
 
