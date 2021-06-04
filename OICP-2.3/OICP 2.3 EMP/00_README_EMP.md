@@ -16,7 +16,7 @@
 
 The goal of the “Hubject B2B Service Platform (HBS)” is to enable the electric mobility market by providing an information and transactional gateway for businesses such as charging infrastructure providers, mobility service providers and vehicle manufacturers.
 
-![Hubject Process](images/hubject_1.jpg)
+![Hubject Process](images/hubject_1.png)
 
 The platform enabler functions include: 
 

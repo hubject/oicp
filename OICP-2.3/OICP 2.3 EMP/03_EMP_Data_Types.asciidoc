@@ -214,7 +214,7 @@ EnergySource:<<EnergySourceType,EnergySourceType List>>:List of energy source th
 EnvironmentalImpact:<<EnvironmentalImpactType,EnvironmentalImpactType>>:Environmental Impact produced by the energy sources used by the charging point:O:
 CalibrationLawDataAvailability:<<CalibrationLawDataAvailabilityType,CalibrationLawDataAvailabilityType>>:This field gives the information how the charging station provides metering law data.:M:
 AuthenticationModes:<<AuthenticationModeType,AuthenticationModeType List>>:List of authentication modes that are supported.:M:
-MaxCapacity:Integer:Maximum capacity in kWh:O:
+MaxCapacity:Integer:This field is used if the EVSE has a limited capacity (e.g. built-in battery). Values must be given in kWh. :O:
 PaymentOptions:<<PaymentOptionType,PaymentOptionType List>>:List of payment options that are supported.:M:
 ValueAddedServices:<<ValueAddedServiceType,ValueAddedServiceType List>>:List of value added services that are supported.:M:
 Accessibility:<<AccessibilityType,AccessibilityType>>:Specifies how the charging station can be accessed.:M:
@@ -282,7 +282,7 @@ Value:String:PIN hash at the partner.:O:0-20
 |=====================
 Name:Data Type:Description:M/O:Field Length
 PowerType:<<PowerType,PowerType>>:Charging Facility power type (e.g. AC or DC): M:
-Voltage:Integer:Voltage of the Charging Facility:O:3
+Voltage:Integer:Voltage (Line to Neutral) of the Charging Facility:O:3
 Amperage:Integer:Amperage of the Charging Facility:O:2
 Power:Integer:Charging Facility power in kW:M:3
 ChargingModes:<<ChargingModeType,List ChargingModeType>>:List of charging modes that are supported.:O:

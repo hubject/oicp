@@ -331,7 +331,7 @@ Hubject does not check whether a requested CDR has already been provided to the 
 
 *Pagination:*
 
-Starting from OICP 2.3, eRoaminGetChargeDetailRecords supports pagination. This is an optional implementation that EMPs can use in order to divide the amount of ChargeDetailRecords contained in the response of the pull request.
+Starting from OICP 2.3, eRoaminGetChargeDetailRecords uses pagination. This is an implementation that EMPs `MUST` use in order to divide the amount of ChargeDetailRecords contained in the response of the pull request.
 
 The parameters of the pagination are given at the end of the end point: `...?page=0&size=20` where `page` indicates the number of the page for the response and `size` the amount of records to be provided in the response.
 
@@ -570,7 +570,7 @@ NOTE: The delta pull option cannot be combined with radial search, because in so
 
 *Pagination:*
 
-Starting from OICP 2.3, eRoamingPullEvseData supports pagination. This is an optional imeplementation that EMPs can use in order to divide the amount of EvseDataRecords contained in the response of the pull request.
+Starting from OICP 2.3, eRoamingPullEvseData uses pagination. This is an implementation that EMPs `MUST` use in order to divide the amount of EvseDataRecords contained in the response of the pull request.
 
 The parameters of the pagination are given at the end of the end point: `...?page=0&size=20` where `page` indicates the number of the page for the response and `size` the amount of records to be provided in the response.
 
