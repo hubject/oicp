@@ -218,7 +218,7 @@ MaxCapacity:Integer:This field is used if the EVSE has a limited capacity (e.g. 
 PaymentOptions:<<PaymentOptionType,PaymentOptionType List>>:List of payment options that are supported.:M:
 ValueAddedServices:<<ValueAddedServiceType,ValueAddedServiceType List>>:List of value added services that are supported.:M:
 Accessibility:<<AccessibilityType,AccessibilityType>>:Specifies how the charging station can be accessed.:M:
-AccessibilityLocation:<<AccessibilityLocationType,AccessibilityLocationType List>>:Inform the EV driver where the ChargingPoint could be accessed.:O:
+AccessibilityLocation:<<AccessibilityLocationType,AccessibilityLocationType>>:Inform the EV driver where the ChargingPoint could be accessed.:O:
 HotlinePhoneNumber:<<PhoneNumberType,PhoneNumberType>>:Phone number of a hotline of the charging station operator:M:
 AdditionalInfo:<<InfoTextType,InfoTextType List>>:Optional information.:O:
 ChargingStationLocationReference:<<InfoTextType,InfoTextType List>>:Last meters information regarding the location of the Charging Station:O:
