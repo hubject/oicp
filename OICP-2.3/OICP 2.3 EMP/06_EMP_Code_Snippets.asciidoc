@@ -178,7 +178,7 @@ https://www.hubject.com/downloads/
                 ],
                 "deltaType": "insert",
                 "lastUpdate": "2018-01-23T14:04:29.377Z",
-                "OperatodId": "DE*ABC",
+                "OperatorId": "DE*ABC",
                 "OperatorName": "ABC technologies"
            }
       ],
