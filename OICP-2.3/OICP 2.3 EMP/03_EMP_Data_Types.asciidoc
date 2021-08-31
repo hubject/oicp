@@ -199,7 +199,7 @@ deltaType:`update` or `insert` or `delete`:In case that the operation “PullEvs
 lastUpdate:Date/Time:The attribute indicates the date and time of the last update of the record. Hubject assigns this attribute to every response EVSE record.:O:
 EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 ChargingPoolID:<<ChargingPoolIDType,ChargingPoolIDType>>:The ID that identifies the charging station.:O:
-ChargingStationId:String:The ID that identifies the charging station.:O:50
+ChargingStationID:String:The ID that identifies the charging station.:O:50
 ChargingStationNames:List <<InfoTextType,InfoTextType>>:Name of the charging station:M:
 HardwareManufacturer:String:Name of the charging point manufacturer:O:50
 ChargingStationImage:String:URL that redirect to an online image of the related EVSEID:O:200
