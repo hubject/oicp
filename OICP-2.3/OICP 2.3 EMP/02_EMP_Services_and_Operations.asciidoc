@@ -589,11 +589,11 @@ eRoamingPullEVSEData is a message that is sent in order to request the download 
 
 Cannot be combined with “LastCall”."	|	O
 |	LastCall	|	Date/Time	|	"In case that this field is set, Hubject does not return the currently valid set of EVSE data but the changes compared to the status of EVSE data at the time of the last call.
-Cannot be combined with “SearchCenter”, “CountryCodes”, and “OperatorIDs”. "	|	O
+Cannot be combined with “SearchCenter”, “CountryCodes”, and “OperatorIds”. "	|	O
 |	GeoCoordinatesRe sponseFormat	|	<<03_EMP_Data_Types.adoc#GeoCoordinatesResponseFormatType,GeoCoordinatesResponseFormatType>>	|	Defines the format of geo coordinates that shall be provided with the response.	|	M
 |	CountryCodes	|	List <<03_EMP_Data_Types.adoc#CountryCodeType,CountryCodeType>>	|	"A list of countries whose EVSE’s a provider wants to retrieve.
 Cannot be combined with “LastCall”."	|	O
-|	OperatorIDs	|	List <<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	"A list of Operator Ids in ISO or DIN standard to download only EVSE’s of one or more operators.
+|	OperatorIds	|	List <<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	"A list of Operator Ids in ISO or DIN standard to download only EVSE’s of one or more operators.
 Cannot be combined with “LastCall”."	|	O
 |	AuthenticationModes	|	List <<03_EMP_Data_Types.adoc#AuthenticationModeType,AuthenticationModeType>>	|	 A list of Authentication Modes to start a charging process	|	O
 |	Accessibility	|	List <<03_EMP_Data_Types.adoc#AccessibilityType,AccessibilityType>>	|	A list of accessibility of the charging point	|	O
@@ -746,9 +746,9 @@ The eRoamingDynamicPricing service offers four operations, namely the:
 - <<eRoamingPricingProductDatamessage,Response message: eRoamingPricingProductData>>
 
 When an EMP sends an eRoamingPullPricingProductData request, Hubject checks whether there is a valid flexible/dynamic pricing business contract
-(for the service type Authorization) between the EMP and the CPOs whose OperatorIDs are sent in the request.
+(for the service type Authorization) between the EMP and the CPOs whose OperatorIds are sent in the request.
 If so, the operation allows the download of pricing product data pushed to the HBS by these CPOs for the requesting EMP.
-When this request is received from an EMP, currently valid pricing products data available in the HBS for the requesting EMP (and pushed by CPOs whose OperatorIDs are supplied in the request) are grouped by OperatorID and sent in response to the request.
+When this request is received from an EMP, currently valid pricing products data available in the HBS for the requesting EMP (and pushed by CPOs whose OperatorIds are supplied in the request) are grouped by OperatorID and sent in response to the request.
 
 The operation also allows the use of the LastCall filter. When the LastCall filter is used, only pricing product data changes that have taken place after the date/time value provided in the “LastCall" field of the request are sent to the EMP.
 
@@ -761,7 +761,7 @@ eRoamingPullPricingProductData is a message that is sent in order to request the
 |====
 |	Name	|	Data Type	|	Description	|	M/O
 |	LastCall	|	Date/Time|	In case that this field is set, Hubject does not return the entire set of currently valid pricing products data but just the changes that have taken places since the last call date/time value.|O
-|	OperatorIDs	|	<<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	A list of Operator Ids in ISO or DIN standard to download pricing data pushed by one or more operators.	|	M
+|	OperatorIds	|	<<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	A list of Operator Ids in ISO or DIN standard to download pricing data pushed by one or more operators.	|	M
 |====
 
 [[eRoamingPricingProductDatamessage]]
@@ -790,7 +790,7 @@ NOTE: This message describes the response which has to be sent in reply to the e
 - <<eRoamingEVSEPricingmessage,Response message: eRoamingEVSEPricing>>
 
 When an EMP sends an eRoamingPullPricingProductData request, Hubject checks whether there is a valid flexible/dynamic pricing business contract
-(for the service type Authorization) between the EMP and the CPOs whose OperatorIDs are sent in the request.
+(for the service type Authorization) between the EMP and the CPOs whose OperatorIds are sent in the request.
 If so, the operation allows the download of EVSE pricing data pushed to the HBS by these CPOs for the requesting EMP.
 When this request is received from an EMP, currently valid EVSE pricing data available in the HBS for the requesting
 EMP are grouped by OperatorID and sent in response to the request.
@@ -808,7 +808,7 @@ eRoamingPullEVSEPricing is a message that is sent in order to request the downlo
 |	Name	|	Data Type	|	Description	|	M/O
 |	ProviderID	|<<03_EMP_Data_Types.adoc#ProviderIDType ,ProviderIDType >>|Identifies the provider requesting the data pull |M
 |	LastCall	|	Date/Time|	In case that this field is set, Hubject does not return the entire set of currently valid pricing products data but just the changes that have taken places since the last call date/time value.|O
-|	OperatorIDs	|	<<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	A list of Operator Ids in ISO or DIN standard to download pricing data pushed by one or more operators.	|	M
+|	OperatorIds	|	<<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	A list of Operator Ids in ISO or DIN standard to download pricing data pushed by one or more operators.	|	M
 |====
 
 [[eRoamingEVSEPricingmessage]]
