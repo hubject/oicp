@@ -831,7 +831,7 @@ https://www.hubject.com/downloads/
         {
         "AdditionalReferences": [
 	  {
-            "AddictionalReference": "PARKING FEE",
+            "AdditionalReference": "PARKING FEE",
             "AdditionalReferenceUnit": "HOUR",
             "PricePerAdditionalReferenceUnit": 2
           }
