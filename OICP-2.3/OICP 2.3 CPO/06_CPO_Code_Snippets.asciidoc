@@ -829,11 +829,13 @@ https://www.hubject.com/downloads/
     "PricingDefaultReferenceUnit": "HOUR",
     "PricingProductDataRecords": [
         {
-        "AdditionalReferences": {
+        "AdditionalReferences": [
+	  {
             "AddictionalReference": "PARKING FEE",
             "AdditionalReferenceUnit": "HOUR",
             "PricePerAdditionalReferenceUnit": 2
-        },
+          }
+	],
         "IsValid24hours": false,
         "MaximumProductChargingPower": 22,
         "PricePerReferenceUnit": 1,
