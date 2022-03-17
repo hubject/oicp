@@ -16,7 +16,7 @@ Partner Portal (web application used by our partners to administrate
 their contracts and HBS settings), e-mail, or by posting an updated
 version of this AUP in GitHub.
 
-== *Respect usage limits*
+*Respect usage limits*
 
 Usage limits ensure the stability and performance of the Platform for
 all our Partners. You must design Your application to respect the
@@ -24,23 +24,23 @@ per-user and per-app API request limits. If You think You are likely to
 exceed the usage limits, please first read our “Rate limits” section
 below and contact our support team for further information.
 
-== *Do not crawl the API*
+*Do not crawl the API*
 
 You are not allowed to crawl the API. Any activity resembling crawling
 activity will be monitored, investigated, and could lead to API access
 being suspended or revoked.
 
-== *Innovate, do not duplicate*
+*Innovate, do not duplicate*
 
 You must not create a substitute for the Platform or use this API to create, train, or improve (directly or indirectly) a similar or
 competing product or service.
 
-== *Use API for its intended purposes* 
+*Use API for its intended purposes* 
 You must use the API for its intended purposes. Do not call the API endpoints solely to discover if
 the Platform is still working. The Platform is consistently monitored
 and Hubject will inform You in case of incidents.
 
-== *Prohibited activities*
+*Prohibited activities*
 
 You must not use the Services to engage in or encourage any activity
 that is illegal, deceptive, harmful, violating others’ rights, or
@@ -62,7 +62,7 @@ decompiling the Services.
 attempt to mislead others as to the identity of the sender or the origin
 of any data or communications.
 
-== *Service integrity violations*
+*Service integrity violations*
 
 You must not violate the integrity of the Services, including but not
 limited to: 
@@ -84,7 +84,7 @@ automated means, such as bots, to gain access to or use the Services. 
 * Gaining unauthorized access. Attempting to gain unauthorized access to
 Hubject Services.
 
-== *Load and security tests*
+*Load and security tests*
 
 Load tests and/or security scans must *not* be performed on the PROD
 (production/live) environment of the Platform. You must not perform
@@ -101,8 +101,6 @@ Hubject to treat these tests as malicious, automatically triggering
 security measures which can cause service interruptions to Your
 production systems. )
 
-_______________________________________________________________________
-
 == *Rate limits*
 
 Everyday many partners of Hubject make calls to the Platform. To help
@@ -118,7 +116,7 @@ you’ll need the increased rate limit and be aware that there might be
 additional costs for an increase. Hubject reserves the right to deny
 limit increases.
 
-== *Common causes and mitigations*
+*Common causes and mitigations*
 
 Rate limiting can occur under a variety of conditions, but it is most
 common in these scenarios:
@@ -127,7 +125,7 @@ common in these scenarios:
 limits for each API call type below) can lead to rate limiting. Often
 this is part of an analytical or migration operation. When engaging in
 these activities, You should try to control the request rate on the Your
-side (see <<Handling limiting gracefully>>).
+side (see Handling limiting gracefully).
 * A sudden increase in request volume such as bulk processing of
 requests after a temporary downtime of Your system might also result in
 rate limiting. We try to set our rates high enough so that the vast
@@ -135,7 +133,7 @@ majority of Partners are never rate limited for legitimate traffic, but
 if You suspect that an upcoming event might push You over the limits
 listed below, please contact Your Account Manager.
 
-== *Handling limiting gracefully*
+*Handling limiting gracefully*
 
 A basic technique for integrations to gracefully handle limiting is to
 Your system to monitor 429 http status codes and build in a retry
