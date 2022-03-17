@@ -25,4 +25,4 @@ International License][cc-by-sa].
 
 ## Information regarding the Hubject implementation of the OICP
 
-[Hubject Acceptable Use Policy v1-0](https://github.com/hubject/oicp/Hubject-Acceptable-Use-Policy-v1-0.asciidoc)
+[Hubject Acceptable Use Policy v1-0](https://github.com/hubject/oicp/tree/master/Hubject-Acceptable-Use-Policy-v1-0.asciidoc)
