@@ -152,9 +152,9 @@ Each of Our APIs use rate limits at different levels. To learn more
 about these differences between call types, please review the specific
 rate limit pages within the specific API sections:
 
-.Limits per OICP call type
+.*Limits per eRoaming operation (call type)*
 |===
-|Call type |Current limit per minute
+|eRoaming operation / Call type | Number of call per minute allowed
 
 |PullEvseStatusById
 |300
