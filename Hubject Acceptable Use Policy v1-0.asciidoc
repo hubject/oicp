@@ -40,7 +40,7 @@ You must use the API for its intended purposes. Do not call the API endpoints so
 the Platform is still working. The Platform is consistently monitored
 and Hubject will inform You in case of incidents.
 
-== *Prohibited Activities*
+== *Prohibited activities*
 
 You must not use the Services to engage in or encourage any activity
 that is illegal, deceptive, harmful, violating others’ rights, or
@@ -62,7 +62,7 @@ decompiling the Services.
 attempt to mislead others as to the identity of the sender or the origin
 of any data or communications.
 
-== *Service Integrity Violations*
+== *Service integrity violations*
 
 You must not violate the integrity of the Services, including but not
 limited to: 
@@ -84,7 +84,7 @@ automated means, such as bots, to gain access to or use the Services. 
 * Gaining unauthorized access. Attempting to gain unauthorized access to
 Hubject Services.
 
-== *Load and Security Tests*
+== *Load and security tests*
 
 Load tests and/or security scans must *not* be performed on the PROD
 (production/live) environment of the Platform. You must not perform
