@@ -158,28 +158,28 @@ rate limit pages within the specific API sections:
 |===
 |eRoaming operation / Call type | Number of call per minute allowed
 
-|PullEvseStatusById
+|PullEVSEStatusByID
 |300
 
-|PullEvseStatusByOperatorId
+|PullEVSEStatusByOperatorID
 |75
 
-|PullEvseStatus
+|PullEVSEStatus
 |6
 
-|PullEvseData
+|PullEVSEData
 |100
 
-|PushEvseStatus
+|PushEVSEStatus
 |2000
 
-|PushEvseData
+|PushEVSEData
 |375
 
-|AuthorizeStart
+|AuthorizationStart
 |200
 
-|AuthorizeStop
+|AuthorizationStop
 |50
 
 |AuthorizeRemoteStart
@@ -200,16 +200,16 @@ rate limit pages within the specific API sections:
 |GetChargeDetailRecords
 |200
 
-|ChargingNotification
+|ChargingNotifications
 |100
 
-|PullEvsePricing
+|PullEVSEPricing
 |280
 
 |PullPricingProductData
 |300
 
-|PushEvsePricing
+|PushEVSEPricing
 |6
 
 |PushPricingProductData
