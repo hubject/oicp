@@ -1,0 +1,218 @@
+This *Acceptable Use Policy* (Version:1.0) (“_AUP_”) is a set of rules
+that apply to the use of any product or service (“Services”) provided by
+Hubject GmbH (“_Hubject_”, “_We_” or “_Us_”) or its affiliates to any
+organization (“_Partner_” or “_You_”).
+
+This AUP applies but is not limited to the Hubject Brokering System
+(“_Platform_” or “_HBS_”).
+
+Partners are responsible for the behavior of any user (“_End User_”) of
+any software application or service that interfaces with the Services
+and is made available by the Partner.
+
+We may update this AUP from time to time upon reasonable notice. We will
+provide the updated AUP to You via an account notification in the HBS
+Partner Portal (web application used by our partners to administrate
+their contracts and HBS settings), e-mail, or by posting an updated
+version of this AUP in GitHub.
+
+== *Respect usage limits*
+
+Usage limits ensure the stability and performance of the Platform for
+all our Partners. You must design Your application to respect the
+per-user and per-app API request limits. If You think You are likely to
+exceed the usage limits, please first read our “Rate limits” section
+below and contact our support team for further information.
+
+== *Do not crawl the API*
+
+You are not allowed to crawl the API. Any activity resembling crawling
+activity will be monitored, investigated, and could lead to API access
+being suspended or revoked.
+
+== *Innovate, do not duplicate*
+
+You must not create a substitute for the Platform or use this API to create, train, or improve (directly or indirectly) a similar or
+competing product or service.
+
+== *Use API for its intended purposes* 
+You must use the API for its intended purposes. Do not call the API endpoints solely to discover if
+the Platform is still working. The Platform is consistently monitored
+and Hubject will inform You in case of incidents.
+
+== *Prohibited Activities*
+
+You must not use the Services to engage in or encourage any activity
+that is illegal, deceptive, harmful, violating others’ rights, or
+harmful to Hubject’s business operations or reputation, including but
+not limited to: 
+
+* Violations of laws. Violating laws, regulations, governmental orders,
+or industry standards or guidance in any applicable jurisdiction
+(collectively, “_Applicable Laws_”). This includes violating Applicable
+Laws requiring (a) consent be obtained prior to transmitting, recording,
+collecting, or monitoring data or communications or (b) compliance with
+opt-out requests for any data or communications.
+* Interference with the Services. Interfering with or otherwise
+negatively impacting any aspect of the Services or any third-party
+networks that are linked to the Services.
+* Reverse Engineering. Reverse engineering, copying, disassembling, or
+decompiling the Services.
+* Falsification of identity or origin. Creating a false identity or any
+attempt to mislead others as to the identity of the sender or the origin
+of any data or communications.
+
+== *Service Integrity Violations*
+
+You must not violate the integrity of the Services, including but not
+limited to: 
+
+* Bypassing service limitations. Attempting to bypass, exploit, defeat,
+or disable limitations or restrictions placed by Hubject on the
+Services. 
+* Exploiting security vulnerabilities. Finding security vulnerabilities
+to exploit the Services or attempting to bypass any security mechanism
+or filtering capabilities. Should you identify a potential security risk
+associated with the Services, please inform our support team
+immediately.
+* Disabling the Services. Any denial of service (DoS) attack on the
+Services or any other conduct that attempts to disrupt, disable, or
+overload the Services.
+* Using harmful code or bots. Transmitting code, files, scripts, agents,
+or programs intended to do harm, including viruses or malware, or using
+automated means, such as bots, to gain access to or use the Services. 
+* Gaining unauthorized access. Attempting to gain unauthorized access to
+Hubject Services.
+
+== *Load and Security Tests*
+
+Load tests and/or security scans must *not* be performed on the PROD
+(production/live) environment of the Platform. You must not perform
+tests and/or security scans on Hubject's QA environment without
+Hubject's approval. You may request approval through Hubject's support
+team. We reserve the right to deny such tests.
+
+Hubject also reserves the right to enact security measures to ensure the
+stability of the Platform, e.g., temporarily or permanently restricting
+Partner's access to the Platform.
+
+(Failure to coordinate these types of tests in advance will cause
+Hubject to treat these tests as malicious, automatically triggering
+security measures which can cause service interruptions to Your
+production systems. )
+
+_______________________________________________________________________
+
+== *Rate limits*
+
+Everyday many partners of Hubject make calls to the Platform. To help
+manage the sheer volume of these calls, Hubject limits the number of
+calls Partners can make in a specific time frame. These limits help Us
+to provide the reliable and scalable API that our Partner community
+relies on. 
+
+We may reduce limits to prevent abuse or increase limits to enable
+high-traffic applications. To request an increased rate limit,
+please contact Your Hubject Account Manager 6 weeks in advance of when
+you’ll need the increased rate limit and be aware that there might be
+additional costs for an increase. Hubject reserves the right to deny
+limit increases.
+
+== *Common causes and mitigations*
+
+Rate limiting can occur under a variety of conditions, but it is most
+common in these scenarios:
+
+* Running a large volume of requests in a short time frame (see specific
+limits for each API call type below) can lead to rate limiting. Often
+this is part of an analytical or migration operation. When engaging in
+these activities, You should try to control the request rate on the Your
+side (see <<Handling limiting gracefully>>).
+* A sudden increase in request volume such as bulk processing of
+requests after a temporary downtime of Your system might also result in
+rate limiting. We try to set our rates high enough so that the vast
+majority of Partners are never rate limited for legitimate traffic, but
+if You suspect that an upcoming event might push You over the limits
+listed below, please contact Your Account Manager.
+
+== *Handling limiting gracefully*
+
+A basic technique for integrations to gracefully handle limiting is to
+Your system to monitor 429 http status codes and build in a retry
+mechanism. The retry mechanism should follow an exponential backoff
+schedule to reduce request volume when necessary. We also recommend
+building some randomness into the backoff schedule to avoid a
+https://en.wikipedia.org/wiki/Thundering_herd_problem[thundering herd
+effect].
+
+You can only optimize individual requests to a limited degree, so an
+even more sophisticated approach would be to control traffic to Hubject
+the Platform at a global level and throttle it back if You detect
+substantial rate limiting.
+
+Each of Our APIs use rate limits at different levels. To learn more
+about these differences between call types, please review the specific
+rate limit pages within the specific API sections:
+
+.Limits per OICP call type
+|===
+|Call type |Current limit per minute
+
+|PullEvseStatusById
+|300
+
+|PullEvseStatusByOperatorId
+|75
+
+|PullEvseStatus
+|6
+
+|PullEvseData
+|100
+
+|PushEvseStatus
+|2000
+
+|PushEvseData
+|375
+
+|AuthorizeStart
+|200
+
+|AuthorizeStop
+|50
+
+|AuthorizeRemoteStart
+|100
+
+|AuthorizeRemoteStop
+|200
+
+|PushAuthenticationData
+|50
+
+|PullAuthenticationData
+|6
+
+|ChargeDetailRecord
+|350
+
+|GetChargeDetailRecords
+|200
+
+|ChargingNotification
+|100
+
+|PullEvsePricing
+|280
+
+|PullPricingProductData
+|300
+
+|PushEvsePricing
+|6
+
+|PushPricingProductData
+|6
+
+|===
