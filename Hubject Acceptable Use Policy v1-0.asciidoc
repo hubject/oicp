@@ -159,7 +159,7 @@ rate limit pages within the specific API sections:
 |eRoaming operation / Call type | Number of call per minute allowed
 
 |PullEvseStatusById
-|300
+>|300
 
 |PullEvseStatusByOperatorId
 |75
