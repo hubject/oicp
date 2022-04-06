@@ -593,7 +593,7 @@ Cannot be combined with “SearchCenter”, “CountryCodes”, and “OperatorI
 |	GeoCoordinatesRe sponseFormat	|	<<03_EMP_Data_Types.adoc#GeoCoordinatesResponseFormatType,GeoCoordinatesResponseFormatType>>	|	Defines the format of geo coordinates that shall be provided with the response.	|	M
 |	CountryCodes	|	List <<03_EMP_Data_Types.adoc#CountryCodeType,CountryCodeType>>	|	"A list of countries whose EVSE’s a provider wants to retrieve.
 Cannot be combined with “LastCall”."	|	O
-|	OperatorIDs	|	List <<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	"A list of Operator Ids in ISO or DIN standard to download only EVSE’s of one or more operators.
+|	OperatorIds	|	List <<03_EMP_Data_Types.adoc#OperatorIDType,OperatorIDType>>	|	"A list of Operator Ids in ISO or DIN standard to download only EVSE’s of one or more operators.
 Cannot be combined with “LastCall”."	|	O
 |	AuthenticationModes	|	List <<03_EMP_Data_Types.adoc#AuthenticationModeType,AuthenticationModeType>>	|	 A list of Authentication Modes to start a charging process	|	O
 |	Accessibility	|	List <<03_EMP_Data_Types.adoc#AccessibilityType,AccessibilityType>>	|	A list of accessibility of the charging point	|	O
