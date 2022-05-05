@@ -1194,8 +1194,8 @@ https://www.hubject.com/downloads/
 ----
 {
     "CPOPartnerSessionID": "1234XYZ",
-    "ChargingEnd": "2020-09-23T14:17:53.038Z",
-    "ChargingStart": "2020-09-23T14:50:53.038Z",
+    "ChargingEnd": "2020-09-23T14:50:53.038Z",
+    "ChargingStart": "2020-09-23T14:17:53.038Z",
     "ConsumedEnergy": 10,
     "EMPPartnerSessionID": "2345ABC",
     "EvseID": "DE*XYZ*ETEST1",
