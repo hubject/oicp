@@ -449,7 +449,7 @@ SignedMeteringValue `SHOULD` be always sent in following order
 
 [NOTE]
 ====
-. This field 'MUST' be provided when the EVSEID contains the "External" value in the CalibrationLawDataAvailability field.
+. This field `MUST` be provided when the EVSEID in the ChargeDetailRecord contains the "External" value in the CalibrationLawDataAvailability field.
 . The MeteringSignatureValue format provided `MUST` be supported by the Transparency Software used by the CPO
 ====
 [[CalibrationLawVerificationType]]
