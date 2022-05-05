@@ -447,8 +447,11 @@ SignedMeteringValue `SHOULD` be always sent in following order
 |MeteringStatus|<<MeteringStatusType,MeteringStatusType>>|The status type of the metering signature provided (e.g. Start, Progress, End)|O|
 |=====
 
-NOTE: The MeteringSignatureValue format provided `MUST` be supported by the Transparency Software used by the CPO
-
+[NOTE]
+====
+. This field 'MUST' be provided when the EVSEID contains the "External" value in the CalibrationLawDataAvailability field.
+. The MeteringSignatureValue format provided `MUST` be supported by the Transparency Software used by the CPO
+====
 [[CalibrationLawVerificationType]]
 === CalibrationLawVerificationType
 [%header]
