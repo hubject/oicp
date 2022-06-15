@@ -67,7 +67,7 @@ Hubject compares the given Provider- or OperatorID to the partner’s SSL client
 
 The following process diagram describes the partner identification process. It is performed at the beginning of every web service operation, which is described in this document. Consequently, all process diagrams in the appendix are implicitly preceded by this diagram.
 
-image::images/hubpartnerdiagram.png[]
+image::images/security.png[]
 
 [[hub_provider_and_operator]]
 === Hub Provider and Hub Operator
@@ -86,8 +86,7 @@ The following diagram shows an example scenario. A hub EMP bundles a sub EMP wit
 
 In case you are operating charging stations in different countries, please make sure each EVSE is equipped with the correct country code and the corresponding Operator ID. This Operator ID has to be either a sub-operator ID or your main ID.
 
-image::images/security.png[]
-
+image::images/hubpartnerdiagram.png[]
 
 [[data_push_operations]]
 === Data push operations
