@@ -118,7 +118,7 @@ https://www.hubject.com/downloads/
                 "ChargingStationLocationReference":[
                   {
                     "lang": "en",
-                    "value": "Charging station is inside Hubject Officem Parking Lot"
+                    "value": "Charging station is inside Hubject Office Parking Lot"
                   }
                 ],
                 "ClearinghouseID": "TEST ID",
@@ -178,14 +178,14 @@ https://www.hubject.com/downloads/
                 ],
                 "deltaType": "insert",
                 "lastUpdate": "2018-01-23T14:04:29.377Z",
-                "OperatodId": "DE*ABC",
+                "OperatorId": "DE*ABC",
                 "OperatorName": "ABC technologies"
            }
       ],
   "number": 0,
   "size": 1,
   "totalElements": 8,
-  "last": true,
+  "last": false,
   "totalPages": 8,
   "first": true,
   "numberOfElements": 1,
@@ -1194,8 +1194,8 @@ https://www.hubject.com/downloads/
 ----
 {
     "CPOPartnerSessionID": "1234XYZ",
-    "ChargingEnd": "2020-09-23T14:17:53.038Z",
-    "ChargingStart": "2020-09-23T14:50:53.038Z",
+    "ChargingEnd": "2020-09-23T14:50:53.038Z",
+    "ChargingStart": "2020-09-23T14:17:53.038Z",
     "ConsumedEnergy": 10,
     "EMPPartnerSessionID": "2345ABC",
     "EvseID": "DE*XYZ*ETEST1",
