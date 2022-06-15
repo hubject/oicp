@@ -234,7 +234,7 @@ OperatorName:String: Free text for operator:M:
 |=====================
 
  Best Practices:
- For recommendations regarding specific usage of fields, please consider 8.1.
+ For recommendations regarding specific usage of fields, please check EMP Code Snippets 1.2.
 
 [[OperatorEvseStatusType]]
 === OperatorEvseStatusType
