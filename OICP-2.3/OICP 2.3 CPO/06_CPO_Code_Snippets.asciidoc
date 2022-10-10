@@ -1075,7 +1075,7 @@ https://www.hubject.com/downloads/
     "CPOPartnerSessionID": "1234XYZ",
     "EMPPartnerSessionID": "2345ABC",
     "EvseID": "DE*XYZ*ETEST1",
-    "ErrorType": "Connector Error",
+    "ErrorType": "ConnectorError",
     "ErrorAdditionalInfo": "Plug was not connected, EVSEID timed out reached",
     "Identification": {
         "RFIDMifareFamilyIdentification": {
