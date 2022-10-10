@@ -784,8 +784,8 @@ End	:	Metering Signature Value of the end of the charging process.
 [%header]
 |===
 |Option|Description
-|Connector Error|Charging process cannot be started or stopped. EV driver needs to check if the the Plug is properly inserted or taken out from socket.
-|Critical Error| Charging process stopped abruptly.
+|ConnectorError|Charging process cannot be started or stopped. EV driver needs to check if the the Plug is properly inserted or taken out from socket.
+|CriticalError| Charging process stopped abruptly.
 Reason: Physical check at the station is required. Station cannot be reset online.
 
 Or
