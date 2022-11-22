@@ -746,7 +746,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |ChargingStart |Date/Time |The date and time at which the charging process started.|M|
 |SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
@@ -787,7 +787,7 @@ Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can a
 Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O|
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
 |MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
@@ -825,7 +825,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
 |MeterValueEnd|Decimal (,3)|The ending meter value in kWh.|O|
 |MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|O|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |PenaltyTimeStart|Date/Time|The date and time at which the penalty time start after the grace period.|O|
 |=====
@@ -858,6 +858,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
 |ErrorType |<<03_CPO_Data_Types.adoc#ErrorClassType,ErrorClassType>>|The error code can be chosen from the list|M|
 |ErrorAdditionalInfo|String|The CPO can put in the additional information about the error|O|250
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
 |=====
 
 [[eRoamingAcknowledgementmessage]]
