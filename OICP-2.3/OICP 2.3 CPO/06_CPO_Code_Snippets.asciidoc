@@ -17,7 +17,7 @@ for *PROD* - environment: `https://service.hubject.com/api/oicp/evsepush/v23/ope
 
 The service description can be found in the OICP protocol version 2.3.
 To download the latest OICP Version, please visit our website:
-https://www.hubject.com/downloads/
+https://de.hubject.com/company/download
 
 === Request Code
 
