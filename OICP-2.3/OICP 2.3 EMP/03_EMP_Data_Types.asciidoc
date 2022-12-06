@@ -3,7 +3,7 @@
 image::images/hubjectlogo.png[align="right"]
 
 [[DataTypes]]
-= Data Types
+== Data Types
 
 :numbered:
 
@@ -50,7 +50,7 @@ IMPORTANT: *One of the following five options `MUST` be provided*
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
-EVSE: <<EvseDataRecordType,EvseDataRecordType>>:Charging point information: M
+EVSE: <<PullEvseDataRecordType,PullEvseDataRecordType>>:Charging point information: M
 Distance:Decimal (4,1) :Air distance to the requested position in km (non-routed):O
 |=====================
 

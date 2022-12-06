@@ -4,7 +4,7 @@
 image::images/hubjectlogo.png[float="right", align="right"]
 
 [[services_and_operations]]
-= Services and Operations
+== Services and Operations
 
 Each message requires a message in return (at least an acknowledgement).
 
@@ -441,7 +441,9 @@ EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies t
 
 Hubject offers the possibility to upload and download charging spot (EVSE) data and, thus, to exchange data between different partners.
 
-See <<04_Appendix.asciidoc,apendix>> for a detailed business process diagram regarding the EVSE data service.
+
+See <<04_Appendix.adoc#Appendix, Appendix>> for a detailed business process diagram regarding the EVSE data service.
+
 
 The eRoamingEvseData service offers two operations:
 
@@ -746,7 +748,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |ChargingStart |Date/Time |The date and time at which the charging process started.|M|
 |SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
@@ -787,7 +789,7 @@ Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can a
 Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O|
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
 |MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
@@ -825,7 +827,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
 |MeterValueEnd|Decimal (,3)|The ending meter value in kWh.|O|
 |MeterValueInBetween|List (MeterValue (Decimal (,3)))|List of meter values that may have been taken in between (kWh).|O|
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>|The OperatorID is used to identify the CPO.|M|
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |PenaltyTimeStart|Date/Time|The date and time at which the penalty time start after the grace period.|O|
 |=====
@@ -846,7 +848,7 @@ The ChargingNotification of type “Error” is a message that contains informat
 |=====
 |Name| Data Type| Description| M/O| Field Length
 |Type|<<03_CPO_Data_Types.adoc#ChargingNotificationType,ChargingNotificationType>>|The type of ChargingNotification. For this case only the notification type “Error” can be chosen.|M|
-|SessionID |<<DataTypes.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
+|SessionID |<<03_CPO_Data_Types.adoc#SessionIDType,SessionIDType>>|The Hubject SessionID that identifies the process. |M|
 |CPOPartnerSessionID|String|Optional field containing the session ID assigned by the CPO to the related operation.
 
 Partner systems can use this field to link their own session handling to HBS processes.
@@ -858,7 +860,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 |EvseID|<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>|The ID that identifies the charging spot.|M|
 |ErrorType |<<03_CPO_Data_Types.adoc#ErrorClassType,ErrorClassType>>|The error code can be chosen from the list|M|
 |ErrorAdditionalInfo|String|The CPO can put in the additional information about the error|O|250
-|OperatorID|<<03_CPO_Data_Types.adoc#OperatorID,OperatorID>>|The OperatorID is used to identify the CPO.|M|
+|OperatorID|<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>|The OperatorID is used to identify the CPO.|M|
 |=====
 
 [[eRoamingAcknowledgementmessage]]
