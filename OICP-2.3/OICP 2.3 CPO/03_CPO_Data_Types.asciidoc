@@ -393,7 +393,7 @@ value:String:The Additional Info text:M:150
 |=====================
 Name:Data Type:Description:M/O:Field Length
 Period:<<PeriodType,PeriodType>>:The starting and end time for pricing product applicability in the specified period:M:
-On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available. Workdays = Monday – Friday, Weekend = Saturday – Sunday:M:
+on:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available. Workdays = Monday – Friday, Weekend = Saturday – Sunday:M:
 |=====================
 
 [[OperatorEVSEPricingType]]
