@@ -844,7 +844,7 @@ Examples DIN: *“DE*8EO*Aet5e4*3”*, *“DE-8EO-Aet5e4-3”*, *“DE8EOAet5e43
 === EvseIDType
 A string that `MUST` be valid with respect to the following regular expression: ISO | DIN.
 
- ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3}\*?E[A-Za-z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$
+ ^(([A-Z]{2}\*?[A-Z0-9]{3}\*?E[A-Z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$
 
 The expression validates the string as EvseID. It supports both definitions https://www.din.de/en/wdc-beuth:din21:145915787[DIN SPEC 91286:2011-11] as well as https://www.iso.org/standard/55365.html[ISO 15118-1].
 
