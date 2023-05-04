@@ -537,7 +537,7 @@ for *QA* - environment: `https://service-qa.hubject.com/api/oicp/cdrmgmt/v22/ope
 
 for *PROD* - environment: `https://service.hubject.com/api/oicp/cdrmgmt/v22/operators/{operatorID}/charge-detail-record`
 
-NOTE: Please note that in case of EMP role this part of the URL '/api/oicp/cdrmgmt/v21/operators/{operatorID}/charge-detail-record' will be added to your URL endpoint when sending the request through our HBS platform.
+NOTE: Please note that in case of EMP role this part of the URL '/api/oicp/cdrmgmt/v22/operators/{operatorID}/charge-detail-record' will be added to your URL endpoint when sending the request through our HBS platform.
 
 The service description can be found in the OICP protocol version 2.3.
 To download the latest OICP Version, please visit our website:
