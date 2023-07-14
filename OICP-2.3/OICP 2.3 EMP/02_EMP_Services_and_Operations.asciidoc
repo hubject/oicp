@@ -188,7 +188,7 @@ image::images/remotestart.png[]
 
 A customer of an EMP wants to charge a vehicle at a charging station of a CPO. The customer informs his EMP of his intention,
 e.g. via mobile phone or smart phone application. The EMP’s provider system can then initiate a charging
-process at the CPO’s charging station by sending an eRoamingAuthorizeRemoteStart request to Hubject. The request MUST contain the ProviderID and the EvseID.
+process at the CPO’s charging station by sending an eRoamingAuthorizeRemoteStart request to Hubject. The request MUST contain the ProviderID, EvseID and Identification.
 
 Hubject will derive the CPO’s OperatorID from the EvseID.
 
