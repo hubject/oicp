@@ -784,7 +784,7 @@ Partner systems can use this field to link their own session handling to HBS pro
 
 Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O/M|
 |SessionStart  |Date/Time|The date and time at which the session started, e.g. swipe of RFID or cable connected.|O|
-|ConsumedEnergyProgress|Decimal (,3)|This is consumed energy when from Start of charging process till the charging progress notification generated (EventOccurred)
+|ConsumedEnergyProgress|Decimal (,3)|This represents the consumed energy in kWh from the start of the charging process until the charging progress notification is generated (EventOccurred).
 
 Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can also be provided with each progress notification.|O|
 |MeterValueStart   |Decimal (,3)|The starting meter value in kWh.|O|
