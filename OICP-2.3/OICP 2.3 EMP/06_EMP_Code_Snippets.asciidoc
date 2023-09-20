@@ -583,7 +583,7 @@ https://www.hubject.com/downloads/
 {
   "CDRForwarded": false,
   "From": "2020-08-23T14:20:10.285Z",
-  "OperatorID": "DE*ABC",
+  "OperatorID": ["DE*ABC"],
   "ProviderID": "DE-DCN",
   "To": "2020-09-23T14:20:10.285Z",
   "SessionID":[
