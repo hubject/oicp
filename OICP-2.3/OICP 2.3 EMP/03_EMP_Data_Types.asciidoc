@@ -2,18 +2,15 @@
 
 image::images/hubjectlogo.png[align="right"]
 
-[[DataTypes]]
-== Data Types
+== [[DataTypes]]Data Types
 
 :numbered:
 
 
-[[ComplexDataTypes]]
-== Complex Data Types
+== [[ComplexDataTypes]]Complex Data Types
 Complex data types comprise a number of data fields that can also be complex types.
 
-[[StatusCodeType]]
-=== StatusCodeType
+=== [[StatusCodeType]]StatusCodeType
 The structure consists of a defined code, an optional functional description of the status, and optional additional information. It can be used e.g. to send error details or detailed reasons for a certain process or system behavior. The optional AdditionalInfo field can be used in order to provide further individual (non-standardized) information.
 
 [%header,format=dsv, cols=5]
@@ -23,8 +20,7 @@ Code: <<CodeType,Code Type>>:To be selected from valid range: M:
 Description:String:Description:O:200
 AdditionalInfo:String:More information can be provided here:O:1000
 |=====================
-[[IdentificationType]]
-=== IdentificationType
+=== [[IdentificationType]]IdentificationType
 
 IMPORTANT: *One of the following five options `MUST` be provided*
 
@@ -44,8 +40,7 @@ IMPORTANT: *One of the following five options `MUST` be provided*
 . For the Remote Authorization process, only the option RemoteIdentification `MUST` be used in the respective messages.
 ====
 
-[[EvseMatchType]]
-=== EvseMatchType
+=== [[EvseMatchType]]EvseMatchType
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -54,8 +49,7 @@ EVSE: <<PullEvseDataRecordType,PullEvseDataRecordType>>:Charging point informati
 Distance:Decimal (4,1) :Air distance to the requested position in km (non-routed):O
 |=====================
 
-[[GeoCoordinatesType]]
-=== GeoCoordinatesType
+=== [[GeoCoordinatesType]]GeoCoordinatesType
 IMPORTANT: *One of the following three options `MUST` be provided*
 [%header,format=dsv, cols=3]
 |=====================
@@ -65,16 +59,14 @@ DecimalDegree:<<GeoCoordinatesDecimalDegreeType,GeoCoordinatesDecimalDegreeType>
 DegreeMinuteSeconds:<<GeoCoordinatesDegreeMinuteSecondsType,GeoCoordinatesDegreeMinuteSecondsType>>:Geocoordinates using DegreeMinutesSeconds Structure
 |=====================
 
-[[GeoCoordinatesGoogleType]]
-=== GeoCoordinatesGoogleType
+=== [[GeoCoordinatesGoogleType]]GeoCoordinatesGoogleType
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
 Coordinates: <<GeoCoordinatesGoogleFormatType,GeoCoordinatesGoogleFormatType>>:Based on WGS84: M
 |=====================
 
-[[GeoCoordinatesDecimalDegreeType]]
-=== GeoCoordinatesDecimalDegreeType
+=== [[GeoCoordinatesDecimalDegreeType]]GeoCoordinatesDecimalDegreeType
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
@@ -82,8 +74,7 @@ Longitude: <<GeoCoordinatesDecimalDegreeFormatType,GeoCoordinatesDecimalDegreeFo
 Latitude:<<GeoCoordinatesDecimalDegreeFormatType,GeoCoordinatesDecimalDegreeFormatType>>:Based on WGS84:M
 |=====================
 
-[[GeoCoordinatesDegreeMinuteSecondsType]]
-=== GeoCoordinatesDegreeMinuteSecondsType
+=== [[GeoCoordinatesDegreeMinuteSecondsType]]GeoCoordinatesDegreeMinuteSecondsType
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -92,8 +83,7 @@ Longitude: <<GeoCoordinatesDegreeMinuteSecondsFormatType,GeoCoordinatesDegreeMin
 Latitude:<<GeoCoordinatesDegreeMinuteSecondsFormatType,GeoCoordinatesDegreeMinuteSecondsFormatType>>:Based on WGS84:M
 |=====================
 
-[[ProviderAuthenticationDataType]]
-=== ProviderAuthenticationDataType
+=== [[ProviderAuthenticationDataType]]ProviderAuthenticationDataType
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -102,8 +92,7 @@ ProviderID: <<ProviderIDType,ProviderIDType>>:The EMP whose data records are lis
 AuthenticationDataRecord:<<AuthenticationDataRecordType,AuthenticationDataRecordType>>::M  0...n
 |=====================
 
-[[AuthenticationDataRecordType]]
-=== AuthenticationDataRecordType
+=== [[AuthenticationDataRecordType]]AuthenticationDataRecordType
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -111,8 +100,7 @@ Name:Data Type:Description:M/O
 Identification: <<IdentificationType,IdentificationType>>:Authentication data: M
 |=====================
 
-[[RFIDmifarefamilyIdentificationType]]
-=== RFIDmifarefamilyIdentificationType
+=== [[RFIDmifarefamilyIdentificationType]]RFIDmifarefamilyIdentificationType
 [%header]
 |=====
 |Name |Data Type |Description|M/O|Field Length
@@ -123,8 +111,7 @@ It `SHOULD` be read from left to right using big-endian format.
 Hubject will automatically convert all characters from lower case to upper case |M |50
 |=====
 
-[[QRCodeIdentificationType]]
-=== QRCodeIdentificationType
+=== [[QRCodeIdentificationType]]QRCodeIdentificationType
 
 [%header]
 |=====
@@ -134,24 +121,21 @@ Hubject will automatically convert all characters from lower case to upper case 
 |PIN|String|The pin number, this field is required in Authorization requests!|O|0-20
 |=====
 
-[[PlugAndChargeIdentificationType]]
-=== PlugAndChargeIdentificationType
+=== [[PlugAndChargeIdentificationType]]PlugAndChargeIdentificationType
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
 EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier: M
 |=====================
 
-[[RemoteIdentificationType]]
-=== RemoteIdentificationType
+=== [[RemoteIdentificationType]]RemoteIdentificationType
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
 EvcoID: <<EvcoIDType,EvcoIDType>>:Contract identifier Hubject will automatically convert all characters from lower case to upper case: M
 |=====================
 
-[[AddressIso19773Type]]
-=== AddressIso19773Type
+=== [[AddressIso19773Type]]AddressIso19773Type
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -168,8 +152,7 @@ ParkingSpot:String:O:5
 TimeZone:<<TimeZoneType,TimeZoneType>>:O:
 |=====================
 
-[[SearchCenterType]]
-=== SearchCenterType
+=== [[SearchCenterType]]SearchCenterType
 
 [%header,format=dsv, cols=4]
 |=====================
@@ -179,8 +162,7 @@ Radius:Decimal (4,1):Radius in km around the position that is defined by the geo
 |=====================
 
 ////
-[[OperatorEvseDataType]]
-=== OperatorEvseDataType
+=== [[OperatorEvseDataType]]OperatorEvseDataType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -190,8 +172,7 @@ EvseDataRecord:<<EvseDataRecordType,EvseDataRecordType>>:EVSE entries:M 0...n:
 |=====================
 ////
 
-[[PullEvseDataRecordType]]
-=== PullEvseDataRecordType
+=== [[PullEvseDataRecordType]]PullEvseDataRecordType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -236,8 +217,7 @@ OperatorName:String: Free text for operator:M:
  Best Practices:
  For recommendations regarding specific usage of fields, please check EMP Code Snippets 1.2.
 
-[[OperatorEvseStatusType]]
-=== OperatorEvseStatusType
+=== [[OperatorEvseStatusType]]OperatorEvseStatusType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -246,8 +226,7 @@ OperatorName:String:Free text for operator:O:100
 EvseStatusRecord:<<EvseStatusRecordType,EvseStatusRecordType>>:EvseStatus list:M  0...n:
 |=====================
 
-[[EvseStatusRecordType]]
-=== EvseStatusRecordType
+=== [[EvseStatusRecordType]]EvseStatusRecordType
 [%header,format=dsv, cols=4]
 |=====================
 Name:Data Type:Description:M/O
@@ -255,8 +234,7 @@ EvseID:<<EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M
 EvseStatus:<<EvseStatusType,EvseStatusType>>:The status of the charging spot.:M
 |=====================
 
-[[HashedPINType]]
-=== HashedPINType
+=== [[HashedPINType]]HashedPINType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -265,8 +243,7 @@ Function:<<HashFunctionType,HashFunctionType>>:Function that was used to generat
 LegacyHashData:<<LegacyHashDataType,LegacyHashDataType>>:Field for hashing data related to OICP v2.1. It is unused in later versions.:O:
 |=====================
 
-[[LegacyHashDataType]]
-=== LegacyHashDataType
+=== [[LegacyHashDataType]]LegacyHashDataType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -275,8 +252,7 @@ Salt:String:The salt value used by the partner for hashing the PIN.:O:0-100
 Value:String:PIN hash at the partner.:O:0-20
 |=====================
 
-[[ChargingFacilityType]]
-=== ChargingFacilityType
+=== [[ChargingFacilityType]]ChargingFacilityType
 
 [%header,format=dsv, cols=5]
 |=====================
@@ -288,8 +264,7 @@ Power:Integer:Charging Facility power in kW:M:3
 ChargingModes:<<ChargingModeType,List ChargingModeType>>:List of charging modes that are supported.:O:
 |=====================
 
-[[PricingProductDataType]]
-=== PricingProductDataType
+=== [[PricingProductDataType]]PricingProductDataType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -302,8 +277,7 @@ PricingDefaultReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Default Refe
 PricingProductDataRecords:<<PricingProductDataRecordType,PricingProductDataRecordType>>:A list of pricing products:M:0...n
 |=====================
 
-[[PricingProductDataRecordType]]
-=== PricingProductDataRecordType
+=== [[PricingProductDataRecordType]]PricingProductDataRecordType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -317,8 +291,7 @@ ProductAvailabilityTimes:<<ProductAvailabilityTimesType,ProductAvailabilityTimes
 AdditionalReferences:<<AdditionalReferencesType,AdditionalReferencesType>>:A list of additional reference units and their respective prices:O:0...n
 |=====================
 
-[[EVSEPricingType]]
-=== EVSEPricingType
+=== [[EVSEPricingType]]EVSEPricingType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -327,16 +300,14 @@ ProviderID:<<ProviderIDType,ProviderIDType>>:The EMP for whom the pricing data i
 EvseIDProductList:<<EvseIDProductListType,EvseIDProductListType>>:A list of pricing products applicable per EvseID:M:1...n
 |=====================
 
-[[EvseIDProductListType]]
-=== EvseIDProductListType
+=== [[EvseIDProductListType]]EvseIDProductListType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
 ProductID:<<ProductIDType,ProductIDType>>:The product name of the applicable pricing product: M:50
 |=====================
 
-[[ProductAvailabilityTimesType]]
-=== ProductAvailabilityTimesType
+=== [[ProductAvailabilityTimesType]]ProductAvailabilityTimesType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -344,8 +315,7 @@ Period:<<PeriodType,PeriodType>>:The starting and end time for pricing product a
 on:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available:M:
 |=====================
 
-[[AdditionalReferencesType]]
-=== AdditionalReferencesType
+=== [[AdditionalReferencesType]]AdditionalReferencesType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -354,8 +324,7 @@ AdditionalReferenceUnit:<<ReferenceUnitType,ReferenceUnitType>>:Additional refer
 PricePerAdditionalReferenceUnit:Decimal:A price in the given currency:M:
 |=====================
 
-[[PeriodType]]
-=== PeriodType
+=== [[PeriodType]]PeriodType
 [%header]
 |=====
 |Name|Data Type|Description|M/O|Field Length
@@ -369,8 +338,7 @@ Pattern:
 `[0-9]{2}:[0-9]{2}`|The closing time|M|
 |=====
 
-[[RFIDIdentificationType]]
-=== RFIDIdentificationType
+=== [[RFIDIdentificationType]]RFIDIdentificationType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -381,8 +349,7 @@ PrintedNumber:String:A number printed on a customer’s card for manual authoriz
 ExpiryDate:Date/Time:Until when this card is valid. `SHOULD` not be set if card does not have an expiration:O:
 |=====================
 
-[[InfoTextType]]
-=== InfoTextType
+=== [[InfoTextType]]InfoTextType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -390,8 +357,7 @@ lang:<<LanguageCodeType,LanguageCodeType>>:The language in which the additional 
 value:String:The Additional Info text:M:150
 |=====================
 
-[[OpeningTimesType]]
-=== OpeningTimesType
+=== [[OpeningTimesType]]OpeningTimesType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -399,8 +365,7 @@ Period:<<PeriodType,PeriodType>>:The starting and end time for pricing product a
 On:enum (Everyday, Workdays, Weekend, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday):Day values to be used in specifying periods on which the product is available. Workdays = Monday – Friday, Weekend = Saturday – Sunday:M:
 |=====================
 
-[[OperatorEVSEPricingType]]
-=== OperatorEVSEPricingType
+=== [[OperatorEVSEPricingType]]OperatorEVSEPricingType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -409,8 +374,7 @@ OperatorName:String:Operator name:O:100
 EVSEPricing:<<EVSEPricingType,EVSEPricingType>>:List of EVSE pricings offered by the operator.:M  0...n:
 |=====================
 
-[[EnergySourceType]]
-=== EnergySourceType
+=== [[EnergySourceType]]EnergySourceType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -418,8 +382,7 @@ Energy:<<EnergyType,EnergyType>>::O:
 Percentage:Integer:Percentage of EnergyType bein used by the charging stations:O:2
 |=====================
 
-[[EnvironmentalImpactType]]
-=== EnvironmentalImpactType
+=== [[EnvironmentalImpactType]]EnvironmentalImpactType
 [%header,format=dsv, cols=5]
 |=====================
 Name:Data Type:Description:M/O:Field Length
@@ -427,8 +390,7 @@ CO2Emission:Decimal: Total CO2 emited by the energy source being used by this ch
 NuclearWaste:Decimal:Total NuclearWaste emited by the energy source being used by this charging station to supply energy to EV. Units are in g/kWh:O:5
 |=====================
 
-[[SignedMeteringValuesType]]
-=== SignedMeteringValuesType
+=== [[SignedMeteringValuesType]]SignedMeteringValuesType
 [%header]
 |=====
 |Name|Data Type|Description|M/O|Field Length
@@ -453,8 +415,7 @@ SignedMeteringValue should be always sent in following order
 
 NOTE: The MeteringSignatureValue format provided `MUST` be supported by the Transparency Software used by the CPO
 
-[[CalibrationLawVerificationType]]
-=== CalibrationLawVerificationType
+=== [[CalibrationLawVerificationType]]CalibrationLawVerificationType
 [%header]
 |=====
 |Name|Data Type|Description|M/O|Field Length
@@ -469,13 +430,11 @@ The information can contain for eg Charging Station Details, Charging Session Da
 |=====
 
 
-[[SimpleSpecificationDataTypes]]
-== Simple Specification Data Types
+== [[SimpleSpecificationDataTypes]]Simple Specification Data Types
 
 Specification types define a range of possible data values the data field that is assigned to the type can have.
 
-[[AuthorizationStatusType]]
-=== AuthorizationStatusType
+=== [[AuthorizationStatusType]]AuthorizationStatusType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -483,8 +442,7 @@ Authorized:User is authorized.
 NotAuthorized:User is not authorized.
 |=====================
 
-[[AccessibilityType]]
-=== AccessibilityType
+=== [[AccessibilityType]]AccessibilityType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -494,8 +452,7 @@ Paying publicly accessible:EV Driver needs to pay a fee in order to reach the ch
 Test Station:Station is just for testing purposes. Access may be restricted.
 |=====================
 
-[[PlugType]]
-=== PlugType
+=== [[PlugType]]PlugType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -519,8 +476,7 @@ CCS Combo 1 Plug (Cable Attached)	:	IEC 62196-3 CDV DC Combined Charging Connect
 CHAdeMO	:	DC CHAdeMO Connector.
 |=====================
 
-[[ChargingModeType]]
-=== ChargingModeType
+=== [[ChargingModeType]]ChargingModeType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -531,8 +487,7 @@ Mode_4	:	conductive connection of an EV to an AC or DC supply network utilizing 
 CHAdeMO	:	CHAdeMo Specification
 |=====================
 
-[[AuthenticationModeType]]
-=== AuthenticationModeType
+=== [[AuthenticationModeType]]AuthenticationModeType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -544,8 +499,7 @@ Direct Payment	:	Remote use via direct payment. E.g. intercharge direct
 No Authentication Required: Not Authentication Method Required
 |=====================
 
-[[PaymentOptionType]]
-=== PaymentOptionType
+=== [[PaymentOptionType]]PaymentOptionType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -555,8 +509,7 @@ Contract:i. e. Subscription.
 |=====================
 NOTE: `No Payment` can not be combined with other payment option
 
-[[GeoCoordinatesResponseFormatType]]
-=== GeoCoordinatesResponseFormatType
+=== [[GeoCoordinatesResponseFormatType]]GeoCoordinatesResponseFormatType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -565,16 +518,14 @@ DegreeMinuteSeconds	:	Based on WGS84.
 DecimalDegree	:	Based on WGS84.
 |=====================
 
-[[HashFunctionType]]
-=== HashFunctionType
+=== [[HashFunctionType]]HashFunctionType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
 Bcrypt : Hash value is based on Bcrypt.
 |=====================
 
-[[EvseStatusType]]
-=== EvseStatusType
+=== [[EvseStatusType]]EvseStatusType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -586,8 +537,7 @@ EvseNotFound	:	The requested EvseID and EVSE status does not exist within the Hu
 Unknown	:	No status information available.
 |=====================
 
-[[CodeType]]
-=== CodeType (list of error and status codes)
+=== [[CodeType]]CodeType (list of error and status codes)
 [%header,format=dsv, cols=3]
 |=====================
 Option:Description:Area of Usage
@@ -624,8 +574,7 @@ Option:Description:Area of Usage
 700	:	EVSE out of service.	:	EVSE codes
 |=====================
 
-[[CountryCodeType]]
-=== CountryCodeType
+=== [[CountryCodeType]]CountryCodeType
 The CountryCodeType allows for Alpha-3 country codes only as of OICP 2.2 and OICP 2.3
 ISO
 For Alpha-3 (three-letter) country codes as defined in http://unstats.un.org/unsd/methods/m49/m49alpha.htm[ 3166-1].
@@ -640,8 +589,7 @@ FRA	: France
 USA	: United States
 |=====================
 
-[[ProductIDType]]
-=== ProductIDType
+=== [[ProductIDType]]ProductIDType
 
 The ProductIDType defines some standard values (see below). The type however also supports custom ProductIDs that can be specified by partners (as a string of 50 characters maximum length).
 
@@ -655,8 +603,7 @@ DC	:Product for DC charging
 CustomProductID	:There is no option “CustomProductID”, this sample option is meant to indicates that custom product ID specifications by partners (as a string of 50 characters maximum length) are allowed as well.
 |=====================
 
-[[ValueAddedServiceType]]
-=== ValueAddedServiceType
+=== [[ValueAddedServiceType]]ValueAddedServiceType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -670,8 +617,7 @@ RoofProvided : Indicates if the charging station is under a roof
 None : There are no value-added services available.
 |=====================
 
-[[PowerType]]
-=== PowerType
+=== [[PowerType]]PowerType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -680,8 +626,7 @@ AC_3_PHASE	: Defined Charging Facility Power Type.
 DC :	Defined Charging Facility Power Type.
 |=====================
 
-[[ReferenceUnitType]]
-=== ReferenceUnitType
+=== [[ReferenceUnitType]]ReferenceUnitType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -690,8 +635,7 @@ KILOWATT_HOUR:	Defined Reference Unit Type
 MINUTE:	Defined Reference Unit Type
 |=====================
 
-[[AdditionalReferenceType]]
-=== AdditionalReferenceType
+=== [[AdditionalReferenceType]]AdditionalReferenceType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -702,8 +646,7 @@ MINIMUM FEE	: Can be used in case there is a minimum fee to be paid for all char
 MAXIMUM FEE	: Can be used in case there is a maximum fee to be charged for all charging sessions. When used, this implies that the eventual price to be paid cannot be more than this maximum fee but can however be a price below/lower than the maximum fee.
 |=====================
 
-[[CurrencyIDType]]
-=== CurrencyIDType
+=== [[CurrencyIDType]]CurrencyIDType
 [%header,format=dsv, cols=2]
 The ProductPriceCurrencyType allows for the list of active codes of the official ISO 4217 currency names.
 
@@ -719,8 +662,7 @@ CAD	: Canadian Dollar
 GBP	: Pound sterling
 |=====================
 
-[[RFIDType]]
-=== RFIDType
+=== [[RFIDType]]RFIDType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -731,8 +673,7 @@ nfc	: Defined RFID Type
 mifareFamily	: Defined RFID Type
 |=====================
 
-[[AccessibilityLocationType]]
-=== AccessibilityLocationType
+=== [[AccessibilityLocationType]]AccessibilityLocationType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -742,8 +683,7 @@ ParkingGarage :  The Charging Point is located inside a Parking Garage
 UndergroundParkingGarage:  The Charging Point is located inside an Underground Parking Garage
 |=====================
 
-[[EnergyType]]
-=== EnergyType
+=== [[EnergyType]]EnergyType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -758,8 +698,7 @@ Petroleum	:	Energy produced by using Petroleum as fuel
 NaturalGas	:	Energy produced using Natural Gas as fuel
 |=====================
 
-[[CalibrationLawDataAvailabilityType]]
-=== CalibrationLawDataAvailabilityType
+=== [[CalibrationLawDataAvailabilityType]]CalibrationLawDataAvailabilityType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -768,8 +707,7 @@ External	:	Calibration law data is provided externaly
 Not Available	:	Calibration law data is not provided.
 |=====================
 
-[[MeteringStatusType]]
-=== MeteringStatusType
+=== [[MeteringStatusType]]MeteringStatusType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -778,8 +716,7 @@ Progress	:	An intermediate metering signature value of the charging process.
 End	:	Metering Signature Value of the end of the charging process.
 |=====================
 
-[[ErrorClassType]]
-=== ErrorClassType
+=== [[ErrorClassType]]ErrorClassType
 
 [%header]
 |===
@@ -805,8 +742,7 @@ Or
 Ground Failure
 |===
 
-[[ChargingNotificationType]]
-=== ChargingNotificationType
+=== [[ChargingNotificationType]]ChargingNotificationType
 [%header,format=dsv, cols=2]
 |=====================
 Option:Description
@@ -817,12 +753,10 @@ Error: Indicates if the Notification refers to an error.
 |=====================
 
 
-[[SimpleRestrictedStringDataTypes]]
-== Simple Restricted String Data Types
+== [[SimpleRestrictedStringDataTypes]]Simple Restricted String Data Types
 Restricted string types define a string that is restricted with respect to a certain regular expression.
 
-[[EvcoIDType]]
-=== EvcoIDType
+=== [[EvcoIDType]]EvcoIDType
 A string that `MUST` be valid with respect to the following regular expression: *ISO | DIN*.
 
  ^(([A-Za-z]{2}\-?[A-Za-z0-9]{3}\-?C[A-Za-z0-9]{8}\-?[\d|A-Za-z])|([A-Za-z]{2}[\*|\-]?[A-Za-z0-9]{3}[\*|\-]?[A-Za-z0-9]{6}[\*|\-]?[\d|X]))$
@@ -840,8 +774,7 @@ Examples ISO: *“DE-8EO-CAet5e4XY-3”*, *“DE8EOCAet5e43X1”*
 
 Examples DIN: *“DE*8EO*Aet5e4*3”*, *“DE-8EO-Aet5e4-3”*, *“DE8EOAet5e43”*
 
-[[EvseIDType]]
-=== EvseIDType
+=== [[EvseIDType]]EvseIDType
 A string that `MUST` be valid with respect to the following regular expression: ISO | DIN.
 
  ^(([A-Z]{2}\*?[A-Z0-9]{3}\*?E[A-Z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$
@@ -856,8 +789,7 @@ Examples ISO: *“DE*AB7*E840*6487”*, *“DEAB7E8406487”*
 
 Example DIN: *“+49*810*000*438”*
 
-[[ProviderIDType]]
-=== ProviderIDType
+=== [[ProviderIDType]]ProviderIDType
 A string that `MUST` be valid with respect to the following regular expression: ISO | DIN
 
  ^([A-Za-z]{2}\-?[A-Za-z0-9]{3}|[A-Za-z]{2}[\*|-]?[A-Za-z0-9]{3})$
@@ -872,8 +804,7 @@ Examples ISO: *“DE8EO”*, *“DE-8EO”*
 
 Examples DIN: *“DE8EO”*, *“DE*8EO”*, *“DE-8EO”*
 
-[[OperatorIDType]]
-=== OperatorIDType
+=== [[OperatorIDType]]OperatorIDType
 A string that `MUST` be valid with respect to the following regular expression: ISO | DIN
 
  ^(([A-Za-z]{2}\*?[A-Za-z0-9]{3})|(\+?[0-9]{1,3}\*[0-9]{3}))$
@@ -891,8 +822,7 @@ Examples ISO: *“DE*A36”*, *“DEA36”*
 
 Example DIN: *“+49*536”*
 
-[[GeoCoordinatesGoogleFormatType]]
-=== GeoCoordinatesGoogleFormatType
+=== [[GeoCoordinatesGoogleFormatType]]GeoCoordinatesGoogleFormatType
 
 A string that `MUST` be valid with respect to the following regular expression:
 
@@ -903,8 +833,7 @@ latitude and longitude (in this sequence) separated by a space.
 
 Example: *“47.662249 9.360922”*
 
-[[GeoCoordinatesDecimalDegreeFormatType]]
-=== GeoCoordinatesDecimalDegreeFormatType
+=== [[GeoCoordinatesDecimalDegreeFormatType]]GeoCoordinatesDecimalDegreeFormatType
 
 A string that `MUST` be valid with respect to the following regular expression:
 
@@ -914,8 +843,7 @@ The expression validates the string as a geo coordinate (longitude or latitude) 
 
 Examples: *“9.360922”, “-21.568201”*
 
-[[GeoCoordinatesDegreeMinuteSecondsFormatType]]
-=== GeoCoordinatesDegreeMinuteSecondsFormatType
+=== [[GeoCoordinatesDegreeMinuteSecondsFormatType]]GeoCoordinatesDegreeMinuteSecondsFormatType
 A string that `MUST` be valid with respect to the following regular expression:
 
  ^-?1?\d{1,2}°[ ]?\d{1,2}'[ ]?\d{1,2}\.\d+''$
@@ -925,8 +853,7 @@ seconds
 
 Examples: *“9°21'39.32''”, “-21°34'23.16''*
 
-[[SessionIDType]]
-=== SessionIDType
+=== [[SessionIDType]]SessionIDType
 A string that `MUST` be valid with respect to the following regular expression:
 
  ^[A-Za-z0-9]{8}(-[A-Za-z0-9]{4}){3}-[A-Za-z0-9]{12}$
@@ -935,40 +862,35 @@ The expression validates the string as a GUID.
 
 Example: *“b2688855-7f00-0002-6d8e-48d883f6abb6”*
 
-[[PhoneNumberType]]
-=== PhoneNumberType
+=== [[PhoneNumberType]]PhoneNumberType
  ^\+[0-9]{5,15}$
 
 The expression validates the string as a telephone number starting with “+” and containing only numbers.
 
 Example: *“+0305132787”*
 
-[[UIDType]]
-=== UIDType
+=== [[UIDType]]UIDType
  ^([0-9A-F]{8,8}|[0-9A-F]{14,14}|[0-9A-F]{20,20})$
 
 The expression validates the string as a unique RFID with a length of 8, 14 or 20 characters.
 
 Examples: *“AFFH1768”*, *“7568290FFF765F”*
 
-[[HashValueType]]
-=== HashValueType
+=== [[HashValueType]]HashValueType
  ^[0-9A-Za-z]{10,100}$
 
 The expression validates the string as a hash function result value with a length between 10 and 100 characters
 
 Example: *“a5ghdhf73h”*
 
-[[LanguageCodeType]]
-=== LanguageCodeType
+=== [[LanguageCodeType]]LanguageCodeType
  ^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?(?:-x-[a-zA-Z0-9]{1,8})?$
 
 The expression validates the string as a language code as per https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes[ISO-639-1] or ISO-639-2/T
 
 The LanguageCodeType is used in the AdditionalInfo field, which is part of the EvseDataRecordType.
 
-[[ChargingPoolIDType]]
-=== ChargingPoolIDType
+=== [[ChargingPoolIDType]]ChargingPoolIDType
 EVSEs may be grouped by using a charging pool id according to https://emi3group.com/documents-links/[emi³ standard definition]. The Evse Pool ID `MUST`
 match the following structure (the notation corresponds to the augmented Backus-Naur Form (ABNF) as defined in
 RFC5234):
@@ -1009,8 +931,7 @@ This leads to the following regular expression:
 
 This regular expression is similar to that of the ISO EvseIDType but E is replaced with P to indicate a pool.
 
-[[TimezoneType]]
-=== TimeZoneType
+=== [[TimezoneType]]TimeZoneType
  [U][T][C][+,-][0-9][0-9][:][0-9][0-9]
 
 The expression validates a string as a Time zone with UTC offset.

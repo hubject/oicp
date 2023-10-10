@@ -1,56 +1,45 @@
 :toc:
 
 
-[[Business_Process_Diagrams]]
-= Business_Process_Diagrams
+= [[Business_Process_Diagrams]]Business_Process_Diagrams
 
 :numbered:
-[[BusinessProcessDiagrameRoamingAuthorization]]
-=== Business Process Diagram eRoamingAuthorization
+=== [[BusinessProcessDiagrameRoamingAuthorization]]Business Process Diagram eRoamingAuthorization
 
 image::images/eroamingauthorization.png[]
 
-[[BusinessProcessDiagrameRoamingAuthorizationRemote]]
-=== Business Process Diagram eRoamingAuthorization Remote
+=== [[BusinessProcessDiagrameRoamingAuthorizationRemote]]Business Process Diagram eRoamingAuthorization Remote
 
 image::images/eroamingauthorizationremote.png[]
 
-[[BusinessProcessDiagrameRoamingReservation]]
-=== Business Process Diagram eRoaming Reservation
+=== [[BusinessProcessDiagrameRoamingReservation]]Business Process Diagram eRoaming Reservation
 
 image::images/eroamingreservation.png[]
 
-[[BusinessProcessDiagrameRoamingAuthorizationGetCDRs]]
-=== Business Process Diagram eRoamingAuthorization GetCDRs
+=== [[BusinessProcessDiagrameRoamingAuthorizationGetCDRs]]Business Process Diagram eRoamingAuthorization GetCDRs
 
 image::images/eroaminggetcdrs.png[]
 
-[[BusinessProcessDiagrameRoamingeEVSEData]]
-=== Business Process Diagram eRoamingEVSEData
+=== [[BusinessProcessDiagrameRoamingeEVSEData]]Business Process Diagram eRoamingEVSEData
 
 image::images/eroamingevsedata.png[]
 
-[[BusinessProcessDiagrameRoamingEVSEStatus]]
-=== Business Process Diagram eRoamingEVSEStatus
+=== [[BusinessProcessDiagrameRoamingEVSEStatus]]Business Process Diagram eRoamingEVSEStatus
 
 image::images/eroamingevsestatus.png[]
 
-[[BusinessProcessDiagrameRoamingChargingNotificationStart]]
-=== Business Process Diagram eRoaming ChargingNotification Start
+=== [[BusinessProcessDiagrameRoamingChargingNotificationStart]]Business Process Diagram eRoaming ChargingNotification Start
 
 image::images/chargingnotificationstart.png[]
 
-[[BusinessProcessDiagrameRoamingChargingNotificationProgress]]
-=== Business Process Diagram eRoaming ChargingNotification Progress
+=== [[BusinessProcessDiagrameRoamingChargingNotificationProgress]]Business Process Diagram eRoaming ChargingNotification Progress
 
 image::images/chargingnotificationprogress.png[]
 
-[[BusinessProcessDiagrameRoamingChargingNotificationEnd]]
-=== Business Process Diagram eRoaming ChargingNotification End
+=== [[BusinessProcessDiagrameRoamingChargingNotificationEnd]]Business Process Diagram eRoaming ChargingNotification End
 
 image::images/chargingnotificationend.png[]
 
-[[BusinessProcessDiagrameRoamingChargingNotificationError]]
-=== Business Process Diagram eRoaming ChargingNotification Error
+=== [[BusinessProcessDiagrameRoamingChargingNotificationError]]Business Process Diagram eRoaming ChargingNotification Error
 
 image::images/chargingnotificationerror.png[]

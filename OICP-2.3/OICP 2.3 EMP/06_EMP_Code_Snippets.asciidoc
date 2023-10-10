@@ -260,8 +260,7 @@ https://www.hubject.com/downloads/
   }
 }
 ----
-[[eRoamingAuthorizeStart]]
-== eRoamingAuthorizeStart
+== [[eRoamingAuthorizeStart]]eRoamingAuthorizeStart
 
 The Service End Points to which the below POST command should be sent are:
 
@@ -1061,8 +1060,7 @@ https://www.hubject.com/downloads/
     }
 }
 ----
-[[eRoamingChargingNotificationStart]]
-== eRoamingChargingNotificationStart
+== [[eRoamingChargingNotificationStart]]eRoamingChargingNotificationStart
 
 The Service End Points to which the below POST command should be sent are:
 
@@ -1114,8 +1112,7 @@ https://www.hubject.com/downloads/
 }
 ----
 
-[[eRoamingChargingNotificationProgress]]
-== eRoamingChargingNotificationProgress
+== [[eRoamingChargingNotificationProgress]]eRoamingChargingNotificationProgress
 
 The Service End Points to which the below POST command should be sent are:
 
@@ -1175,8 +1172,7 @@ https://www.hubject.com/downloads/
 }
 ----
 
-[[eRoamingChargingNotificationEnd]]
-== eRoamingChargingNotificationEnd
+== [[eRoamingChargingNotificationEnd]]eRoamingChargingNotificationEnd
 
 The Service End Points to which the below POST command should be sent are:
 
@@ -1238,8 +1234,7 @@ https://www.hubject.com/downloads/
 }
 ----
 
-[[eRoamingChargingNotificationError]]
-== eRoamingChargingNotificationError
+== [[eRoamingChargingNotificationError]]eRoamingChargingNotificationError
 
 The Service End Points to which the below POST command should be sent are:
 

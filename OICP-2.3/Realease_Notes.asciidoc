@@ -4,8 +4,7 @@
 
 :numbered:
 
-[[Introduction]]
-== Introduction
+== [[Introduction]]Introduction
 
 This document aims to provide an overview of all changes implemented with the release of version 2.3 of the OICP protocol.
 In the Chapters that follow, the respective changes in comparison to OICP 2.2 are highlighted to provide a quick overview of the affected services and data fields.
@@ -13,8 +12,7 @@ For detailed descriptions, please refer to the full-blown OICP 2.3 specification
 
 From OICP 2.3 version only REST API’s are offered.
 
-[[OICP2.3ChangesOnEndpoint]]
-== OICP 2.3 Changes on Endpoint
+== [[OICP2.3ChangesOnEndpoint]]OICP 2.3 Changes on Endpoint
 
 The table below gives an overview of all web services upgraded with the release of OICP 2.3
 
@@ -40,8 +38,7 @@ The sections that follow provide the following details with respect to endpoint 
 * Mapping
 
 
-[[eRoamingChargeDetailRecord]]
-=== eRoamingChargeDetailRecord
+=== [[eRoamingChargeDetailRecord]]eRoamingChargeDetailRecord
 
 The table below provides an overview of field level changes to existing operations.
 
@@ -62,8 +59,7 @@ The table below provides an overview of field level changes to existing operatio
 |====
 
 
-[[eRoamingGetChargeDetailRecord]]
-=== eRoamingGetChargeDetailRecord
+=== [[eRoamingGetChargeDetailRecord]]eRoamingGetChargeDetailRecord
 [%header]
 |=====
 |Change| Field Name| Affected operations/ messages| Change Details
@@ -78,8 +74,7 @@ Data Type= OperatorIDType
 Data Type = BooleanIn case of selecting false as a value, it will provide CDRs that does not have a forwarded status as Forwarded.
 |=====
 
-[[eRoamingEVSEData]]
-=== eRoamingEVSEData
+=== [[eRoamingEVSEData]]eRoamingEVSEData
 
 The table below provides an overview of field level changes to existing operations.
 
@@ -120,8 +115,7 @@ NOTE: The default number of records provided in the eRoamingEvseData response ar
 
 |====
 
-[[eRoamingChargingNotification]]
-=== eRoamingChargingNotification
+=== [[eRoamingChargingNotification]]eRoamingChargingNotification
 
 [%header]
 |=====
@@ -135,8 +129,7 @@ Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can a
 |New Field| ErrorAdditionalInfo| eRoamingChargingnotification|The CPO can put in the additional information about the error
 |=====
 
-[[OICP2.3DataTypeChanges]]
-== OICP 2.3 Data Type Changes
+== [[OICP2.3DataTypeChanges]]OICP 2.3 Data Type Changes
 
 The OICP 2.3 include new fields which also include new data types that are being share in a list below. For more detail of each data type, please refer to the Data Types section of the OICP 2.3 documentation in GitHub.
 
@@ -153,8 +146,7 @@ The OICP 2.3 include new fields which also include new data types that are being
 * ErrorClassType
 
 
-[[OICPVersionsCrossFunctional]]
-== OICP Versions - Cross Functional
+== [[OICPVersionsCrossFunctional]]OICP Versions - Cross Functional
 
 The OICP 2.3 contains new fields that does not exists in the OICP 2.1 and OICP 2.2 versions. Therefore, when an EMP using OICP 2.3 performs an eRoamingPullEvseData it may not receive some values that are mandatory to provide for the CPO using OICP 2.3.
 

@@ -1,22 +1,18 @@
 :numbered:
 
-[[communications_paradigms]]
-== Communication paradigms
+== [[communications_paradigms]]Communication paradigms
 
-[[rest]]
-=== REST
+=== [[rest]]REST
 
 All new services to be introduced in the future, beginning with OICP 2.2, will be only available over the REST API. This means SOAP communication cannot be used for all new services introduced with OICP version 2.2 or later. Partners that wish to use these new services will therefore need to implement RESTful APIs for the respective communication with the HBS.
 
 All web services described below are synchronous.  All service messages exchanged between Hubject and partner systems `MUST` use UTF-8 character encoding.
 
-[[availability]]
-===	Availability
+===	[[availability]]Availability
 
 The Hubject system is set up in a highly available environment. Please check the partner contract for details.
 
-[[error_handling]]
-=== Error handling
+=== [[error_handling]]Error handling
 
 In case that a partner system cannot be addressed by Hubject, Hubject will monitor the connection error in the service session logging.
 
@@ -26,8 +22,7 @@ In case a partner system does not respond to a request by Hubject within the int
 
 General HBS related system errors that `MAY` occur during service processing will be caught. The system will then respond to the service requestor with a default _eRoamingAcknowledgement_ message.
 
-[[status_codes]]
-=== Status codes
+=== [[status_codes]]Status codes
 Each message requires a response message in return (at least an acknowledgement).
 
 Most service response messages contain a “StatusCode” field (e.g. eRoamingAcknowledgement). The node provides a standardized code and status description that can be used to return details about certain process statuses. If, for example, an _eRoamingAuthorizeStart_ request fails, the requested provider can specify why the user cannot be authorized.
@@ -38,8 +33,7 @@ The different states are standardized in order to make automated status processi
 
 The StatusCode node additionally contains the optional “_AdditionalInfo_” field. This field can be used to provide individual information or process details that go beyond the standardized description. In case the optional “Description” field is used, the field should contain only defined values.
 
-[[session_handling]]
-=== Session handling
+=== [[session_handling]]Session handling
 
 Some web service operations that are defined in <<02_CPO_Services_and_Operations.adoc,Services and Operations>> together form a functional business process, respectively a functional session.
 
@@ -53,15 +47,13 @@ Hubject uses globally unique identifiers (GUID) for SessionID creation. Furtherm
 
 NOTE: Regarding eRoaming services, the SessionID will be the leading process identifier.
 
-[[provider_and_operator_ids]]
-=== ProviderIDs and OperatorIDs
+=== [[provider_and_operator_ids]]ProviderIDs and OperatorIDs
 
 Most web service operations require the provision of a ProviderID (EMP) or OperatorID (CPO), depending on whether the operation is requested by EMPs or CPOs. The exact format and examples of these ID’s can be seen in Operator/ProviderID
 
 The IDs are assigned to a specific partner role and they are cross-market unique. There are two roles: eMobility Service Provider (EMP) and Charge Point Operator (CPO). A partner can have one or both roles. If a partner has both roles, two IDs (ProviderID and OperatorID) will be assigned to the partner. Hubject can identify the role that the partner has regarding the current service session depending on which ID is provided with a service request.
 
-[[Security]]
-=== Security
+=== [[Security]]Security
 
 Hubject compares the given Provider- or OperatorID to the partner’s SSL client certificate information with every web service request. This helps Hubject ensures that a partner cannot request operations in the name of another partner by simply sending another partner’s ID. If Hubject detects a mismatch between ProviderID/OperatorID and the client certificate information sent with the request, Hubject will not perform the operation and will respond with the status code 017 “Unauthorized Access”.
 
@@ -69,8 +61,7 @@ The following process diagram describes the partner identification process. It i
 
 image::images/security.png[]
 
-[[hub_provider_and_operator]]
-=== Hub Provider and Hub Operator
+=== [[hub_provider_and_operator]]Hub Provider and Hub Operator
 
 Partners that are registered with Hubject have the possibility to bundle sub providers (EMP) or sub operators (CPO) and to act as “hub provider” or “hub operator”. The sub partners ID’s need to be configured with Hubject before they can be used in communicating with Hubject. The following diagram shows the relationships between Hubject, hub partners, and sub partners.
 
@@ -88,8 +79,7 @@ In case you are operating charging stations in different countries, please make 
 
 image::images/hubpartnerdiagram.png[]
 
-[[data_push_operations]]
-=== Data push operations
+=== [[data_push_operations]]Data push operations
 
 Hubject offers different operations that allow partners to upload (push) data, e.g. upload of EVSE data by CPOs.
 
@@ -101,8 +91,7 @@ The reason for this is that push requests, which are sent in parallel, are also 
 
  A CPO sends an EVSE full load with several hundred EVSE records. Shortly after that, the same CPO sends an EVSE full load with only one EVSE record. From the CPO’s point of view, the second request should overwrite the first, resulting in only one valid EVSE record. But probably the second (small) request will overtake the first (big) request. This results in the big request overwriting the small one and with it several hundred valid EVSE records on the Hubject system.
 
-[[time_zones]]
-=== Time zones
+=== [[time_zones]]Time zones
 
 The time needs to be delivered in the format “complete date plus hours, minutes and seconds” referring to ISO 8601:1988 (E), with a time zone offset in hours and minutes. A time zone offset of "+hh:mm" indicates that the date/time uses a local time zone which is "hh" hours and "mm" minutes ahead of UTC. A time zone offset of "-hh:mm" indicates that the date/time uses a local time zone which is "hh" hours and "mm" minutes behind UTC.
 
@@ -126,8 +115,7 @@ It is mandatory for CPO’s to provide date/time values including a time zone of
 
 In the OICP 2.3, the HBS will store all date/time values in their original form. Also, the original Date/Time values as received and stored by the HBS will be provided in the response to requests from partner systems.
 
-[[CalibrationLawforeMobilityMarket:]]
-=== Calibration Law for eMobility Market:
+=== [[CalibrationLawforeMobilityMarket:]]Calibration Law for eMobility Market:
 
 This topic is specifically important for Partners who are operating inside Germany. Calibration Law is applicable to both CPO and EMP.
 
