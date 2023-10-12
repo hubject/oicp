@@ -15,7 +15,7 @@ Other services will only be consumed by partner systems, meaning that these serv
 
 The names of all following services contain a version and are based on the pattern “<service>_V<version>”, e.g. “eRoamingAuthorization_V2.1”. The reason for this being that Hubject potentially has to offer different versions of a service at the same time. This requires different technical service endpoints (service URLs) and the version in the service name is used to enable the service endpoint differentiation.
 
-:numbered:
+:sectnums:
 
 == [[eRoamingAuthorization]]eRoamingAuthorization
 
