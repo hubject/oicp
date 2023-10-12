@@ -18,6 +18,7 @@ The names of all following services contain a version and are based on the patte
 :numbered:
 
 == [[eRoamingAuthorization]]eRoamingAuthorization
+
 The service eRoamingAuthorization contains several different operations. It `MUST` be offered by Hubject and the partner systems.
 
 === [[eRoamingAuthorizeStart]]eRoamingAuthorizeStart_V2.1
