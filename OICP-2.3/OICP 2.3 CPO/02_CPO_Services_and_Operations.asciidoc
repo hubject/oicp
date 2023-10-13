@@ -1,9 +1,22 @@
+// TOC placement using macro (manual)
+:toc: macro
 
-:toc:
+// Empty TOC title (the title is in the document)
+:toc-title:
+
+// TOC level depth
+:toclevels: 2
+
+// Section numbering level depth
+:sectnumlevels: 5
+
+// Line Break Doc Title
+:hardbreaks-option:
 
 image::images/hubjectlogo.png[float="right", align="right"]
 
-[[services_and_operations]]
+toc::[]
+
 == Services and Operations
 
 Each message requires a message in return (at least an acknowledgement).
@@ -16,14 +29,13 @@ Other services will only be consumed by partner systems, meaning that these serv
 
 The names of all following services contain a version and are based on the pattern “<service>_V<version>”, e.g. “eRoamingAuthorization_V2.1”. The reason for this being that Hubject potentially has to offer different versions of a service at the same time. This requires different technical service endpoints (service URLs) and the version in the service name is used to enable the service endpoint differentiation.
 
-:numbered:
+// GitHub anchors does not work if there is a "." symbol in it. That's why numbered list is switched off.
+//:sectnums:
 
-[[eRoamingAuthorization]]
 == eRoamingAuthorization
 The service eRoamingAuthorization contains several different operations. It `MUST` be offered by Hubject and the partner systems.
 
-[[eRoamingAuthorizeStart]]
-=== eRoamingAuthorizeStart_V2.1
+=== eRoamingAuthorizeStart_V2-1
 
 [NOTE]
 ====
@@ -81,7 +93,6 @@ which eventually leads to a denial of authorization
 In order to create hash values, Hubject applies the hash algorithm that the EMP has assigned to the QR Code
 identification record
 
-[[eRoamingAuthorizeStartmessage]]
 ==== eRoamingAuthorizeStart Message
 
 [%header,format=dsv, cols=5]
@@ -100,7 +111,6 @@ PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricin
  - The EVSE ID is optional for this message which is e.g. defined after the RFID authorization at a charge point. If the Evse ID can be provided, we recommend to include the EVSE ID in this message; it will help for support matters.
  - If an authorization process could not successfully be executed, please set an error code by refering to the error code list mentioned in the OICP document.
 
-[[eRoamingAuthorizationStart]]
 === eRoamingAuthorizationStart
 [NOTE]
 ====
@@ -110,7 +120,6 @@ PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricin
 eRoamingAuthorizationStart is a message that authorizes a user to charge a car.
 NOTE: This message describes the response which has to be receive in response to the eRoamingAuthorizeStart.
 
-[[eRoamingAuthorizationStartmessage]]
 ==== eRoamingAuthorizationStart Message
 [%header,format=dsv, cols=5]
 |========================
@@ -124,8 +133,7 @@ StatusCode:<<03_CPO_Data_Types.adoc#StatusCodeType,StatusCodeType>>:Structured s
 AuthorizationStopIdentifications:List <<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:A list of Identification data that is authorized to stop the charging process.:O:
 |========================
 
-[[eRoamingAuthorizeStop]]
-=== eRoamingAuthorizeStop_V2.1
+=== eRoamingAuthorizeStop_V2-1
 [NOTE]
 ====
 - To `SEND`
@@ -144,7 +152,6 @@ that authorized the charging process from the SessionID and can directly and off
 forward the request for stopping to the EMP. In case the charging session was originally authorized offline by the
 HBS, the session `MUST` only be stopped with the same medium, which was used for starting the session
 
-[[eRoamingAuthorizeStopmessage]]
 ==== eRoamingAuthorizeStop Message
 
 [%header,format=dsv, cols=5]
@@ -158,7 +165,6 @@ EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies t
 Identification:<<03_CPO_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
 |========================
 
-[[eRoamingAuthorizationStop]]
 === eRoamingAuthorizationStop
 [NOTE]
 ====
@@ -169,7 +175,6 @@ eRoamingAuthorizeStop is a message to request an authorization for stopping a ch
 
 NOTE: This message describes the response which has to be received in return to the eRoamingAuthorizeStop request.
 
-[[eRoamingAuthorizationStopmessage]]
 ==== eRoamingAuthorizationStop Message
 [%header,format=dsv, cols=5]
 |========================
@@ -182,8 +187,7 @@ AuthorizationStatus:<<03_CPO_Data_Types.adoc#AuthorizationStatusType,Authorizati
 StatusCode:<<03_CPO_Data_Types.adoc#StatusCodeType,StatusCodeType>>:Structured status details. Can be used to specify the reason for a failed authorization:M:
 |========================
 
-[[eRoamingAuthorizeRemoteStart]]
-=== eRoamingAuthorizeRemoteStart_V2.1
+=== eRoamingAuthorizeRemoteStart_V2-1
 
 [NOTE]
 ====
@@ -227,7 +231,6 @@ In case that the CPO’s system cannot be addressed (e.g. due to technical probl
 indicating the connection error.
 
 
-[[eRoamingAuthorizeRemoteStartmessage]]
 ==== eRoamingAuthorizeRemoteStart Message
 
 [%header,format=dsv, cols=5]
@@ -245,8 +248,7 @@ PartnerProductID:<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricin
  Best Practices:
  - Please ensure a request run time of under 10 seconds including network roundtrip.
 
-[[eRoamingAuthorizeRemoteStop]]
-=== eRoamingAuthorizeRemoteStop_V2.1
+=== eRoamingAuthorizeRemoteStop_V2-1
 [NOTE]
 ====
 - To `RECEIVE`
@@ -260,7 +262,6 @@ image::images/remotestop.png[]
 
 eRoamingAuthorizeRemoteStop basically works in the same way as eRoamingAuthorizeRemoteStart. The only difference is that this request is sent in order to initiate the stopping of a charging process. The request `MUST` contain the SessionID that was created by Hubject after the initial eRoamingAuthorizeRemoteStart request.
 
-[[eRoamingAuthorizeRemoteStopmessage]]
 ==== eRoamingAuthorizeRemoteStop Message
 
 eRoamingAuthorizeRemoteStop is a message to request an authorization for stopping a charging process.
@@ -275,8 +276,7 @@ ProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:The Provider
 EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies the charging spot.:M:
 |========================
 
-[[eRoamingChargeDetailRecord]]
-=== eRoamingChargeDetailRecord_V2.2
+=== eRoamingChargeDetailRecord_V2-2
 [NOTE]
 ====
 - To `SEND`
@@ -301,7 +301,6 @@ Hubject will accept only one CDR per SessionID.
 
 In addition to forwarding the CDR to the EMP, Hubject also stores the CDR. In case that the recipient provider’s system cannot be addressed (e.g. due to technical problems), Hubject will nevertheless return to the requestor a positive result provided that storing the CDR was successful.
 
-[[eRoamingChargeDetailRecordmessage]]
 ==== eRoamingChargeDetailRecord Message
 
 eRoamingChargeDetailRecord is a message that contains charging process details (e.g. meter values).
@@ -350,13 +349,11 @@ We strongly recommend to use one of the following field settings.
 |Session Start/ Session End|If the time stamp/time zone of this data is not correct, this will prevent EMP’s to provide end customer product related on this date(e.g. day and night tariffs)|Please make sure, that your time stamp in this field includes the real time zone of the charging station of start and end of the charging session.
 |====
 
-[[eRoamingReservation]]
 == eRoamingReservation
 
 The service eRoamingReservation contains two operations. It MUST be offered by Hubject and `MAY` be offered by CPO partner systems. The Service `MUST` be enabled by Hubject for the CPO. If the charging station offers reservation services, the CPO can provide this information in the field <<03_CPO_Data_Types.adoc#ValueAddedServiceType,ValueAddedServices>>.
 
-[[eRoamingAuthorizeRemoteReservationStart]]
-=== eRoamingAuthorizeRemoteReservationStart_V1.1
+=== eRoamingAuthorizeRemoteReservationStart_V1-1
 
 [NOTE]
 ====
@@ -386,7 +383,6 @@ In case that the requested EvseID is compatible or the CPO has not uploaded any 
 
 In case that the CPO’s system cannot be addressed (e.g. due to technical problems), Hubject will return to the requestor a “false” result and a message indicating the connection error.
 
-[[eRoamingAuthorizeRemoteReservationStartmessage]]
 ==== eRoamingAuthorizeRemoteReservationStart Message
 
 eRoamingAuthorizeRemoteReservationStart is a message to request a reservation of a charging spot.
@@ -405,8 +401,7 @@ Duration:Integer:Duration of reservation in minutes:O:2
 |========================
 
 
-[[eRoamingAuthorizeRemoteReservationStop]]
-=== eRoamingAuthorizeRemoteReservationStop_V1.1
+=== eRoamingAuthorizeRemoteReservationStop_V1-1
 [NOTE]
 ====
 - To `RECEIVE`
@@ -420,7 +415,6 @@ image::images/reservationstop.png[]
 
 eRoamingAuthorizeRemoteReservationStop basically works in the same way as eRoamingAuthorizeRemoteReservationStart. The only difference is that this request is sent in order to end the reservation of a charging spot. The request `MUST` contain the SessionID that was created by Hubject after the initial eRoamingAuthorizeRemoteReservationStart request. After the eRoamingAuthorizeRemoteReservationStop the CPO `MUST` provide a CDR.
 
-[[eRoamingAuthorizeRemoteReservationStopmessage]]
 ==== eRoamingAuthorizeRemoteReservationStop Message
 
 eRoamingAuthorizeRemoteReservationStop is a message to request the end of a charging spot reservation.
@@ -436,7 +430,6 @@ EvseID:<<03_CPO_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies t
 |========================
 
 
-[[eRoamingEvseData]]
 == eRoamingEvseData
 
 Hubject offers the possibility to upload and download charging spot (EVSE) data and, thus, to exchange data between different partners.
@@ -452,8 +445,7 @@ The eRoamingEvseData service offers two operations:
 
 Hub CPOs may also push EVSE data of sub operators. Hubject does not distinguish between EVSE records of hub operators and related sub operators.
 
-[[eRoamingPushEvseData]]
-=== eRoamingPushEvseData_V2.3
+=== eRoamingPushEvseData_V2-3
 [NOTE]
 ====
 - To `SEND`
@@ -474,7 +466,6 @@ EvseIDs contain the ID of the corresponding CPO (With every data upload operatio
 
 NOTE: The eRoamingPushEvseData operation `MUST` always be used sequentially as described in Data Push Operations.
 
-[[eRoamingPushEvseDatamessage]]
 ==== eRoamingPushEvseData Message
 eRoamingPushEvseData is a message that is sent in order to upload EVSE data to the Hubject system.
 
@@ -523,7 +514,6 @@ Please make sure your street has at least 2 characters. If not, please fill with
 |Additional Information|Filling in this field your information in additional languages provides your information in a larger scope, which makes it easier to understand for customers,who do not speak englisch.|The first language should always be English and after that additional languages reffering to your location.
 |====
 
-[[eRoamingEvseStatus]]
 == eRoamingEvseStatus
 
 Hubject offers the possibility to upload and download dynamic charging spot (EVSE) status information and thus to exchange the data between different partners.
@@ -535,8 +525,7 @@ The eRoamingEvseStatus service offers two operations:
 
 Hub CPOs may also push EVSE status records of sub operators. Hubject does not distinguish between EvseStatus records of hub operators and related sub operators.
 
-[[eRoamingPushEvseStatus]]
-=== eRoamingPushEvseStatus_V2.1
+=== eRoamingPushEvseStatus_V2-1
 [NOTE]
 ====
 - To `SEND`
@@ -553,7 +542,6 @@ The way how Hubject handles the transferred data `MUST` be defined in the reques
 
 NOTE: The eRoamingPushEvseStatus operation MUST always be used sequentiallyas described in Data Push Operations
 
-[[eRoamingPushEvseStatusmessage]]
 ==== eRoamingPushEvseStatus Message
 
 eRoamingPushEvseStatus is a message that is sent in order to upload EVSE status data to Hubject.
@@ -579,7 +567,6 @@ One of the following:
     Best Practices:
     Please try to avoid race conditions by sending multiple status simultaneously. Status should be sent one by one.
 
-[[eRoamingDynamicPricing]]
 == eRoamingDynamicPricing
 
 Since OICP 2.2, HBS  offers the possibility to flexibly or dynamically price Authorization services. The service mainly enables pushing (upload) and pulling (download) of pricing data to and from the HBS through webservice requests and/or downloads/uploads in the Hubject portal.
@@ -597,8 +584,7 @@ The eRoamingDynamicPricing service offers four operations, namely the:
 . eRoamingPullPricingProductData operation which gives EMPs the possibility to download (pull) pricing product information uploaded by a CPO for the respective EMP.
 . eRoamingPullEVSEPricing operation which gives EMPs the possibility to download (pull) location/EVSE-specific pricing data uploaded by CPOs for the respective EMP.
 
-[[eRoamingPushPricingProductData]]
-=== eRoamingPushPricingProductData_V1.0
+=== eRoamingPushPricingProductData_V1-0
 [NOTE]
 ====
 - To `SEND`
@@ -613,7 +599,6 @@ How the transferred data is to be processed `MUST` be defined in the “ActionTy
 The pricing product data to be processed `MUST` be provided in the <<03_CPO_Data_Types.adoc#PricingProductDataType,“PricingProductData”>> field, which consists of <<03_CPO_Data_Types.adoc#PricingProductDataRecordType,“PricingProductDataRecord”>> structures. Hubject keeps a history of all updated and changed data records. Every successful push operation – irrespective of the performed action – leads to a new version of currently valid data records. Furthermore, every operation is logged with the current timestamp.
 Thus, Hubject can reconstruct the status of pricing data for every point in time in the past.
 
-[[eRoamingPushPricingProductDatamessage]]
 ==== eRoamingPushPricingProductData Message
 
 eRoamingPushPricingProductData is a message that is sent in order to upload data pertaining to a CPO’s pricing products (i.e. tarrifs) to the Hubject system.
@@ -636,8 +621,7 @@ One of the following:
 |PricingProductData | <<03_CPO_Data_Types.adoc#PricingProductDataType,PricingProductDataType>>|Details of pricing products offered by a particular operator for a specific provider|M
 |====
 
-[[eRoamingPushEVSEPricing]]
-=== eRoamingPushEVSEPricing_V1.0
+=== eRoamingPushEVSEPricing_V1-0
 
 [NOTE]
 ====
@@ -667,7 +651,6 @@ matches every given EvseID sent in the request. If not, Hubject refuses the data
 
 NOTE: The eRoamingPushEVSEPricing operation MUST always be used sequentially.
 
-[[eRoamingPushEVSEPricingmessage]]
 ==== eRoamingPushEVSEPricing Message
 
 eRoamingPushEVSEPricing is a message that is sent in order to upload a list of EVSEs and the pricing products (i.e. tarrifs) applicable for (charging or reservation) sessions at these EVSEs.
@@ -690,7 +673,6 @@ One of the following:
 |EVSEPricing | <<03_CPO_Data_Types.adoc#EVSEPricingType,EVSEPricingType>>|A list of EVSEs and their respective pricing product relation|M|1...n
 |=====
 
-[[eRoamingChargingNotifications]]
 == eRoamingChargingNotifications
 [NOTE]
 ====
@@ -719,14 +701,12 @@ Hubject will forward Start, Progress, End and Error notification requests to the
 
 This feature should cover all the notifications that could happen between Session Start and Session End in future. Each bit of information increases transparency to the customer of EMP.
 
-[[eRoamingChargingNotificationsstart]]
 === eRoamingChargingNotifications Start
 
 A customer of EMP Authorizes the charging session at particular charging station (via any means for eg REFID card, Mobile etc). The charging session is authorized by Hubject / CPO system. The authorization of charging process and plugging the cable in EV does not guarantee that energy flow into the Vehicle is initiated. It is really important for for EMP and its end consumer to know if the charging has started.
 
 The CPO’s backend system MAY send a ChargingNotification of type “Start” after the CPO considers the charging of an EV is started (since energy flow have started) in order to inform the EMP that the actual charging (the energy flow) of the vehicle has started.
 
-[[eRoamingChargingNotificationsstartmessage]]
 ==== eRoamingChargingNotifications Start Message
 
 The ChargingNotification of type “Start” is a message that contains information about the charging start of a session (e.g. ChargingStart).
@@ -752,14 +732,12 @@ Partner systems can use this field to link their own session handling to HBS pro
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
-[[eRoamingChargingNotificationsprogress]]
 === eRoamingChargingNotifications Progress
 
 A customer of EMP has started the charging session. Just like as that of regular gasoline stations customer would like to know either how much charging Duration have passed or how much energy is consumed by the EV so far. This information will help Customer to decide if he/she wants to stop the charging session as per their affordability or journey planning.
 
 The CPO’s backend system MAY send a ChargingNotification of type “Progess” after the CPO gets the charging energy or time information from EVSEID. This is required in order to inform the EMP that the progress energy or chargingduration for a perticular charging session.
 
-[[eRoamingChargingNotificationsprogressmessage]]
 ==== eRoamingChargingNotifications Progress Message
 
 The ChargingNotification of type “Progress” is a message that contains information about the charging Duration or energy consumed during charging process (e.g. EventOccurred, ChargingDuration, ConsumedEnergyProgress).
@@ -793,14 +771,12 @@ Either ChargingDuration or ConsumedEnergyProgress should be provided. Both can a
 |PartnerProductID|<<03_CPO_Data_Types.adoc#ProductIDType,ProductIDType>>|A pricing product name (for identifying a tariff) that must be unique|O|
 |=====
 
-[[eRoamingChargingNotificationsend]]
 === eRoamingChargingNotifications End
 
 A customer of an EMP has fully charged a vehicle at a charging station of a CPO. The charging process was started with an eRoamingAuthorizeStart or an eRoamingAuthorizeRemoteStart operation. The energy flow has ended, but the process has not yet been stopped and the vehicle is blocking the charging station.
 
 The CPO’s backend system MAY send a ChargingNotification of type “End” after the CPO considers the charging of an EV concluded (because no energy is transmitted anymore) in order to inform the EMP that the actual charging (the energy flow) of the vehicle has stopped. The charging process has not yet been stopped by the customer and the session is still active.
 
-[[eRoamingChargingNotificationsendmessage]]
 ==== eRoamingChargingNotifications End Message
 
 The ChargingNotification of type “End” is a message that contains information about the charging end of a session (e.g. ConsumedEnergy, ChargingEnd).
@@ -832,14 +808,12 @@ Partner systems can use this field to link their own session handling to HBS pro
 |PenaltyTimeStart|Date/Time|The date and time at which the penalty time start after the grace period.|O|
 |=====
 
-[[eRoamingChargingNotificationsError]]
 === eRoamingChargingNotifications Error
 
 A customer of EMP Authorizes the charging session at particular charging station (via any means for eg REFID card, Mobile etc). Due to some errors sometime, it is possible that charging does not start or charging process is abruptly stopped or fluctuations in the charging process. It is really important for Customer as well as EMP to know what exactly is happening at the charging process. This notification eventually helps EMPs well informed about the problem occurred with the charging process. This information can be easily passed onto Customer so that he/she can take appropriate action.
 
 The CPO’s backend system MAY send a ChargingNotification of type “Error” after the CPO gets an information about the error at the charging station. The CPO can transmit one of the ErrorClass defined by Hubject along with the additional information which elaborated the Error. The customer has to take one of the three action EV needs to be charged at some different station, Cables is properly attached or the error is for information only no action required by customer.
 
-[[eRoamingChargingNotificationserrormessage]]
 ==== eRoamingChargingNotifications Error Message
 
 The ChargingNotification of type “Error” is a message that contains information about the charging end of a session (e.g. ErrorClass, ErrorAdditionalInfo).
@@ -863,7 +837,6 @@ Partner systems can use this field to link their own session handling to HBS pro
 |OperatorID|<<03_CPO_Data_Types.adoc#OperatorIDType,OperatorIDType>>|The OperatorID is used to identify the CPO.|M|
 |=====
 
-[[eRoamingAcknowledgementmessage]]
 == eRoamingAcknowledgment
 
 [NOTE]
