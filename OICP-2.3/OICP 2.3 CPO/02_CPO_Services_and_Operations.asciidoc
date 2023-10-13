@@ -1,7 +1,21 @@
+// TOC placement using macro (manual)
+:toc: macro
 
-:toc:
+// Empty TOC title (the title is in the document)
+:toc-title:
+
+// TOC level depth
+:toclevels: 3
+
+// Section numbering level depth
+:sectnumlevels: 5
+
+// Line Break Doc Title
+:hardbreaks-option:
 
 image::images/hubjectlogo.png[float="right", align="right"]
+
+toc::[]
 
 == [[services_and_operations]]Services and Operations
 
@@ -14,8 +28,6 @@ All described services are offered by Hubject. Some of the described services `M
 Other services will only be consumed by partner systems, meaning that these services do not have to be offered by the partner system (e.g. the eRoamingAuthenticationData service will be offered by Hubject only).
 
 The names of all following services contain a version and are based on the pattern “<service>_V<version>”, e.g. “eRoamingAuthorization_V2.1”. The reason for this being that Hubject potentially has to offer different versions of a service at the same time. This requires different technical service endpoints (service URLs) and the version in the service name is used to enable the service endpoint differentiation.
-
-:sectnums:
 
 == [[eRoamingAuthorization]]eRoamingAuthorization
 
