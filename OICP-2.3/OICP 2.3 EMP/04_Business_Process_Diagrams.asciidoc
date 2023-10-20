@@ -1,5 +1,4 @@
-:toc:
-:numbered:
+
 
 [[Business_Process_Diagrams]]
 == Business_Process_Diagrams
