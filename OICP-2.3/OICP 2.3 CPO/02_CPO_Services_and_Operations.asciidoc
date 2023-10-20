@@ -1,22 +1,3 @@
-// TOC placement using macro (manual)
-:toc: macro
-
-// Empty TOC title (the title is in the document)
-:toc-title:
-
-// TOC level depth
-:toclevels: 2
-
-// Section numbering level depth
-:sectnumlevels: 5
-
-// Line Break Doc Title
-:hardbreaks-option:
-
-image::images/hubjectlogo.png[float="right", align="right"]
-
-toc::[]
-
 == [[services_and_operations]]Services and Operations
 
 Each message requires a message in return (at least an acknowledgement).
