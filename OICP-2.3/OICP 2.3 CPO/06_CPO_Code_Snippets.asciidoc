@@ -1,5 +1,4 @@
-:toc:
-:numbered:
+
 
 [[codeSnippets]]
 = Code Snippets (Release Candidate)
