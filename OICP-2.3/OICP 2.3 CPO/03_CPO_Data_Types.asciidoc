@@ -1,4 +1,4 @@
-:toc:
+
 
 
 image::images/hubjectlogo.png[align="right"]
@@ -6,7 +6,6 @@ image::images/hubjectlogo.png[align="right"]
 [[DataTypes]]
 == Data Types
 
-:numbered:
 
 
 [[ComplexDataTypes]]
