@@ -1,8 +1,7 @@
-:toc:
+
 
 image::images/hubjectlogo.png[float="right", align="right"]
 
-:numbered:
 
 [[communications_paradigms]]
 == Communication paradigms
