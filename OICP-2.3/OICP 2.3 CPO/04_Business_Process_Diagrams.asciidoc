@@ -1,10 +1,9 @@
-:toc:
+
 
 
 [[Business_Process_Diagrams]]
 = Business_Process_Diagrams
 
-:numbered:
 [[BusinessProcessDiagrameRoamingAuthorization]]
 === Business Process Diagram eRoamingAuthorization
 
