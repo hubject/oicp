@@ -1,5 +1,4 @@
-:toc:
-:numbered:
+
 
 = Code Snippets
 
