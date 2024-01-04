@@ -220,6 +220,9 @@ EvseID:<<03_EMP_Data_Types.adoc#EvseIDType,EvseIDType>>:The ID that identifies t
 Identification:<<03_EMP_Data_Types.adoc#IdentificationType,IdentificationType>>:Authentication data used to authorize the user or car.:M:
 PartnerProductID:<<03_EMP_Data_Types.adoc#ProductIDType,ProductIDType>>:A pricing product name (for identifying a tariff) that must be unique:O:
 |========================
+ 
+Best Practices:
+ - The SessionID should not be filled in by the EMP in the initial AuthorizationRemoteStart request. The SessionID is optional for the initial request sent from the EMP message which is e.g. defined as a unique ID from Hubject. The SessionID is then a Mandatory field when the request is sent to the CPO. 
 
 [[eRoamingAuthroizeRemoteStop]]
 === eRoamingAuthorizeRemoteStop_V2.1
