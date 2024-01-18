@@ -944,7 +944,7 @@ Example: *“+0305132787”*
 
 [[UIDType]]
 === UIDType
- ^([0-9A-F]{8,8}|[0-9A-F]{14,14}|[0-9A-F]{20,20})$
+ ^([0-9A-Fa-f]{8,8}|[0-9A-Fa-f]{14,14}|[0-9A-Fa-f]{20,20})$
 
 The expression validates the string as a unique RFID with a length of 8, 14 or 20 characters.
 
