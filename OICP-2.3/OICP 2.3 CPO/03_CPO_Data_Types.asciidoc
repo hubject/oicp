@@ -411,7 +411,7 @@ EVSEPricing:<<EVSEPricingType,EVSEPricingType>>:List of EVSE pricings offered by
 |=====================
 Name:Data Type:Description:M/O:Field Length
 Energy:<<EnergyType,EnergyType>>::O:
-Percentage:Integer:Percentage of EnergyType bein used by the charging stations:O:2
+Percentage:Integer:Percentage of EnergyType being used by the charging stations:O:2
 |=====================
 
 [[EnvironmentalImpactType]]
