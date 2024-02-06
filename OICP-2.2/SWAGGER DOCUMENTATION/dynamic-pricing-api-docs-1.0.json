@@ -886,7 +886,7 @@
         },
         "MaximumProductChargingPower": {
           "type": "number",
-          "description": "A value in kWh"
+          "description": "A value in kW"
         },
         "PricePerReferenceUnit": {
           "type": "number",
