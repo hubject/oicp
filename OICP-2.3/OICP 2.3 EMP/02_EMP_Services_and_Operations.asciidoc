@@ -775,7 +775,7 @@ NOTE: This message describes the response which has to be sent in reply to the e
 [%header]
 |====
 |	Name	|	Data Type	|	Description	|	M/O
-|	OperatorPricingProducts	|	List <<03_EMP_Data_Types.adoc#PricingProductDataType,PricingProductDataType>>|List of pricing products offered by operators for a specific provider	|M
+|	PricingProductData	|	List <<03_EMP_Data_Types.adoc#PricingProductDataType,PricingProductDataType>>|List of pricing products offered by operators for a specific provider	|M
 |	StatusCode	|	<<03_EMP_Data_Types.adoc#StatusCodeType,StatusCodeType>>	| This can be used e.g. for failure messages or further information regarding the result.|	O
 |====
 
