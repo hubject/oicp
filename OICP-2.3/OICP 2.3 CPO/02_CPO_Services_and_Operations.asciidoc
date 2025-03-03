@@ -634,7 +634,7 @@ One of the following:
 |PricingProductData | <<03_CPO_Data_Types.adoc#PricingProductDataType,PricingProductDataType>>|Details of pricing products offered by a particular operator for a specific provider|M
 |====
 
-==== Best Practices:
+ Best Practices:
 - Pricing updates should be pushed without VAT (Value Added Tax).
 
 [[eRoamingPushEVSEPricing]]
