@@ -490,8 +490,6 @@ Free publicly accessible:EV Driver can reach the charging point without paying a
 Restricted access:EV Driver needs permission to reach the charging point, e.g. Campus, building complex, etc.
 Paying publicly accessible:EV Driver needs to pay a fee in order to reach the charging point, e.g. payable parking garage, etc.
 Test Station:Station is just for testing purposes. Access may be restricted.
-Unspecified:Unspecified.
-
 |=====================
 
 [[PlugType]]
