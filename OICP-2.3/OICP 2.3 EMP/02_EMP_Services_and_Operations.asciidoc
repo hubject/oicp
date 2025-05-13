@@ -706,14 +706,28 @@ eRoamingPullEVSEStatusByOperatorID is a message that is sent in order to request
 [[eRoamingEVSEStatusmessage]]
 ==== eRoamingEVSEStatus Message
 
-eRoamingEVSEStatus is sent in response to eRoamingPullEVSEStatus requests.
+eRoamingEVSEStatus is sent in response to eRoamingPullEVSEStatus or eRoamingPullEVSEStatusByOperatorID requests.
 
-NOTE: This message describes the response which will be received as response to the eRoamingPullEVSEStatus request.
+NOTE: This message describes the response which will be received as response to the eRoamingPullEVSEStatus or eRoamingPullEVSEStatusByOperatorID request.
 
 [%header]
 |====
 |	Name	|	Data Type	|	Description	|	M/O
-|	EvseStatuses	|	<<03_EMP_Data_Types.adoc#OperatorEvseStatusType,OperatorEVSEStatusType>>	|	A list of EVSE status blocks that are each assigned to a certain operator.	|	M
+|	EvseStatuses	|	<<03_EMP_Data_Types.adoc#EvseStatusByOperatorIDResponseType,EvseStatusByOperatorIDResponseType>>	|	A list of EVSE status blocks that are each assigned to a certain operator.	|	M 0...n
+|	StatusCode	|	<<03_EMP_Data_Types.adoc#StatusCodeType,StatusCodeType>>	|	This can be used e.g. for failure messages or further information regarding the result.	|	O
+|====
+
+[[eRoamingEVSEStatusByIDmessage]]
+==== eRoamingEVSEStatusByID Message
+
+eRoamingEVSEStatusByID is sent in response to eRoamingPullEVSEStatusByID requests.
+
+NOTE: This message describes the response which will be received as response to the eRoamingPullEVSEStatusByID request.
+
+[%header]
+|====
+|	Name	|	Data Type	|	Description	|	M/O
+|	EVSEStatusRecords	|	<<03_EMP_Data_Types.adoc#EvseStatusByIDResponseType,EvseStatusByIDResponseType>>	|	A list of the requested EVSE status.	|	M 0...n
 |	StatusCode	|	<<03_EMP_Data_Types.adoc#StatusCodeType,StatusCodeType>>	|	This can be used e.g. for failure messages or further information regarding the result.	|	O
 |====
 
