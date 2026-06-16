@@ -335,7 +335,7 @@ HubProviderID:<<03_CPO_Data_Types.adoc#ProviderIDType,ProviderIDType>>:Hub provi
 
 EMP online will receive the forwarded CDR directly from the eRoaming platform.
 |PartnerProductID||
-Eventhough this is mareked as optional, it is required if you have some certin types of pricing.
+Eventhough this is marked as optional, it is required if you have some certain types of pricing.
 We strongly recommend to use one of the following field settings.
 
 • AC1
