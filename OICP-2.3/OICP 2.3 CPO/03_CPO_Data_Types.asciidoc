@@ -232,6 +232,22 @@ DynamicInfoAvailable:Enumeration:Values; true / false / auto This attribute indi
  Best Practices:
  For recommendations regarding specific usage of fields, please consider 8.1.
 
+[[EvseStatusByOperatorIDResponseType]]
+=== EvseStatusByOperatorIDResponseType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O
+OperatorEvseStatus:<<OperatorEvseStatusType,OperatorEvseStatusType>>:OperatorEvseStatus list:M  0...n:
+|=====================
+
+[[EvseStatusByIDResponseType]]
+=== EvseStatusByIDResponseType
+[%header,format=dsv, cols=5]
+|=====================
+Name:Data Type:Description:M/O
+EvseStatusRecord:<<EvseStatusRecordType,EvseStatusRecordType>>:EvseStatus list:M  0...n:
+|=====================
+
 [[OperatorEvseStatusType]]
 === OperatorEvseStatusType
 [%header,format=dsv, cols=5]
